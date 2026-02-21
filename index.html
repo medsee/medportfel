@@ -80,18 +80,13 @@
       flex-direction: column;
       height: 100%;
       opacity: 0;
-      transform: translateX(30px);
       pointer-events: none;
-      transition: opacity .28s ease, transform .28s ease;
+      visibility: hidden;
     }
     .screen.active {
       opacity: 1;
-      transform: translateX(0);
       pointer-events: all;
-    }
-    .screen.exit-left {
-      opacity: 0;
-      transform: translateX(-30px);
+      visibility: visible;
     }
 
     /* ── Checklist interactivity ── */
@@ -806,34 +801,13 @@
   function switchTab(index) {
     if (index === currentTab) return;
 
+    // hide old
     const oldScreen = document.getElementById('screen-' + currentTab);
-    const newScreen = document.getElementById('screen-' + index);
-
-    // direction
-    const goRight = index > currentTab;
-
-    // exit old
     oldScreen.classList.remove('active');
-    oldScreen.classList.add(goRight ? 'exit-left' : '');
-    if (!goRight) {
-      oldScreen.style.transform = 'translateX(30px)';
-      oldScreen.style.opacity = '0';
-    }
-    setTimeout(() => {
-      oldScreen.style.transform = '';
-      oldScreen.style.opacity = '';
-      oldScreen.classList.remove('exit-left');
-    }, 300);
 
-    // enter new
-    newScreen.style.transform = goRight ? 'translateX(30px)' : 'translateX(-30px)';
-    newScreen.style.opacity = '0';
-    newScreen.style.pointerEvents = 'all';
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        newScreen.classList.add('active');
-      });
-    });
+    // show new
+    const newScreen = document.getElementById('screen-' + index);
+    newScreen.classList.add('active');
 
     currentTab = index;
     updateNav();
