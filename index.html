@@ -4,862 +4,502 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>MedStudent – Aziz</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            bg:        'rgb(var(--bg)  / <alpha-value>)',
-            fg:        'rgb(var(--fg)  / <alpha-value>)',
-            card:      'rgb(var(--card)/ <alpha-value>)',
-            primary:   'rgb(var(--primary)/<alpha-value>)',
-            primaryFg: 'rgb(var(--primaryFg)/<alpha-value>)',
-            secondary: 'rgb(var(--secondary)/<alpha-value>)',
-            secondaryFg:'rgb(var(--secondaryFg)/<alpha-value>)',
-            muted:     'rgb(var(--muted)/<alpha-value>)',
-            mutedFg:   'rgb(var(--mutedFg)/<alpha-value>)',
-            accent:    'rgb(var(--accent)/<alpha-value>)',
-            accentFg:  'rgb(var(--accentFg)/<alpha-value>)',
-            border:    'rgb(var(--border)/<alpha-value>)',
+            bg:'rgb(var(--bg)/<alpha-value>)',fg:'rgb(var(--fg)/<alpha-value>)',
+            card:'rgb(var(--card)/<alpha-value>)',primary:'rgb(var(--primary)/<alpha-value>)',
+            primaryFg:'rgb(var(--primaryFg)/<alpha-value>)',secondary:'rgb(var(--secondary)/<alpha-value>)',
+            secondaryFg:'rgb(var(--secondaryFg)/<alpha-value>)',muted:'rgb(var(--muted)/<alpha-value>)',
+            mutedFg:'rgb(var(--mutedFg)/<alpha-value>)',accent:'rgb(var(--accent)/<alpha-value>)',
+            border:'rgb(var(--border)/<alpha-value>)',
           },
-          fontFamily: {
-            sans:    ['"Plus Jakarta Sans"','system-ui','sans-serif'],
-            heading: ['"Inter"','system-ui','sans-serif'],
-          },
-          borderRadius: {
-            '2xl': '1rem',
-            '3xl': '1.5rem',
-            '4xl': '2rem',
-          }
+          fontFamily:{sans:['"Plus Jakarta Sans"','system-ui','sans-serif'],heading:['"Inter"','system-ui','sans-serif']},
+          borderRadius:{'2xl':'1rem','3xl':'1.5rem','4xl':'2rem'}
         }
       }
     }
   </script>
-
   <style>
-    :root {
-      --bg:          248 250 252;
-      --fg:          15  23  42;
-      --card:        255 255 255;
-      --primary:     13  148 136;
-      --primaryFg:   255 255 255;
-      --secondary:   204 251 241;
-      --secondaryFg: 15  118 110;
-      --muted:       241 245 249;
-      --mutedFg:     100 116 139;
-      --accent:      244 63  94;
-      --accentFg:    255 255 255;
-      --border:      226 232 240;
-    }
-
-    * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
-    *::-webkit-scrollbar { display: none; }
-
-    body {
-      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-      background: rgb(var(--bg));
-      color: rgb(var(--fg));
-      -webkit-font-smoothing: antialiased;
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    /* ── Screen transitions ── */
-    .screen {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-    }
-    .screen.active {
-      opacity: 1;
-      pointer-events: all;
-      visibility: visible;
-    }
-
-    /* ── Checklist interactivity ── */
-    .check-item { cursor: pointer; user-select: none; }
-    .check-item.done .item-label { text-decoration: line-through; opacity: .6; }
-    .check-item.done .check-circle {
-      background: rgb(var(--primary));
-      border-color: rgb(var(--primary));
-    }
-    .check-item.done .check-icon { opacity: 1; }
-    .check-circle {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      border: 2px solid rgb(var(--mutedFg) / .4);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: all .2s;
-    }
-    .check-icon { opacity: 0; transition: opacity .15s; }
-
-    /* progress bar fill via JS */
-    #progress-bar { transition: width .4s ease; }
-
-    /* pulse for live dot */
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgb(var(--primary)/.4); }
-      50%      { box-shadow: 0 0 0 6px rgb(var(--primary)/0); }
-    }
-    .live-dot { animation: pulse 2s infinite; }
-
-    /* nav active indicator */
-    .nav-dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: rgb(var(--primary));
-      margin: 0 auto;
-    }
-
-    button, a, [role="button"] { transition: all .15s ease; }
-    img { image-rendering: -webkit-optimize-contrast; }
+    :root{--bg:248 250 252;--fg:15 23 42;--card:255 255 255;--primary:13 148 136;--primaryFg:255 255 255;--secondary:204 251 241;--secondaryFg:15 118 110;--muted:241 245 249;--mutedFg:100 116 139;--accent:244 63 94;--accentFg:255 255 255;--border:226 232 240;}
+    *{scrollbar-width:none;-ms-overflow-style:none;box-sizing:border-box;}
+    *::-webkit-scrollbar{display:none;}
+    body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:rgb(var(--bg));color:rgb(var(--fg));-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;}
+    .screen{position:absolute;inset:0;display:flex;flex-direction:column;height:100%;opacity:0;pointer-events:none;visibility:hidden;}
+    .screen.active{opacity:1;pointer-events:all;visibility:visible;}
+    .check-item{cursor:pointer;user-select:none;}
+    .check-item.done .item-label{text-decoration:line-through;opacity:.6;}
+    .check-circle{width:24px;height:24px;border-radius:50%;border:2px solid rgb(var(--mutedFg)/.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+    .check-item.done .check-circle{background:rgb(var(--primary));border-color:rgb(var(--primary));}
+    .check-item.done .check-icon{opacity:1!important;}
+    .check-icon{opacity:0;transition:opacity .15s;}
+    #progress-bar{transition:width .4s ease;}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgb(var(--primary)/.4);}50%{box-shadow:0 0 0 6px rgb(var(--primary)/0);}}
+    .live-dot{animation:pulse 2s infinite;}
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+    .modal-bg.open{opacity:1;pointer-events:all;}
+    .modal-sheet{background:rgb(var(--card));border-radius:24px 24px 0 0;width:100%;padding:24px 24px 40px;transform:translateY(100%);transition:transform .3s ease;}
+    .modal-bg.open .modal-sheet{transform:translateY(0);}
+    button,a,[role="button"]{transition:all .15s ease;}
   </style>
 </head>
-
 <body>
-<!-- ═══════════════════════════════════════════
-     ROOT WRAPPER
-═══════════════════════════════════════════ -->
 <div id="app" style="position:relative;height:100vh;overflow:hidden;">
 
-  <!-- ════════════════════════════════════════
-       SCREEN 0 – BUGUN (Today)
-  ════════════════════════════════════════ -->
-  <div class="screen active" id="screen-0">
-
-    <!-- Header -->
-    <header style="background:rgb(var(--bg));z-index:10;"
-            class="flex justify-between items-start pt-10 px-6 pb-2 sticky top-0">
-      <div>
-        <p class="text-mutedFg text-sm font-medium mb-0.5">24 Oktyabr, Seshanba</p>
-        <h1 class="text-3xl font-heading font-bold tracking-tight">
-          Xayrli tong, <span style="color:rgb(var(--primary))">Aziz</span>
-        </h1>
-      </div>
-      <button class="relative active:scale-95">
-        <img src="https://i.pravatar.cc/150?u=medical_student" alt="Profil"
-             class="w-12 h-12 rounded-full object-cover border-2"
-             style="border-color:rgb(var(--bg));outline:2px solid rgb(var(--border))">
-        <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-             style="background:#22c55e;border-color:rgb(var(--bg))"></div>
-      </button>
-    </header>
-
-    <!-- Scrollable body -->
-    <div class="flex-1 overflow-y-auto pb-28" style="padding-bottom:6rem;">
-
-      <!-- Checklist card -->
-      <section class="px-6 mt-4">
-        <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl"
-               style="background:rgb(var(--secondary)/.3)"></div>
-
-          <div class="flex justify-between items-end mb-4 relative" style="z-index:1">
-            <div>
-              <h2 class="text-xl font-heading font-bold">Sumkangizni yig'amiz</h2>
-              <p class="text-mutedFg text-sm mt-1">Bugungi amaliyotga tayyormisiz?</p>
-            </div>
-            <span id="pct-label" class="text-2xl font-bold" style="color:rgb(var(--primary))">67%</span>
-          </div>
-
-          <div class="h-2 w-full rounded-full overflow-hidden mb-6 relative" style="background:rgb(var(--muted));z-index:1">
-            <div id="progress-bar" class="h-full rounded-full" style="background:rgb(var(--primary));width:67%"></div>
-          </div>
-
-          <div class="space-y-3 relative" style="z-index:1" id="checklist">
-
-            <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all active:scale-[.98]"
-                 style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"
-                 onclick="toggleCheck(this)">
-              <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))">
-                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon>
-              </div>
-              <span class="flex-1 font-medium item-label">Oq xalat</span>
-              <iconify-icon icon="lucide:shirt" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
-            </div>
-
-            <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all active:scale-[.98]"
-                 style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"
-                 onclick="toggleCheck(this)">
-              <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))">
-                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon>
-              </div>
-              <span class="flex-1 font-medium item-label">Stetoskop</span>
-              <iconify-icon icon="lucide:stethoscope" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
-            </div>
-
-            <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed transition-all active:scale-[.98]"
-                 style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)"
-                 onclick="toggleCheck(this)">
-              <div class="check-circle">
-                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:rgb(var(--primaryFg))"></iconify-icon>
-              </div>
-              <span class="flex-1 font-medium item-label">Anatomiya Atlasi</span>
-              <iconify-icon icon="lucide:book" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Next class -->
-      <section class="px-6 mt-8">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-lg font-heading font-semibold">Keyingi dars</h3>
-          <span class="text-xs font-medium px-2.5 py-1 rounded-full"
-                style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">14:00 da</span>
-        </div>
-
-        <div class="rounded-3xl p-6 relative overflow-hidden shadow-lg active:scale-[.99] transition-all"
-             style="background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 10px 30px rgb(var(--primary)/.25)">
-          <div class="absolute top-0 right-0 p-8 opacity-10">
-            <iconify-icon icon="lucide:activity" width="120" height="120"></iconify-icon>
-          </div>
-
-          <div class="relative flex flex-col gap-6" style="z-index:1">
-            <div>
-              <div class="w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border"
-                   style="background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.15)">
-                <iconify-icon icon="lucide:clock" width="14"></iconify-icon>
-                <span class="text-xs font-medium">1 soat qoldi</span>
-              </div>
-              <h2 class="text-3xl font-heading font-bold mb-1">Xirurgiya</h2>
-              <p class="font-medium text-lg" style="color:rgba(255,255,255,.9)">Dr. Alimov</p>
-            </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-start gap-2.5">
-                <iconify-icon icon="lucide:map-pin" width="18" class="mt-0.5" style="opacity:.9"></iconify-icon>
-                <div class="leading-tight">
-                  <span class="block text-sm font-semibold">1-Shahar Shifoxonasi</span>
-                  <span class="text-xs" style="opacity:.8">B Blok, 304-xona</span>
-                </div>
-              </div>
-              <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-90"
-                      style="background:#fff;color:rgb(var(--primary))">
-                <iconify-icon icon="lucide:navigation" width="20"></iconify-icon>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Today's schedule strip -->
-      <section class="pl-6 mt-8 pb-4">
-        <h3 class="text-lg font-heading font-semibold mb-4">Bugungi darslar</h3>
-        <div class="flex gap-4 overflow-x-auto pr-6 pb-2 snap-x snap-mandatory">
-
-          <div class="min-w-[150px] snap-start">
-            <div class="rounded-2xl p-4 border opacity-60"
-                 style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
-              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--mutedFg))">08:30</span>
-              <h4 class="font-semibold mb-1">Terapiya</h4>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">Lektsiya zal A</p>
-            </div>
-          </div>
-
-          <div class="min-w-[150px] snap-start">
-            <div class="rounded-2xl p-4 border-l-4 border shadow-sm"
-                 style="background:rgb(var(--card));border-left-color:rgb(var(--accent));border-color:rgb(var(--border)/.5)">
-              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--accent))">14:00</span>
-              <h4 class="font-semibold mb-1">Xirurgiya</h4>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">Amaliyot</p>
-            </div>
-          </div>
-
-          <div class="min-w-[150px] snap-start">
-            <div class="rounded-2xl p-4 border transition-colors"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">16:30</span>
-              <h4 class="font-semibold mb-1">Farmakologiya</h4>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">Seminar</p>
-            </div>
-          </div>
-
-          <div class="min-w-[150px] snap-start">
-            <div class="rounded-2xl p-4 border transition-colors"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">18:00</span>
-              <h4 class="font-semibold mb-1">Mustaqil ish</h4>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">Kutubxona</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
+<!-- SCREEN 0: BUGUN -->
+<div class="screen active" id="screen-0">
+  <header style="background:rgb(var(--bg));z-index:10;" class="flex justify-between items-start pt-10 px-6 pb-2 sticky top-0">
+    <div>
+      <p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">24 Oktyabr, Seshanba</p>
+      <h1 class="text-3xl font-heading font-bold tracking-tight">Xayrli tong, <span style="color:rgb(var(--primary))">Aziz</span></h1>
     </div>
-  </div><!-- /screen-0 -->
-
-
-  <!-- ════════════════════════════════════════
-       SCREEN 1 – JADVAL (Schedule)
-  ════════════════════════════════════════ -->
-  <div class="screen" id="screen-1">
-
-    <header style="background:rgb(var(--bg));z-index:10;"
-            class="flex flex-col pt-10 px-6 pb-2 sticky top-0 gap-4">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-mutedFg text-sm font-medium mb-0.5">Haftalik jadval</p>
-          <h1 class="text-3xl font-heading font-bold tracking-tight">
-            Oktyabr <span style="color:rgb(var(--primary));font-size:1.1rem;font-weight:500;margin-left:4px">2023</span>
-          </h1>
+    <button class="relative active:scale-95" onclick="switchTab(4)">
+      <div class="w-11 h-11 rounded-2xl flex items-center justify-center border" style="background:rgb(var(--card));border-color:rgb(var(--border))">
+        <iconify-icon icon="lucide:bell" width="22" style="color:rgb(var(--fg))"></iconify-icon>
+      </div>
+      <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center border-2 text-white text-[9px] font-bold" style="background:rgb(var(--accent));border-color:rgb(var(--bg))">3</div>
+    </button>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <section class="px-6 mt-4">
+      <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl" style="background:rgb(var(--secondary)/.3)"></div>
+        <div class="flex justify-between items-end mb-4 relative" style="z-index:1">
+          <div>
+            <h2 class="text-xl font-heading font-bold">Sumkangizni yigamiz</h2>
+            <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Bugungi amaliyotga tayyormisiz?</p>
+          </div>
+          <span id="pct-label" class="text-2xl font-bold" style="color:rgb(var(--primary))">67%</span>
         </div>
-        <button class="p-2.5 rounded-2xl border active:scale-95"
-                style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
-          <iconify-icon icon="lucide:search" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        <div class="h-2 w-full rounded-full overflow-hidden mb-5 relative" style="background:rgb(var(--muted));z-index:1">
+          <div id="progress-bar" class="h-full rounded-full" style="background:rgb(var(--primary));width:67%"></div>
+        </div>
+        <div class="space-y-3 relative" id="checklist" style="z-index:1">
+          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)">
+            <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div>
+            <span class="flex-1 font-medium item-label">Oq xalat</span>
+            <iconify-icon icon="lucide:shirt" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
+          </div>
+          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)">
+            <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div>
+            <span class="flex-1 font-medium item-label">Stetoskop</span>
+            <iconify-icon icon="lucide:stethoscope" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
+          </div>
+          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed transition-all" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)">
+            <div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div>
+            <span class="flex-1 font-medium item-label">Anatomiya Atlasi</span>
+            <iconify-icon icon="lucide:book" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+          </div>
+          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed transition-all" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)">
+            <div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div>
+            <span class="flex-1 font-medium item-label">Tibbiy qolqop</span>
+            <iconify-icon icon="lucide:shield" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+          </div>
+        </div>
+        <button onclick="openModal('add-modal')" class="mt-4 w-full flex items-center justify-center gap-2 p-3 rounded-2xl border border-dashed" style="border-color:rgb(var(--primary)/.3);color:rgb(var(--primary));font-weight:600;font-size:.875rem;z-index:1;position:relative;">
+          <iconify-icon icon="lucide:plus" width="16"></iconify-icon> Narsa qoshish
         </button>
       </div>
-
-      <!-- Week strip -->
-      <div class="flex justify-between items-center py-2 gap-2">
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl"
-             style="background:rgb(var(--muted)/.5)">
-          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Du</span>
-          <span class="text-lg font-bold">23</span>
-        </div>
-        <!-- Active -->
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl shadow-lg"
-             style="background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 4px 16px rgb(var(--primary)/.25)">
-          <span class="text-[10px] font-bold opacity-80 uppercase">Se</span>
-          <span class="text-lg font-bold">24</span>
-          <div class="w-1.5 h-1.5 rounded-full bg-white mt-1"></div>
-        </div>
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ch</span>
-          <span class="text-lg font-bold">25</span>
-        </div>
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Pa</span>
-          <span class="text-lg font-bold">26</span>
-        </div>
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ju</span>
-          <span class="text-lg font-bold">27</span>
-        </div>
-        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border opacity-50"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Sh</span>
-          <span class="text-lg font-bold">28</span>
-        </div>
+    </section>
+    <section class="px-6 mt-6">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-heading font-semibold">Keyingi dars</h3>
+        <span class="text-xs font-medium px-2.5 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">14:00 da</span>
       </div>
-    </header>
-
-    <div class="flex-1 overflow-y-auto pb-28">
-
-      <!-- Timeline -->
-      <div class="px-6 mt-4 relative">
-        <!-- vertical line -->
-        <div class="absolute w-0.5" style="left:38px;top:16px;bottom:0;background:rgb(var(--border)/.4)"></div>
-
-        <div class="space-y-8 relative">
-
-          <!-- Past -->
-          <div class="flex gap-4">
-            <div class="flex flex-col items-center mt-1">
-              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">08:30</span>
-              <div class="w-3 h-3 rounded-full my-2 border-4"
-                   style="background:rgb(var(--muted));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
-            </div>
-            <div class="flex-1 rounded-3xl p-5 border opacity-60"
-                 style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)">
-              <div class="flex justify-between items-start mb-2">
-                <h4 class="font-heading font-bold">Gematologiya</h4>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
-                      style="background:rgba(59,130,246,.1);color:#3b82f6">Lektsiya</span>
-              </div>
-              <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))">
-                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
-                <span>Asosiy bino, 2-zal</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Current (live) -->
-          <div class="flex gap-4">
-            <div class="flex flex-col items-center mt-1">
-              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">14:00</span>
-              <div class="w-3 h-3 rounded-full my-2 live-dot"
-                   style="background:rgb(var(--primary));outline:4px solid rgb(var(--primary)/.15);z-index:1"></div>
-            </div>
-            <div class="flex-1 rounded-3xl p-5 border shadow-sm relative overflow-hidden active:scale-[.98] transition-all"
-                 style="background:rgb(var(--card));border-color:rgb(var(--primary)/.2)">
-              <div class="absolute top-0 right-0 w-24 h-24 rounded-full -mr-8 -mt-8"
-                   style="background:rgb(var(--primary)/.05)"></div>
-              <div class="flex justify-between items-start mb-3 relative" style="z-index:1">
-                <div>
-                  <h4 class="font-heading font-bold text-lg mb-1">Xirurgiya Amaliyoti</h4>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
-                        style="background:rgb(var(--secondary)/.5);color:rgb(var(--secondaryFg))">Klinik Amaliyot</span>
-                </div>
-                <button class="w-10 h-10 rounded-xl flex items-center justify-center active:scale-90"
-                        style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">
-                  <iconify-icon icon="lucide:map" width="20"></iconify-icon>
-                </button>
-              </div>
-              <div class="rounded-2xl p-3 border relative" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.5);z-index:1">
-                <div class="flex items-start gap-3">
-                  <div class="w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0"
-                       style="background:rgb(var(--card));border-color:rgb(var(--border))">
-                    <iconify-icon icon="lucide:hospital" width="16" style="color:rgb(var(--primary))"></iconify-icon>
-                  </div>
-                  <div class="leading-tight">
-                    <p class="text-sm font-semibold">1-Shahar Shifoxonasi</p>
-                    <p class="text-xs italic mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya Bo'limi, 3-qavat</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Upcoming -->
-          <div class="flex gap-4">
-            <div class="flex flex-col items-center mt-1">
-              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">16:30</span>
-              <div class="w-3 h-3 rounded-full my-2 border-4"
-                   style="background:rgb(var(--border));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
-            </div>
-            <div class="flex-1 rounded-3xl p-5 border active:scale-[.98] transition-all"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <div class="flex justify-between items-start mb-2">
-                <h4 class="font-heading font-bold">Farmakologiya</h4>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
-                      style="background:rgba(59,130,246,.1);color:#3b82f6">Seminar</span>
-              </div>
-              <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))">
-                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
-                <span>3-O'quv binosi, 402-xona</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- End -->
-          <div class="flex gap-4">
-            <div class="flex flex-col items-center mt-1">
-              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">18:00</span>
-              <div class="w-3 h-3 rounded-full my-2 border-4"
-                   style="background:rgb(var(--border));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
-            </div>
-            <div class="flex-1 rounded-3xl p-5 border active:scale-[.98] transition-all"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <div class="flex justify-between items-center">
-                <h4 class="font-heading font-bold">Mustaqil ish</h4>
-                <iconify-icon icon="lucide:book-open" width="20" style="color:rgb(var(--mutedFg)/.4)"></iconify-icon>
-              </div>
-              <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Markaziy kutubxona</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Reminder -->
-      <div class="px-6 mt-8">
-        <div class="rounded-3xl p-4 border flex items-center gap-4"
-             style="background:rgb(var(--primary)/.05);border-color:rgb(var(--primary)/.1)">
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
-               style="background:rgb(var(--primary)/.1)">
-            <iconify-icon icon="lucide:lightbulb" width="24" style="color:rgb(var(--primary))"></iconify-icon>
-          </div>
+      <div class="rounded-3xl p-6 relative overflow-hidden shadow-lg" style="background:rgb(var(--primary));color:#fff;box-shadow:0 10px 30px rgb(var(--primary)/.25)">
+        <div class="absolute top-0 right-0 p-8 opacity-10"><iconify-icon icon="lucide:activity" width="120" height="120"></iconify-icon></div>
+        <div class="relative flex flex-col gap-5" style="z-index:1">
           <div>
-            <p class="text-xs font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Eslatma</p>
-            <p class="text-sm mt-0.5">Ertaga Neyroxirurgiya bo'yicha oraliq nazorat testi bor. Tayyorlanishni unutmang!</p>
+            <div class="w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border" style="background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.15)">
+              <iconify-icon icon="lucide:clock" width="14"></iconify-icon>
+              <span class="text-xs font-medium">1 soat qoldi</span>
+            </div>
+            <h2 class="text-3xl font-heading font-bold mb-1">Xirurgiya</h2>
+            <p class="font-medium text-lg" style="opacity:.9">Dr. Alimov</p>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-start gap-2.5">
+              <iconify-icon icon="lucide:map-pin" width="18" class="mt-0.5" style="opacity:.9"></iconify-icon>
+              <div class="leading-tight">
+                <span class="block text-sm font-semibold">1-Shahar Shifoxonasi</span>
+                <span class="text-xs" style="opacity:.8">B Blok, 304-xona</span>
+              </div>
+            </div>
+            <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-90" style="background:#fff;color:rgb(var(--primary))">
+              <iconify-icon icon="lucide:navigation" width="20"></iconify-icon>
+            </button>
           </div>
         </div>
       </div>
+    </section>
+    <section class="pl-6 mt-6 pb-4">
+      <h3 class="text-lg font-heading font-semibold mb-3">Bugungi darslar</h3>
+      <div class="flex gap-4 overflow-x-auto pr-6 pb-2 snap-x snap-mandatory">
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border opacity-60" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--mutedFg))">08:30</span><h4 class="font-semibold mb-1">Terapiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Lektsiya zal A</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border-l-4 border shadow-sm" style="background:rgb(var(--card));border-left-color:rgb(var(--accent));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--accent))">14:00</span><h4 class="font-semibold mb-1">Xirurgiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Amaliyot</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">16:30</span><h4 class="font-semibold mb-1">Farmakologiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Seminar</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">18:00</span><h4 class="font-semibold mb-1">Mustaqil ish</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Kutubxona</p></div></div>
+      </div>
+    </section>
+    <div class="h-4"></div>
+  </div>
+</div>
 
-      <div class="h-8"></div>
+<!-- SCREEN 1: JADVAL -->
+<div class="screen" id="screen-1">
+  <header style="background:rgb(var(--bg));z-index:10;" class="flex flex-col pt-10 px-6 pb-2 sticky top-0 gap-4">
+    <div class="flex justify-between items-start">
+      <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Haftalik jadval</p><h1 class="text-3xl font-heading font-bold tracking-tight">Oktyabr <span style="color:rgb(var(--primary));font-size:1.1rem;font-weight:500;margin-left:4px">2023</span></h1></div>
+      <button class="p-2.5 rounded-2xl border active:scale-95" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><iconify-icon icon="lucide:search" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon></button>
     </div>
-  </div><!-- /screen-1 -->
-
-
-  <!-- ════════════════════════════════════════
-       SCREEN 2 – AMALIYOT (Practice)
-  ════════════════════════════════════════ -->
-  <div class="screen" id="screen-2">
-
-    <header style="background:rgb(var(--bg));z-index:10;"
-            class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-      <div>
-        <p class="text-mutedFg text-sm font-medium mb-0.5">Amaliy ko'nikmalar</p>
-        <h1 class="text-3xl font-heading font-bold tracking-tight">
-          Mening <span style="color:rgb(var(--primary))">Tajribam</span>
-        </h1>
-      </div>
-      <div class="flex flex-col items-end">
-        <div class="px-3 py-1 rounded-full mb-1 border"
-             style="background:rgb(var(--primary)/.1);border-color:rgb(var(--primary)/.2)">
-          <span class="text-[10px] font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Level 1 Intern</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="h-1.5 w-16 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
-            <div class="h-full rounded-full" style="background:rgb(var(--primary));width:66%"></div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="flex-1 overflow-y-auto pb-28">
-
-      <!-- Stats card -->
-      <section class="px-6 mt-4">
-        <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl"
-               style="background:rgb(var(--secondary)/.3)"></div>
-
-          <div class="flex justify-between items-start mb-6 relative" style="z-index:1">
-            <div>
-              <h2 class="text-xl font-heading font-bold">Umumiy progress</h2>
-              <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Bu oylik amaliyot hisoboti</p>
-            </div>
-            <div class="p-2 rounded-xl" style="background:rgb(var(--primary));color:#fff">
-              <iconify-icon icon="lucide:trending-up" width="20"></iconify-icon>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 gap-4 relative" style="z-index:1">
-            <div class="p-3 rounded-2xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)">
-              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--mutedFg))">Jami</span>
-              <span class="text-xl font-bold">42</span>
-            </div>
-            <div class="p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)">
-              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--primary))">Tasdiq</span>
-              <span class="text-xl font-bold" style="color:rgb(var(--primary))">38</span>
-            </div>
-            <div class="p-3 rounded-2xl border" style="background:rgb(var(--accent)/.1);border-color:rgb(var(--accent)/.2)">
-              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--accent))">Kutilmoqda</span>
-              <span class="text-xl font-bold" style="color:rgb(var(--accent))">4</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Practice timeline -->
-      <section class="px-6 mt-8 relative">
-        <h3 class="text-lg font-heading font-semibold mb-6">Amaliyot kundaligi</h3>
-        <div class="absolute w-0.5" style="left:36px;top:56px;bottom:0;background:rgb(var(--border)/.4)"></div>
-
-        <div class="space-y-8 relative">
-
-          <div class="flex gap-4">
-            <div class="relative" style="z-index:1">
-              <div class="w-6 h-6 rounded-full border-4 mt-1"
-                   style="background:rgb(var(--primary));border-color:rgb(var(--bg));outline:2px solid rgb(var(--primary)/.25)"></div>
-            </div>
-            <div class="flex-1 rounded-2xl p-4 border shadow-sm active:scale-[.98] transition-all"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <div class="flex justify-between items-start mb-2">
-                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">BUGUN, 10:20</span>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                      style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">MUSTAQIL</span>
-              </div>
-              <h4 class="font-bold">Venadan qon olish</h4>
-              <p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Terapiya bo'limi, 4-palata</p>
-              <div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)">
-                <img src="https://i.pravatar.cc/150?u=dr_alimov" class="w-5 h-5 rounded-full object-cover">
-                <span class="text-[10px] font-medium" style="color:rgb(var(--mutedFg))">Dr. Alimov tomonidan tasdiqlandi</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="relative" style="z-index:1">
-              <div class="w-6 h-6 rounded-full border-4 mt-1"
-                   style="background:rgb(var(--primary));border-color:rgb(var(--bg));outline:2px solid rgb(var(--primary)/.25)"></div>
-            </div>
-            <div class="flex-1 rounded-2xl p-4 border shadow-sm active:scale-[.98] transition-all"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <div class="flex justify-between items-start mb-2">
-                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">KECHA, 16:45</span>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
-                      style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Yordamchi</span>
-              </div>
-              <h4 class="font-bold">Appendektomiya</h4>
-              <p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Xirurgiya bloki, Operatsiya xonasi #2</p>
-              <div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)">
-                <div class="w-5 h-5 rounded-full flex items-center justify-center"
-                     style="background:rgb(var(--accent)/.1)">
-                  <iconify-icon icon="lucide:clock" width="12" style="color:rgb(var(--accent))"></iconify-icon>
-                </div>
-                <span class="text-[10px] font-medium" style="color:rgb(var(--accent))">Tasdiqlash kutilmoqda...</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <div class="relative" style="z-index:1">
-              <div class="w-6 h-6 rounded-full border-4 mt-1"
-                   style="background:rgb(var(--muted));border-color:rgb(var(--bg));outline:2px solid rgb(var(--border))"></div>
-            </div>
-            <div class="flex-1 rounded-2xl p-4 border shadow-sm opacity-80"
-                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-              <div class="flex justify-between items-start mb-2">
-                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">22 OKTYABR</span>
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
-                      style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Mustaqil</span>
-              </div>
-              <h4 class="font-bold">EKG tahlili</h4>
-              <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Kardiologiya markazi</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <div class="h-8"></div>
+    <div class="flex justify-between items-center py-2 gap-2">
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl" style="background:rgb(var(--muted)/.5)"><span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Du</span><span class="text-lg font-bold">23</span></div>
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl shadow-lg" style="background:rgb(var(--primary));color:#fff"><span class="text-[10px] font-bold opacity-80 uppercase">Se</span><span class="text-lg font-bold">24</span><div class="w-1.5 h-1.5 rounded-full bg-white mt-1"></div></div>
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ch</span><span class="text-lg font-bold">25</span></div>
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Pa</span><span class="text-lg font-bold">26</span></div>
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ju</span><span class="text-lg font-bold">27</span></div>
+      <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border opacity-50" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Sh</span><span class="text-lg font-bold">28</span></div>
     </div>
-
-    <!-- FAB -->
-    <button class="fixed w-14 h-14 rounded-2xl flex items-center justify-center active:scale-90 transition-all"
-            style="bottom:88px;right:24px;background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 8px 24px rgb(var(--primary)/.35);z-index:40">
-      <iconify-icon icon="lucide:plus" width="28"></iconify-icon>
-    </button>
-  </div><!-- /screen-2 -->
-
-
-  <!-- ════════════════════════════════════════
-       SCREEN 3 – KUTUBXONA (Library)
-  ════════════════════════════════════════ -->
-  <div class="screen" id="screen-3">
-
-    <header style="background:rgb(var(--bg));z-index:10;"
-            class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-      <div>
-        <p class="text-mutedFg text-sm font-medium mb-0.5">O'quv materiallari</p>
-        <h1 class="text-3xl font-heading font-bold tracking-tight">
-          <span style="color:rgb(var(--primary))">Kutubxona</span>
-        </h1>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <div class="px-6 mt-4 relative">
+      <div class="absolute w-0.5" style="left:38px;top:16px;bottom:0;background:rgb(var(--border)/.4)"></div>
+      <div class="space-y-8 relative">
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">08:30</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--muted));outline:4px solid rgb(var(--bg));z-index:1"></div></div>
+          <div class="flex-1 rounded-3xl p-5 border opacity-60" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)">
+            <div class="flex justify-between items-start mb-2"><h4 class="font-heading font-bold">Gematologiya</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background:rgba(59,130,246,.1);color:#3b82f6">Lektsiya</span></div>
+            <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon><span>Asosiy bino, 2-zal</span></div>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">14:00</span><div class="w-3 h-3 rounded-full my-2 live-dot" style="background:rgb(var(--primary));outline:4px solid rgb(var(--primary)/.15);z-index:1"></div></div>
+          <div class="flex-1 rounded-3xl p-5 border shadow-sm relative overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--primary)/.2)">
+            <div class="flex justify-between items-start mb-3"><div><h4 class="font-heading font-bold text-lg mb-1">Xirurgiya Amaliyoti</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background:rgb(var(--secondary)/.5);color:rgb(var(--secondaryFg))">Klinik Amaliyot</span></div></div>
+            <div class="rounded-2xl p-3 border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.5)">
+              <div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0" style="background:rgb(var(--card));border-color:rgb(var(--border))"><iconify-icon icon="lucide:hospital" width="16" style="color:rgb(var(--primary))"></iconify-icon></div><div class="leading-tight"><p class="text-sm font-semibold">1-Shahar Shifoxonasi</p><p class="text-xs italic mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya Bolimi, 3-qavat</p></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">16:30</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--border));outline:4px solid rgb(var(--bg));z-index:1"></div></div>
+          <div class="flex-1 rounded-3xl p-5 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+            <div class="flex justify-between items-start mb-2"><h4 class="font-heading font-bold">Farmakologiya</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background:rgba(59,130,246,.1);color:#3b82f6">Seminar</span></div>
+            <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon><span>3-Oquv binosi, 402-xona</span></div>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">18:00</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--border));outline:4px solid rgb(var(--bg));z-index:1"></div></div>
+          <div class="flex-1 rounded-3xl p-5 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+            <div class="flex justify-between items-center"><h4 class="font-heading font-bold">Mustaqil ish</h4><iconify-icon icon="lucide:book-open" width="20" style="color:rgb(var(--mutedFg)/.4)"></iconify-icon></div>
+            <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Markaziy kutubxona</p>
+          </div>
+        </div>
       </div>
-      <button class="p-2.5 rounded-2xl border active:scale-95"
-              style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
-        <iconify-icon icon="lucide:search" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+    </div>
+    <div class="px-6 mt-8 mb-4">
+      <div class="rounded-3xl p-4 border flex items-center gap-4" style="background:rgb(var(--primary)/.05);border-color:rgb(var(--primary)/.1)">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:lightbulb" width="24" style="color:rgb(var(--primary))"></iconify-icon></div>
+        <div><p class="text-xs font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Eslatma</p><p class="text-sm mt-0.5">Ertaga Neyroxirurgiya boyicha oraliq nazorat testi bor!</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: AMALIYOT -->
+<div class="screen" id="screen-2">
+  <header style="background:rgb(var(--bg));z-index:10;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Amaliy konikmalar</p><h1 class="text-3xl font-heading font-bold tracking-tight">Mening <span style="color:rgb(var(--primary))">Tajribam</span></h1></div>
+    <div class="flex flex-col items-end">
+      <div class="px-3 py-1 rounded-full mb-1 border" style="background:rgb(var(--primary)/.1);border-color:rgb(var(--primary)/.2)"><span class="text-[10px] font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Level 1 Intern</span></div>
+      <div class="h-1.5 w-16 rounded-full overflow-hidden" style="background:rgb(var(--muted))"><div class="h-full rounded-full" style="background:rgb(var(--primary));width:66%"></div></div>
+    </div>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <section class="px-6 mt-4">
+      <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl" style="background:rgb(var(--secondary)/.3)"></div>
+        <div class="flex justify-between items-start mb-6 relative" style="z-index:1">
+          <div><h2 class="text-xl font-heading font-bold">Umumiy progress</h2><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Bu oylik amaliyot hisoboti</p></div>
+          <div class="p-2 rounded-xl" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:trending-up" width="20"></iconify-icon></div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 relative" style="z-index:1">
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--mutedFg))">Jami</span><span class="text-xl font-bold">42</span></div>
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--primary))">Tasdiq</span><span class="text-xl font-bold" style="color:rgb(var(--primary))">38</span></div>
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--accent)/.1);border-color:rgb(var(--accent)/.2)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--accent))">Kutilmoqda</span><span class="text-xl font-bold" style="color:rgb(var(--accent))">4</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="px-6 mt-6 relative">
+      <h3 class="text-lg font-heading font-semibold mb-5">Amaliyot kundaligi</h3>
+      <div class="absolute w-0.5" style="left:36px;top:52px;bottom:0;background:rgb(var(--border)/.4)"></div>
+      <div class="space-y-6 relative">
+        <div class="flex gap-4"><div class="w-6 h-6 rounded-full border-4 mt-1 flex-shrink-0" style="background:rgb(var(--primary));border-color:rgb(var(--bg));z-index:1"></div><div class="flex-1 rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">BUGUN, 10:20</span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">MUSTAQIL</span></div><h4 class="font-bold">Venadan qon olish</h4><p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Terapiya bolimi, 4-palata</p><div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)"><img src="https://i.pravatar.cc/150?u=dr_alimov" class="w-5 h-5 rounded-full object-cover"><span class="text-[10px] font-medium" style="color:rgb(var(--mutedFg))">Dr. Alimov tomonidan tasdiqlandi</span></div></div></div>
+        <div class="flex gap-4"><div class="w-6 h-6 rounded-full border-4 mt-1 flex-shrink-0" style="background:rgb(var(--primary));border-color:rgb(var(--bg));z-index:1"></div><div class="flex-1 rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">KECHA, 16:45</span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Yordamchi</span></div><h4 class="font-bold">Appendektomiya</h4><p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Xirurgiya bloki, Op.xona #2</p><div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)"><div class="w-5 h-5 rounded-full flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:clock" width="12" style="color:rgb(var(--accent))"></iconify-icon></div><span class="text-[10px] font-medium" style="color:rgb(var(--accent))">Tasdiqlash kutilmoqda...</span></div></div></div>
+      </div>
+    </section>
+    <div class="h-6"></div>
+  </div>
+  <button class="fixed w-14 h-14 rounded-2xl flex items-center justify-center active:scale-90" style="bottom:84px;right:24px;background:rgb(var(--primary));color:#fff;box-shadow:0 8px 24px rgb(var(--primary)/.35);z-index:40">
+    <iconify-icon icon="lucide:plus" width="28"></iconify-icon>
+  </button>
+</div>
+
+<!-- SCREEN 3: BEMOR KUNDALIGI -->
+<div class="screen" id="screen-3">
+  <header style="background:rgb(var(--bg));z-index:10;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Klinik amaliyot</p><h1 class="text-3xl font-heading font-bold tracking-tight">Bemor <span style="color:rgb(var(--primary))">Kundaligi</span></h1></div>
+    <button onclick="openModal('patient-modal')" class="w-11 h-11 rounded-2xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:plus" width="22"></iconify-icon></button>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <div class="px-6 mt-4 grid grid-cols-3 gap-3">
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-2xl font-bold" style="color:rgb(var(--primary))">12</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))">Jami</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><span class="text-2xl font-bold" style="color:rgb(var(--secondaryFg))">8</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--secondaryFg))">Bu oy</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--accent)/.08);border-color:rgb(var(--accent)/.2)"><span class="text-2xl font-bold" style="color:rgb(var(--accent))">3</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--accent))">Bugun</p></div>
+    </div>
+    <div class="px-6 mt-6">
+      <h3 class="text-base font-heading font-semibold mb-4" style="color:rgb(var(--mutedFg))">Bugungi bemorlar</h3>
+      <div class="space-y-3" id="patient-list">
+        <div class="rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--primary)/.15);color:rgb(var(--primary))">AM</div><div><h4 class="font-bold text-sm">Aliyev Mansur, 54 yosh</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya — 301-xona</p></div></div>
+            <span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Kuzatuv</span>
+          </div>
+          <div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Gipertenziya. Qon bosimi 160/100. Metoprolol dozasi korib chiqildi.</p></div>
+          <div class="flex items-center justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Karimova nazoratida</span><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">10:30</span></div>
+        </div>
+        <div class="rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--accent)/.15);color:rgb(var(--accent))">ZN</div><div><h4 class="font-bold text-sm">Zokirova Nilufar, 32 yosh</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Xirurgiya — 205-xona</p></div></div>
+            <span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--accent)/.1);color:rgb(var(--accent))">Operatsiya</span>
+          </div>
+          <div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Appenditsit. Laparoskopik appendektomiyaga tayyorlanmoqda.</p></div>
+          <div class="flex items-center justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Alimov nazoratida</span><span class="text-[10px] font-bold" style="color:rgb(var(--accent))">14:00</span></div>
+        </div>
+        <div class="rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgba(59,130,246,.15);color:#3b82f6">RX</div><div><h4 class="font-bold text-sm">Rahimov Xurshid, 67 yosh</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Terapiya — 108-xona</p></div></div>
+            <span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgba(59,130,246,.1);color:#3b82f6">Tekshiruv</span>
+          </div>
+          <div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Qandli diabet II tur. HbA1c natijasi kutilmoqda.</p></div>
+          <div class="flex items-center justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Yusupova nazoratida</span><span class="text-[10px] font-bold" style="color:#3b82f6">16:00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="h-6"></div>
+  </div>
+</div>
+
+<!-- SCREEN 4: ESLATMALAR -->
+<div class="screen" id="screen-4">
+  <header style="background:rgb(var(--bg));z-index:10;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Xabarnomalar</p><h1 class="text-3xl font-heading font-bold tracking-tight"><span style="color:rgb(var(--primary))">Eslatmalar</span></h1></div>
+    <button onclick="clearAllNotifs()" class="text-xs font-semibold px-3 py-2 rounded-xl active:scale-95" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Hammasini oqish</button>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <div class="px-6 mt-4">
+      <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color:rgb(var(--mutedFg))">Bugun</p>
+      <div class="space-y-3" id="notif-list">
+        <div class="notif-item flex items-start gap-4 p-4 rounded-2xl border" style="background:rgb(var(--primary)/.05);border-color:rgb(var(--primary)/.2)">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.15)"><iconify-icon icon="lucide:clock" width="20" style="color:rgb(var(--primary))"></iconify-icon></div>
+          <div class="flex-1"><p class="text-sm font-bold">Xirurgiya darsi boshlanmoqda</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">1-Shahar Shifoxonasi, B Blok — 30 daqiqada</p><span class="text-[10px] font-medium mt-1 block" style="color:rgb(var(--primary))">13:30</span></div>
+          <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1" style="background:rgb(var(--primary))"></div>
+        </div>
+        <div class="notif-item flex items-start gap-4 p-4 rounded-2xl border" style="background:rgb(var(--accent)/.05);border-color:rgb(var(--accent)/.2)">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--accent)/.15)"><iconify-icon icon="lucide:file-text" width="20" style="color:rgb(var(--accent))"></iconify-icon></div>
+          <div class="flex-1"><p class="text-sm font-bold">Nazorat ishi eslatmasi</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Ertaga Neyroxirurgiya boyicha oraliq test</p><span class="text-[10px] font-medium mt-1 block" style="color:rgb(var(--accent))">09:00</span></div>
+          <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1" style="background:rgb(var(--accent))"></div>
+        </div>
+        <div class="notif-item flex items-start gap-4 p-4 rounded-2xl border" style="background:rgba(245,158,11,.05);border-color:rgba(245,158,11,.2)">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,.15)"><iconify-icon icon="lucide:user-check" width="20" style="color:#f59e0b"></iconify-icon></div>
+          <div class="flex-1"><p class="text-sm font-bold">Amaliyot tasdiqlandi!</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Dr. Alimov "Venadan qon olish" ni tasdiqladi</p><span class="text-[10px] font-medium mt-1 block" style="color:#f59e0b">10:45</span></div>
+          <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1" style="background:#f59e0b"></div>
+        </div>
+      </div>
+    </div>
+    <div class="px-6 mt-6">
+      <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color:rgb(var(--mutedFg))">Kecha</p>
+      <div class="space-y-3">
+        <div class="flex items-start gap-4 p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);opacity:.6">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:calendar-check" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon></div>
+          <div class="flex-1"><p class="text-sm font-bold">Jadval yangilandi</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Chorshanba uchun Patologiya darsi qoshildi</p><span class="text-[10px] font-medium mt-1 block" style="color:rgb(var(--mutedFg))">18:20</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="px-6 mt-6 mb-4">
+      <button onclick="openModal('reminder-modal')" class="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border border-dashed" style="border-color:rgb(var(--primary)/.3);color:rgb(var(--primary));font-weight:600;">
+        <iconify-icon icon="lucide:bell-plus" width="18"></iconify-icon> Yangi eslatma qoshish
       </button>
-    </header>
-
-    <div class="flex-1 overflow-y-auto pb-28">
-
-      <!-- Search bar -->
-      <div class="px-6 mt-4">
-        <div class="flex items-center gap-3 px-4 py-3 rounded-2xl border"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <iconify-icon icon="lucide:search" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
-          <span class="text-sm" style="color:rgb(var(--mutedFg))">Kitob, mavzu qidiring...</span>
-        </div>
-      </div>
-
-      <!-- Categories -->
-      <div class="pl-6 mt-6">
-        <h3 class="text-lg font-heading font-semibold mb-4">Fanlar bo'yicha</h3>
-        <div class="flex gap-3 overflow-x-auto pr-6 pb-1">
-
-          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-semibold"
-               style="background:rgb(var(--primary));color:#fff">Hammasi</div>
-          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
-               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Anatomiya</div>
-          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
-               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Farmakologiya</div>
-          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
-               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Xirurgiya</div>
-          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
-               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Terapiya</div>
-        </div>
-      </div>
-
-      <!-- Books list -->
-      <div class="px-6 mt-6 space-y-4">
-        <h3 class="text-lg font-heading font-semibold mb-2">Tavsiya etilgan</h3>
-
-        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
-               style="background:rgb(var(--primary)/.1)">
-            <iconify-icon icon="lucide:book-open" width="28" style="color:rgb(var(--primary))"></iconify-icon>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold truncate">Gray's Anatomy</h4>
-            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Frank H. Netter</p>
-            <div class="flex items-center gap-1 mt-2">
-              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
-                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:45%"></div>
-              </div>
-              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">45%</span>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
-        </div>
-
-        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
-               style="background:rgb(var(--secondary)/.5)">
-            <iconify-icon icon="lucide:pill" width="28" style="color:rgb(var(--secondaryFg))"></iconify-icon>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold truncate">Farmakologiya asoslari</h4>
-            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Bertram G. Katzung</p>
-            <div class="flex items-center gap-1 mt-2">
-              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
-                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:20%"></div>
-              </div>
-              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">20%</span>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
-        </div>
-
-        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
-             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
-               style="background:rgb(var(--accent)/.1)">
-            <iconify-icon icon="lucide:stethoscope" width="28" style="color:rgb(var(--accent))"></iconify-icon>
-          </div>
-          <div class="flex-1 min-w-0">
-            <h4 class="font-bold truncate">Klinik Xirurgiya</h4>
-            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Sabiston Textbook</p>
-            <div class="flex items-center gap-1 mt-2">
-              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
-                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:70%"></div>
-              </div>
-              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">70%</span>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
-        </div>
-
-      </div>
-
-      <div class="h-8"></div>
     </div>
-  </div><!-- /screen-3 -->
+  </div>
+</div>
 
+<!-- BOTTOM NAV -->
+<nav class="fixed bottom-0 left-0 right-0 flex justify-around items-center px-2" style="height:72px;background:rgb(var(--bg));border-top:1px solid rgb(var(--border));z-index:50;">
+  <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95" data-tab="0" onclick="switchTab(0)">
+    <div class="relative"><iconify-icon icon="lucide:stethoscope" width="24" class="nav-icon"></iconify-icon><div id="nav-badge" class="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2" style="background:rgb(var(--accent));border-color:rgb(var(--bg))"></div></div>
+    <span class="text-[10px] font-medium nav-label">Bugun</span>
+  </button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95" data-tab="1" onclick="switchTab(1)">
+    <iconify-icon icon="lucide:calendar-days" width="24" class="nav-icon"></iconify-icon>
+    <span class="text-[10px] font-medium nav-label">Jadval</span>
+  </button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95" data-tab="2" onclick="switchTab(2)">
+    <iconify-icon icon="lucide:clipboard-check" width="24" class="nav-icon"></iconify-icon>
+    <span class="text-[10px] font-medium nav-label">Amaliyot</span>
+  </button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95" data-tab="3" onclick="switchTab(3)">
+    <iconify-icon icon="lucide:heart-pulse" width="24" class="nav-icon"></iconify-icon>
+    <span class="text-[10px] font-medium nav-label">Bemorlar</span>
+  </button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 relative" data-tab="4" onclick="switchTab(4)">
+    <iconify-icon icon="lucide:bell" width="24" class="nav-icon"></iconify-icon>
+    <div class="absolute top-2 right-2 w-2 h-2 rounded-full" id="bell-badge" style="background:rgb(var(--accent))"></div>
+    <span class="text-[10px] font-medium nav-label">Eslatma</span>
+  </button>
+</nav>
 
-  <!-- ════════════════════════════════════════
-       BOTTOM NAVIGATION (fixed, shared)
-  ════════════════════════════════════════ -->
-  <nav id="bottom-nav"
-       class="fixed bottom-0 left-0 right-0 flex justify-around items-center px-2"
-       style="height:72px;background:rgb(var(--bg));border-top:1px solid rgb(var(--border));z-index:50">
+<!-- MODAL: Add checklist item -->
+<div class="modal-bg" id="add-modal" onclick="if(event.target===this)closeModal('add-modal')">
+  <div class="modal-sheet">
+    <div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Narsa qoshish</h3><button onclick="closeModal('add-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
+    <input id="new-item-input" type="text" placeholder="Masalan: Qon bosimi olchagich..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));" onkeydown="if(event.key==='Enter')addFromModal()">
+    <button onclick="addFromModal()" class="w-full p-4 rounded-2xl font-bold text-sm active:scale-[.98]" style="background:rgb(var(--primary));color:#fff">Qoshish</button>
+  </div>
+</div>
 
-    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
-            data-tab="0" onclick="switchTab(0)">
-      <div class="relative">
-        <iconify-icon icon="lucide:stethoscope" width="24" height="24" class="nav-icon"></iconify-icon>
-        <div id="badge-0" class="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2"
-             style="background:rgb(var(--accent));border-color:rgb(var(--bg))"></div>
-      </div>
-      <span class="text-[10px] font-medium nav-label">Bugun</span>
-    </button>
+<!-- MODAL: Add reminder -->
+<div class="modal-bg" id="reminder-modal" onclick="if(event.target===this)closeModal('reminder-modal')">
+  <div class="modal-sheet">
+    <div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Eslatma qoshish</h3><button onclick="closeModal('reminder-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
+    <input id="reminder-title" type="text" placeholder="Eslatma nomi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <input id="reminder-time" type="time" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <button onclick="addReminder()" class="w-full p-4 rounded-2xl font-bold text-sm active:scale-[.98]" style="background:rgb(var(--primary));color:#fff">Saqlash</button>
+  </div>
+</div>
 
-    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
-            data-tab="1" onclick="switchTab(1)">
-      <iconify-icon icon="lucide:calendar-days" width="24" height="24" class="nav-icon"></iconify-icon>
-      <span class="text-[10px] font-medium nav-label">Jadval</span>
-    </button>
+<!-- MODAL: Add patient -->
+<div class="modal-bg" id="patient-modal" onclick="if(event.target===this)closeModal('patient-modal')">
+  <div class="modal-sheet">
+    <div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Yangi bemor</h3><button onclick="closeModal('patient-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
+    <input id="p-name" type="text" placeholder="Bemor ismi, yoshi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <input id="p-room" type="text" placeholder="Bolim va xona raqami..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <select id="p-status" class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))">
+      <option value="Kuzatuv">Kuzatuv</option>
+      <option value="Operatsiya">Operatsiya</option>
+      <option value="Tekshiruv">Tekshiruv</option>
+      <option value="Yangi">Yangi qabul</option>
+    </select>
+    <textarea id="p-note" placeholder="Klinik holat haqida..." rows="3" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4 resize-none" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"></textarea>
+    <button onclick="addPatient()" class="w-full p-4 rounded-2xl font-bold text-sm active:scale-[.98]" style="background:rgb(var(--primary));color:#fff">Qoshish</button>
+  </div>
+</div>
 
-    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
-            data-tab="2" onclick="switchTab(2)">
-      <iconify-icon icon="lucide:clipboard-check" width="24" height="24" class="nav-icon"></iconify-icon>
-      <span class="text-[10px] font-medium nav-label">Amaliyot</span>
-    </button>
-
-    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
-            data-tab="3" onclick="switchTab(3)">
-      <iconify-icon icon="lucide:book-open" width="24" height="24" class="nav-icon"></iconify-icon>
-      <span class="text-[10px] font-medium nav-label">Kutubxona</span>
-    </button>
-
-  </nav>
-
-</div><!-- /app -->
-
-
-<!-- ════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════ -->
 <script>
-  let currentTab = 0;
+let currentTab = 0;
 
-  function switchTab(index) {
-    if (index === currentTab) return;
-
-    // hide old
-    const oldScreen = document.getElementById('screen-' + currentTab);
-    oldScreen.classList.remove('active');
-
-    // show new
-    const newScreen = document.getElementById('screen-' + index);
-    newScreen.classList.add('active');
-
-    currentTab = index;
-    updateNav();
-  }
-
-  function updateNav() {
-    document.querySelectorAll('.nav-btn').forEach((btn, i) => {
-      const isActive = i === currentTab;
-      const icon = btn.querySelector('.nav-icon');
-      const label = btn.querySelector('.nav-label');
-      icon.style.color  = isActive ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
-      label.style.color = isActive ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
-
-      // active dot
-      let dot = btn.querySelector('.nav-active-dot');
-      if (isActive && !dot) {
-        dot = document.createElement('div');
-        dot.className = 'nav-active-dot';
-        dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:rgb(var(--primary));margin:0 auto;';
-        btn.appendChild(dot);
-      } else if (!isActive && dot) {
-        dot.remove();
-      }
-    });
-  }
-
-  // ── Checklist toggle ──
-  function toggleCheck(el) {
-    el.classList.toggle('done');
-    if (el.classList.contains('done')) {
-      el.style.background = 'rgb(var(--secondary)/.2)';
-      el.style.borderColor = 'rgb(var(--secondary)/.3)';
-      el.style.borderStyle = 'solid';
-    } else {
-      el.style.background = 'rgb(var(--card))';
-      el.style.borderColor = 'rgb(var(--accent)/.4)';
-      el.style.borderStyle = 'dashed';
-    }
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const items  = document.querySelectorAll('.check-item');
-    const done   = document.querySelectorAll('.check-item.done');
-    const pct    = Math.round((done.length / items.length) * 100);
-    document.getElementById('progress-bar').style.width = pct + '%';
-    document.getElementById('pct-label').textContent = pct + '%';
-  }
-
-  // init nav colors
+function switchTab(i) {
+  if(i===currentTab) return;
+  document.getElementById('screen-'+currentTab).classList.remove('active');
+  document.getElementById('screen-'+i).classList.add('active');
+  currentTab = i;
   updateNav();
-</script>
+}
 
+function updateNav() {
+  document.querySelectorAll('.nav-btn').forEach((btn,i) => {
+    const on = i===currentTab;
+    btn.querySelector('.nav-icon').style.color = on ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
+    btn.querySelector('.nav-label').style.color = on ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
+  });
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  if(el.classList.contains('done')){
+    el.style.background='rgb(var(--secondary)/.2)';el.style.borderColor='rgb(var(--secondary)/.3)';el.style.borderStyle='solid';
+  } else {
+    el.style.background='rgb(var(--card))';el.style.borderColor='rgb(var(--accent)/.4)';el.style.borderStyle='dashed';
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const items=document.querySelectorAll('.check-item'), done=document.querySelectorAll('.check-item.done');
+  const pct=items.length?Math.round(done.length/items.length*100):0;
+  document.getElementById('progress-bar').style.width=pct+'%';
+  document.getElementById('pct-label').textContent=pct+'%';
+}
+
+function addFromModal() {
+  const val=document.getElementById('new-item-input').value.trim();
+  if(!val) return;
+  const list=document.getElementById('checklist');
+  const d=document.createElement('div');
+  d.className='check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed transition-all';
+  d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--accent)/.4);cursor:pointer;user-select:none;';
+  d.setAttribute('onclick','toggleCheck(this)');
+  d.innerHTML='<div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div><span class="flex-1 font-medium item-label">'+val+'</span><iconify-icon icon="lucide:package" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>';
+  list.appendChild(d);
+  document.getElementById('new-item-input').value='';
+  closeModal('add-modal');
+  updateProgress();
+}
+
+function clearAllNotifs() {
+  document.querySelectorAll('.notif-item').forEach(el=>el.style.opacity='.5');
+  document.getElementById('nav-badge').style.display='none';
+  document.getElementById('bell-badge').style.display='none';
+}
+
+function addReminder() {
+  const title=document.getElementById('reminder-title').value.trim();
+  const time=document.getElementById('reminder-time').value||'--:--';
+  if(!title) return;
+  const list=document.getElementById('notif-list');
+  const d=document.createElement('div');
+  d.className='notif-item flex items-start gap-4 p-4 rounded-2xl border';
+  d.style.cssText='background:rgb(var(--primary)/.05);border-color:rgb(var(--primary)/.2)';
+  d.innerHTML='<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.15)"><iconify-icon icon="lucide:bell" width="20" style="color:rgb(var(--primary))"></iconify-icon></div><div class="flex-1"><p class="text-sm font-bold">'+title+'</p><span class="text-[10px] font-medium mt-1 block" style="color:rgb(var(--primary))">'+time+'</span></div><div class="w-2.5 h-2.5 rounded-full flex-shrink-0 mt-1" style="background:rgb(var(--primary))"></div>';
+  list.prepend(d);
+  document.getElementById('reminder-title').value='';
+  document.getElementById('reminder-time').value='';
+  closeModal('reminder-modal');
+}
+
+function addPatient() {
+  const name=document.getElementById('p-name').value.trim();
+  const room=document.getElementById('p-room').value.trim();
+  const status=document.getElementById('p-status').value;
+  const note=document.getElementById('p-note').value.trim();
+  if(!name) return;
+  const init=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const colors=[['rgb(var(--primary)/.15)','rgb(var(--primary))'],['rgb(var(--accent)/.15)','rgb(var(--accent))'],['rgba(59,130,246,.15)','#3b82f6']];
+  const [bg,fg]=colors[Math.floor(Math.random()*colors.length)];
+  const statusColors={'Kuzatuv':'rgb(var(--primary)/.1),rgb(var(--primary))','Operatsiya':'rgb(var(--accent)/.1),rgb(var(--accent))','Tekshiruv':'rgba(59,130,246,.1),#3b82f6','Yangi qabul':'rgba(245,158,11,.1),#f59e0b'};
+  const [sbg,sfg]=(statusColors[status]||'rgb(var(--muted)),rgb(var(--mutedFg))').split(',');
+  const list=document.getElementById('patient-list');
+  const d=document.createElement('div');
+  d.className='rounded-2xl p-4 border shadow-sm';
+  d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--border)/.5)';
+  d.innerHTML='<div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:'+bg+';color:'+fg+'">'+init+'</div><div><h4 class="font-bold text-sm">'+name+'</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">'+(room||'Xona korsatilmagan')+'</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:'+sbg+';color:'+sfg+'">'+status+'</span></div>'+(note?'<div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">'+note+'</p></div>':'');
+  list.prepend(d);
+  ['p-name','p-room','p-note'].forEach(id=>document.getElementById(id).value='');
+  closeModal('patient-modal');
+}
+
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+updateNav();
+</script>
+</div>
 </body>
 </html>
