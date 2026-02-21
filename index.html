@@ -1,1061 +1,891 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MedStudent – Aziz</title>
 
-  <!-- Google Fonts Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS v3 CDN (compatible with html2canvas) -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Iconify Icons -->
   <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
 
-  <!-- No pre-cached icons -->
-
   <script>
-    // Tailwind v3 configuration with custom theme colors
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            background: 'rgb(var(--background) / <alpha-value>)',
-            foreground: 'rgb(var(--foreground) / <alpha-value>)',
-            card: {
-              DEFAULT: 'rgb(var(--card) / <alpha-value>)',
-              foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
-            },
-            popover: {
-              DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
-              foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
-            },
-            primary: {
-              DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
-              foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
-            },
-            secondary: {
-              DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
-              foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)',
-            },
-            muted: {
-              DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
-              foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
-            },
-            accent: {
-              DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
-              foreground: 'rgb(var(--accent-foreground) / <alpha-value>)',
-            },
-            destructive: {
-              DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
-              foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
-            },
-            border: 'rgb(var(--border) / <alpha-value>)',
-            input: 'rgb(var(--input) / <alpha-value>)',
-            ring: 'rgb(var(--ring) / <alpha-value>)',
-            chart: {
-              1: 'var(--chart-1)',
-              2: 'var(--chart-2)',
-              3: 'var(--chart-3)',
-              4: 'var(--chart-4)',
-              5: 'var(--chart-5)',
-            },
+            bg:        'rgb(var(--bg)  / <alpha-value>)',
+            fg:        'rgb(var(--fg)  / <alpha-value>)',
+            card:      'rgb(var(--card)/ <alpha-value>)',
+            primary:   'rgb(var(--primary)/<alpha-value>)',
+            primaryFg: 'rgb(var(--primaryFg)/<alpha-value>)',
+            secondary: 'rgb(var(--secondary)/<alpha-value>)',
+            secondaryFg:'rgb(var(--secondaryFg)/<alpha-value>)',
+            muted:     'rgb(var(--muted)/<alpha-value>)',
+            mutedFg:   'rgb(var(--mutedFg)/<alpha-value>)',
+            accent:    'rgb(var(--accent)/<alpha-value>)',
+            accentFg:  'rgb(var(--accentFg)/<alpha-value>)',
+            border:    'rgb(var(--border)/<alpha-value>)',
           },
           fontFamily: {
-            sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-            heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
-            serif: ['var(--font-serif)', 'Georgia', 'serif'],
-            mono: ['var(--font-mono)', 'monospace'],
+            sans:    ['"Plus Jakarta Sans"','system-ui','sans-serif'],
+            heading: ['"Inter"','system-ui','sans-serif'],
           },
           borderRadius: {
-            sm: 'calc(var(--radius) - 4px)',
-            md: 'calc(var(--radius) - 2px)',
-            lg: 'var(--radius)',
-            xl: 'calc(var(--radius) + 4px)',
-            '2xl': 'calc(var(--radius) + 8px)',
-            '3xl': 'calc(var(--radius) + 12px)',
-          },
-        },
-      },
+            '2xl': '1rem',
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          }
+        }
+      }
     }
   </script>
 
   <style>
-    /* CSS Custom Properties - Theme Values */
     :root {
-      --background: 248 250 252;
-      --foreground: 15 23 42;
-
-      --card: 255 255 255;
-      --card-foreground: 15 23 42;
-
-      --popover: 255 255 255;
-      --popover-foreground: 15 23 42;
-
-      --primary: 13 148 136;
-      --primary-foreground: 255 255 255;
-
-      --secondary: 204 251 241;
-      --secondary-foreground: 15 118 110;
-
-      --muted: 241 245 249;
-      --muted-foreground: 100 116 139;
-
-      --accent: 244 63 94;
-      --accent-foreground: 255 255 255;
-
-      --destructive: 239 68 68;
-      --destructive-foreground: 255 255 255;
-
-      --border: 226 232 240;
-      --input: 226 232 240;
-      --ring: 13 148 136;
-
-      --radius: 1rem;
-
-      --chart-1: #0D9488;
-      --chart-2: #F43F5E;
-      --chart-3: #3B82F6;
-      --chart-4: #F59E0B;
-      --chart-5: #8B5CF6;
-
-      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-      --font-heading: "Inter", system-ui, sans-serif;
-      --font-serif: "Playfair Display", Georgia, serif;
-      --font-mono: "JetBrains Mono", monospace;
+      --bg:          248 250 252;
+      --fg:          15  23  42;
+      --card:        255 255 255;
+      --primary:     13  148 136;
+      --primaryFg:   255 255 255;
+      --secondary:   204 251 241;
+      --secondaryFg: 15  118 110;
+      --muted:       241 245 249;
+      --mutedFg:     100 116 139;
+      --accent:      244 63  94;
+      --accentFg:    255 255 255;
+      --border:      226 232 240;
     }
 
-    /* Apply base font */
+    * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+    *::-webkit-scrollbar { display: none; }
+
     body {
-      font-family: var(--font-sans);
-      background-color: rgb(var(--background));
-      color: rgb(var(--foreground));
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      background: rgb(var(--bg));
+      color: rgb(var(--fg));
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
+      height: 100vh;
     }
 
-    /* Hide scrollbars globally (both vertical and horizontal) */
-    * {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
+    /* ── Screen transitions ── */
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(30px);
+      pointer-events: none;
+      transition: opacity .28s ease, transform .28s ease;
     }
-    *::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+    .screen.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
     }
-
-    /* Safe area utilities for mobile */
-    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-    .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
-    .pl-safe { padding-left: env(safe-area-inset-left, 0px); }
-    .pr-safe { padding-right: env(safe-area-inset-right, 0px); }
-
-    /* Hide scrollbar but allow scrolling */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Smooth transitions for interactive elements */
-    button, a, [role="button"] {
-      transition: all 0.15s ease;
+    .screen.exit-left {
+      opacity: 0;
+      transform: translateX(-30px);
     }
 
-    /* Better image rendering */
-    img {
-      image-rendering: -webkit-optimize-contrast;
+    /* ── Checklist interactivity ── */
+    .check-item { cursor: pointer; user-select: none; }
+    .check-item.done .item-label { text-decoration: line-through; opacity: .6; }
+    .check-item.done .check-circle {
+      background: rgb(var(--primary));
+      border-color: rgb(var(--primary));
     }
+    .check-item.done .check-icon { opacity: 1; }
+    .check-circle {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgb(var(--mutedFg) / .4);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all .2s;
+    }
+    .check-icon { opacity: 0; transition: opacity .15s; }
+
+    /* progress bar fill via JS */
+    #progress-bar { transition: width .4s ease; }
+
+    /* pulse for live dot */
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgb(var(--primary)/.4); }
+      50%      { box-shadow: 0 0 0 6px rgb(var(--primary)/0); }
+    }
+    .live-dot { animation: pulse 2s infinite; }
+
+    /* nav active indicator */
+    .nav-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgb(var(--primary));
+      margin: 0 auto;
+    }
+
+    button, a, [role="button"] { transition: all .15s ease; }
+    img { image-rendering: -webkit-optimize-contrast; }
   </style>
 </head>
-<body>
-  <div class="flex flex-col h-screen bg-background overflow-hidden font-sans select-none">
 
-    <!-- Top Navigation / Header -->
-    <header class="flex justify-between items-start pt-12 px-6 pb-2 bg-background sticky top-0 z-10">
-        <div>
-            <p class="text-muted-foreground text-sm font-medium mb-0.5">24 Oktyabr, Seshanba</p>
-            <h1 class="text-3xl font-heading font-bold text-foreground tracking-tight">
-                Xayrli tong, <span class="text-primary">Aziz</span>
-            </h1>
-        </div>
-        <button class="relative active:scale-95 transition-transform">
-            <img src="https://i.pravatar.cc/150?u=medical_student" alt="Profile" class="w-12 h-12 rounded-full object-cover border-2 border-background ring-2 ring-border">
-            <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-background rounded-full"></div>
-        </button>
+<body>
+<!-- ═══════════════════════════════════════════
+     ROOT WRAPPER
+═══════════════════════════════════════════ -->
+<div id="app" style="position:relative;height:100vh;overflow:hidden;">
+
+  <!-- ════════════════════════════════════════
+       SCREEN 0 – BUGUN (Today)
+  ════════════════════════════════════════ -->
+  <div class="screen active" id="screen-0">
+
+    <!-- Header -->
+    <header style="background:rgb(var(--bg));z-index:10;"
+            class="flex justify-between items-start pt-10 px-6 pb-2 sticky top-0">
+      <div>
+        <p class="text-mutedFg text-sm font-medium mb-0.5">24 Oktyabr, Seshanba</p>
+        <h1 class="text-3xl font-heading font-bold tracking-tight">
+          Xayrli tong, <span style="color:rgb(var(--primary))">Aziz</span>
+        </h1>
+      </div>
+      <button class="relative active:scale-95">
+        <img src="https://i.pravatar.cc/150?u=medical_student" alt="Profil"
+             class="w-12 h-12 rounded-full object-cover border-2"
+             style="border-color:rgb(var(--bg));outline:2px solid rgb(var(--border))">
+        <div class="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
+             style="background:#22c55e;border-color:rgb(var(--bg))"></div>
+      </button>
     </header>
 
-    <!-- Scrollable Content -->
-    <div class="flex-1 overflow-y-auto no-scrollbar pb-24 space-y-8">
+    <!-- Scrollable body -->
+    <div class="flex-1 overflow-y-auto pb-28" style="padding-bottom:6rem;">
 
-        <!-- Hero: Smart Checklist -->
-        <section class="px-6 mt-4">
-            <div class="bg-card rounded-3xl p-6 shadow-sm border border-border/50 relative overflow-hidden group">
-                <!-- Decorative background blob -->
-                <div class="absolute -top-12 -right-12 w-40 h-40 bg-secondary/30 rounded-full blur-3xl group-hover:bg-secondary/50 transition-colors"></div>
+      <!-- Checklist card -->
+      <section class="px-6 mt-4">
+        <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl"
+               style="background:rgb(var(--secondary)/.3)"></div>
 
-                <div class="flex justify-between items-end mb-4 relative z-10">
-                    <div>
-                        <h2 class="text-xl font-heading font-bold text-foreground">Sumkangizni yig'amiz</h2>
-                        <p class="text-muted-foreground text-sm mt-1">Bugungi amaliyotga tayyormisiz?</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-2xl font-bold text-primary">75%</span>
-                    </div>
-                </div>
-
-                <!-- Progress Bar -->
-                <div class="h-2 w-full bg-muted rounded-full overflow-hidden mb-6 relative z-10">
-                    <div class="h-full bg-primary w-3/4 rounded-full"></div>
-                </div>
-
-                <!-- Checklist Items -->
-                <div class="space-y-3 relative z-10">
-                    <!-- Completed Item -->
-                    <label class="flex items-center gap-4 p-3 bg-secondary/20 rounded-2xl border border-secondary/30 hover:bg-secondary/30 transition-all cursor-pointer active:scale-[0.98]">
-                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground">
-                            <iconify-icon icon="lucide:check" width="16"></iconify-icon>
-                        </div>
-                        <div class="flex-1">
-                            <span class="text-foreground font-medium line-through opacity-70">Oq xalat</span>
-                        </div>
-                        <iconify-icon icon="lucide:shirt" class="text-primary/60" width="20"></iconify-icon>
-                    </label>
-
-                    <!-- Completed Item -->
-                    <label class="flex items-center gap-4 p-3 bg-secondary/20 rounded-2xl border border-secondary/30 hover:bg-secondary/30 transition-all cursor-pointer active:scale-[0.98]">
-                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground">
-                            <iconify-icon icon="lucide:check" width="16"></iconify-icon>
-                        </div>
-                        <div class="flex-1">
-                            <span class="text-foreground font-medium line-through opacity-70">Stetoskop</span>
-                        </div>
-                        <iconify-icon icon="lucide:stethoscope" class="text-primary/60" width="20"></iconify-icon>
-                    </label>
-
-                    <!-- Incomplete Item (Warning state) -->
-                    <label class="flex items-center gap-4 p-3 bg-card rounded-2xl border border-dashed border-destructive/40 hover:border-destructive/70 transition-all cursor-pointer active:scale-[0.98] group/item">
-                        <div class="w-6 h-6 rounded-full border-2 border-muted-foreground/30 group-hover/item:border-destructive transition-colors"></div>
-                        <div class="flex-1">
-                            <span class="text-foreground font-medium group-hover/item:text-destructive transition-colors">Anatomiya Atlasi</span>
-                        </div>
-                        <iconify-icon icon="lucide:book" class="text-muted-foreground group-hover/item:text-destructive transition-colors" width="20"></iconify-icon>
-                    </label>
-                </div>
+          <div class="flex justify-between items-end mb-4 relative" style="z-index:1">
+            <div>
+              <h2 class="text-xl font-heading font-bold">Sumkangizni yig'amiz</h2>
+              <p class="text-mutedFg text-sm mt-1">Bugungi amaliyotga tayyormisiz?</p>
             </div>
-        </section>
+            <span id="pct-label" class="text-2xl font-bold" style="color:rgb(var(--primary))">67%</span>
+          </div>
 
-        <!-- Secondary: Next Class -->
-        <section class="px-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-heading font-semibold text-foreground">Keyingi dars</h3>
-                <span class="text-xs font-medium bg-primary/10 text-primary px-2.5 py-1 rounded-full">14:00 da</span>
+          <div class="h-2 w-full rounded-full overflow-hidden mb-6 relative" style="background:rgb(var(--muted));z-index:1">
+            <div id="progress-bar" class="h-full rounded-full" style="background:rgb(var(--primary));width:67%"></div>
+          </div>
+
+          <div class="space-y-3 relative" style="z-index:1" id="checklist">
+
+            <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all active:scale-[.98]"
+                 style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"
+                 onclick="toggleCheck(this)">
+              <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))">
+                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon>
+              </div>
+              <span class="flex-1 font-medium item-label">Oq xalat</span>
+              <iconify-icon icon="lucide:shirt" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
             </div>
 
-            <div class="bg-primary text-primary-foreground rounded-3xl p-6 relative overflow-hidden shadow-lg shadow-primary/20 active:scale-[0.99] transition-transform duration-300">
-                <!-- Abstract patterns -->
-                <div class="absolute top-0 right-0 p-8 opacity-10">
-                    <iconify-icon icon="lucide:activity" width="120" height="120"></iconify-icon>
-                </div>
-                
-                <div class="relative z-10 flex flex-col h-full justify-between gap-6">
-                    <div>
-                        <div class="bg-white/20 backdrop-blur-sm w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border border-white/10">
-                            <iconify-icon icon="lucide:clock" width="14"></iconify-icon>
-                            <span class="text-xs font-medium">1 soat qoldi</span>
-                        </div>
-                        <h2 class="text-3xl font-heading font-bold mb-1">Xirurgiya</h2>
-                        <p class="text-primary-foreground/90 font-medium text-lg">Dr. Alimov</p>
-                    </div>
-
-                    <div class="flex items-center justify-between mt-2">
-                        <div class="flex items-start gap-2.5">
-                            <iconify-icon icon="lucide:map-pin" class="mt-0.5 opacity-90" width="18"></iconify-icon>
-                            <div class="leading-tight">
-                                <span class="block text-sm font-semibold">1-Shahar Shifoxonasi</span>
-                                <span class="text-xs opacity-80">B Blok, 304-xona</span>
-                            </div>
-                        </div>
-
-                        <button class="bg-white text-primary rounded-full w-12 h-12 flex items-center justify-center hover:bg-white/90 transition-colors shadow-lg active:scale-95">
-                            <iconify-icon icon="lucide:navigation" width="20"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
+            <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border transition-all active:scale-[.98]"
+                 style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"
+                 onclick="toggleCheck(this)">
+              <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))">
+                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon>
+              </div>
+              <span class="flex-1 font-medium item-label">Stetoskop</span>
+              <iconify-icon icon="lucide:stethoscope" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
             </div>
-        </section>
 
-        <!-- Bottom: Today's Schedule Scroll -->
-        <section class="pl-6 pb-4">
-            <h3 class="text-lg font-heading font-semibold text-foreground mb-4">Bugungi darslar</h3>
-            <div class="flex gap-4 overflow-x-auto pr-6 pb-2 no-scrollbar snap-x snap-mandatory">
-                
-                <!-- Past Class -->
-                <div class="min-w-[160px] snap-start">
-                    <div class="bg-muted rounded-2xl p-4 border border-border/50 opacity-60">
-                        <span class="text-xs font-bold text-muted-foreground block mb-2">08:30</span>
-                        <h4 class="font-semibold text-foreground mb-1">Terapiya</h4>
-                        <p class="text-xs text-muted-foreground">Lektsiya zal A</p>
-                    </div>
-                </div>
-
-                <!-- Current/Next Context -->
-                <div class="min-w-[160px] snap-start">
-                    <div class="bg-card rounded-2xl p-4 border-l-4 border-l-accent shadow-sm border-t border-r border-b border-border/50">
-                        <span class="text-xs font-bold text-accent block mb-2">14:00</span>
-                        <h4 class="font-semibold text-foreground mb-1">Xirurgiya</h4>
-                        <p class="text-xs text-muted-foreground">Amaliyot</p>
-                    </div>
-                </div>
-
-                <!-- Future Class -->
-                <div class="min-w-[160px] snap-start">
-                    <div class="bg-card rounded-2xl p-4 border border-border/50 hover:border-primary/30 transition-colors">
-                        <span class="text-xs font-bold text-primary block mb-2">16:30</span>
-                        <h4 class="font-semibold text-foreground mb-1">Farmakologiya</h4>
-                        <p class="text-xs text-muted-foreground">Seminar</p>
-                    </div>
-                </div>
-                
-                 <!-- Future Class 2 -->
-                <div class="min-w-[160px] snap-start">
-                    <div class="bg-card rounded-2xl p-4 border border-border/50 hover:border-primary/30 transition-colors">
-                        <span class="text-xs font-bold text-primary block mb-2">18:00</span>
-                        <h4 class="font-semibold text-foreground mb-1">Mustaqil ish</h4>
-                        <p class="text-xs text-muted-foreground">Kutubxona</p>
-                    </div>
-                </div>
-
+            <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed transition-all active:scale-[.98]"
+                 style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)"
+                 onclick="toggleCheck(this)">
+              <div class="check-circle">
+                <iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:rgb(var(--primaryFg))"></iconify-icon>
+              </div>
+              <span class="flex-1 font-medium item-label">Anatomiya Atlasi</span>
+              <iconify-icon icon="lucide:book" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
             </div>
-        </section>
-        
-        <!-- Spacer for very tall screens -->
-        <div class="h-8"></div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Next class -->
+      <section class="px-6 mt-8">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-heading font-semibold">Keyingi dars</h3>
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full"
+                style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">14:00 da</span>
+        </div>
+
+        <div class="rounded-3xl p-6 relative overflow-hidden shadow-lg active:scale-[.99] transition-all"
+             style="background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 10px 30px rgb(var(--primary)/.25)">
+          <div class="absolute top-0 right-0 p-8 opacity-10">
+            <iconify-icon icon="lucide:activity" width="120" height="120"></iconify-icon>
+          </div>
+
+          <div class="relative flex flex-col gap-6" style="z-index:1">
+            <div>
+              <div class="w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border"
+                   style="background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.15)">
+                <iconify-icon icon="lucide:clock" width="14"></iconify-icon>
+                <span class="text-xs font-medium">1 soat qoldi</span>
+              </div>
+              <h2 class="text-3xl font-heading font-bold mb-1">Xirurgiya</h2>
+              <p class="font-medium text-lg" style="color:rgba(255,255,255,.9)">Dr. Alimov</p>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-start gap-2.5">
+                <iconify-icon icon="lucide:map-pin" width="18" class="mt-0.5" style="opacity:.9"></iconify-icon>
+                <div class="leading-tight">
+                  <span class="block text-sm font-semibold">1-Shahar Shifoxonasi</span>
+                  <span class="text-xs" style="opacity:.8">B Blok, 304-xona</span>
+                </div>
+              </div>
+              <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-90"
+                      style="background:#fff;color:rgb(var(--primary))">
+                <iconify-icon icon="lucide:navigation" width="20"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Today's schedule strip -->
+      <section class="pl-6 mt-8 pb-4">
+        <h3 class="text-lg font-heading font-semibold mb-4">Bugungi darslar</h3>
+        <div class="flex gap-4 overflow-x-auto pr-6 pb-2 snap-x snap-mandatory">
+
+          <div class="min-w-[150px] snap-start">
+            <div class="rounded-2xl p-4 border opacity-60"
+                 style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
+              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--mutedFg))">08:30</span>
+              <h4 class="font-semibold mb-1">Terapiya</h4>
+              <p class="text-xs" style="color:rgb(var(--mutedFg))">Lektsiya zal A</p>
+            </div>
+          </div>
+
+          <div class="min-w-[150px] snap-start">
+            <div class="rounded-2xl p-4 border-l-4 border shadow-sm"
+                 style="background:rgb(var(--card));border-left-color:rgb(var(--accent));border-color:rgb(var(--border)/.5)">
+              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--accent))">14:00</span>
+              <h4 class="font-semibold mb-1">Xirurgiya</h4>
+              <p class="text-xs" style="color:rgb(var(--mutedFg))">Amaliyot</p>
+            </div>
+          </div>
+
+          <div class="min-w-[150px] snap-start">
+            <div class="rounded-2xl p-4 border transition-colors"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">16:30</span>
+              <h4 class="font-semibold mb-1">Farmakologiya</h4>
+              <p class="text-xs" style="color:rgb(var(--mutedFg))">Seminar</p>
+            </div>
+          </div>
+
+          <div class="min-w-[150px] snap-start">
+            <div class="rounded-2xl p-4 border transition-colors"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">18:00</span>
+              <h4 class="font-semibold mb-1">Mustaqil ish</h4>
+              <p class="text-xs" style="color:rgb(var(--mutedFg))">Kutubxona</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
     </div>
+  </div><!-- /screen-0 -->
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 h-[72px] bg-background border-t border-border flex justify-around items-center px-2 pb-safe-bottom z-50">
-        <!-- Active Tab: Bugun (Today) -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform">
-            <div class="relative">
-                <iconify-icon icon="lucide:stethoscope" class="text-primary" width="24" height="24"></iconify-icon>
-                <div class="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full border border-background"></div>
+
+  <!-- ════════════════════════════════════════
+       SCREEN 1 – JADVAL (Schedule)
+  ════════════════════════════════════════ -->
+  <div class="screen" id="screen-1">
+
+    <header style="background:rgb(var(--bg));z-index:10;"
+            class="flex flex-col pt-10 px-6 pb-2 sticky top-0 gap-4">
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="text-mutedFg text-sm font-medium mb-0.5">Haftalik jadval</p>
+          <h1 class="text-3xl font-heading font-bold tracking-tight">
+            Oktyabr <span style="color:rgb(var(--primary));font-size:1.1rem;font-weight:500;margin-left:4px">2023</span>
+          </h1>
+        </div>
+        <button class="p-2.5 rounded-2xl border active:scale-95"
+                style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
+          <iconify-icon icon="lucide:search" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </button>
+      </div>
+
+      <!-- Week strip -->
+      <div class="flex justify-between items-center py-2 gap-2">
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl"
+             style="background:rgb(var(--muted)/.5)">
+          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Du</span>
+          <span class="text-lg font-bold">23</span>
+        </div>
+        <!-- Active -->
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl shadow-lg"
+             style="background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 4px 16px rgb(var(--primary)/.25)">
+          <span class="text-[10px] font-bold opacity-80 uppercase">Se</span>
+          <span class="text-lg font-bold">24</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-white mt-1"></div>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ch</span>
+          <span class="text-lg font-bold">25</span>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Pa</span>
+          <span class="text-lg font-bold">26</span>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ju</span>
+          <span class="text-lg font-bold">27</span>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-1 h-20 rounded-2xl border opacity-50"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <span class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Sh</span>
+          <span class="text-lg font-bold">28</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex-1 overflow-y-auto pb-28">
+
+      <!-- Timeline -->
+      <div class="px-6 mt-4 relative">
+        <!-- vertical line -->
+        <div class="absolute w-0.5" style="left:38px;top:16px;bottom:0;background:rgb(var(--border)/.4)"></div>
+
+        <div class="space-y-8 relative">
+
+          <!-- Past -->
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center mt-1">
+              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">08:30</span>
+              <div class="w-3 h-3 rounded-full my-2 border-4"
+                   style="background:rgb(var(--muted));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
             </div>
-            <span class="text-[10px] font-medium text-primary">Bugun</span>
-        </button>
+            <div class="flex-1 rounded-3xl p-5 border opacity-60"
+                 style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-heading font-bold">Gematologiya</h4>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+                      style="background:rgba(59,130,246,.1);color:#3b82f6">Lektsiya</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))">
+                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
+                <span>Asosiy bino, 2-zal</span>
+              </div>
+            </div>
+          </div>
 
-        <!-- Inactive Tab: Jadval (Schedule) -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform hover:text-foreground">
-            <iconify-icon icon="lucide:calendar-days" width="24" height="24"></iconify-icon>
-            <span class="text-[10px] font-medium">Jadval</span>
-        </button>
-
-        <!-- Inactive Tab: Amaliyot (Practice) -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform hover:text-foreground">
-            <iconify-icon icon="lucide:clipboard-check" width="24" height="24"></iconify-icon>
-            <span class="text-[10px] font-medium">Amaliyot</span>
-        </button>
-
-        <!-- Inactive Tab: Kutubxona (Library) -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform hover:text-foreground">
-            <iconify-icon icon="lucide:book-open" width="24" height
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen</title>
-
-  <!-- Google Fonts Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS v3 CDN (compatible with html2canvas) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Iconify Icons -->
-  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
-
-  <!-- No pre-cached icons -->
-
-  <script>
-    // Tailwind v3 configuration with custom theme colors
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            background: 'rgb(var(--background) / <alpha-value>)',
-            foreground: 'rgb(var(--foreground) / <alpha-value>)',
-            card: {
-              DEFAULT: 'rgb(var(--card) / <alpha-value>)',
-              foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
-            },
-            popover: {
-              DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
-              foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
-            },
-            primary: {
-              DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
-              foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
-            },
-            secondary: {
-              DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
-              foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)',
-            },
-            muted: {
-              DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
-              foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
-            },
-            accent: {
-              DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
-              foreground: 'rgb(var(--accent-foreground) / <alpha-value>)',
-            },
-            destructive: {
-              DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
-              foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
-            },
-            border: 'rgb(var(--border) / <alpha-value>)',
-            input: 'rgb(var(--input) / <alpha-value>)',
-            ring: 'rgb(var(--ring) / <alpha-value>)',
-            chart: {
-              1: 'var(--chart-1)',
-              2: 'var(--chart-2)',
-              3: 'var(--chart-3)',
-              4: 'var(--chart-4)',
-              5: 'var(--chart-5)',
-            },
-          },
-          fontFamily: {
-            sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-            heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
-            serif: ['var(--font-serif)', 'Georgia', 'serif'],
-            mono: ['var(--font-mono)', 'monospace'],
-          },
-          borderRadius: {
-            sm: 'calc(var(--radius) - 4px)',
-            md: 'calc(var(--radius) - 2px)',
-            lg: 'var(--radius)',
-            xl: 'calc(var(--radius) + 4px)',
-            '2xl': 'calc(var(--radius) + 8px)',
-            '3xl': 'calc(var(--radius) + 12px)',
-          },
-        },
-      },
-    }
-  </script>
-
-  <style>
-    /* CSS Custom Properties - Theme Values */
-    :root {
-      --background: 248 250 252;
-      --foreground: 15 23 42;
-
-      --card: 255 255 255;
-      --card-foreground: 15 23 42;
-
-      --popover: 255 255 255;
-      --popover-foreground: 15 23 42;
-
-      --primary: 13 148 136;
-      --primary-foreground: 255 255 255;
-
-      --secondary: 204 251 241;
-      --secondary-foreground: 15 118 110;
-
-      --muted: 241 245 249;
-      --muted-foreground: 100 116 139;
-
-      --accent: 244 63 94;
-      --accent-foreground: 255 255 255;
-
-      --destructive: 239 68 68;
-      --destructive-foreground: 255 255 255;
-
-      --border: 226 232 240;
-      --input: 226 232 240;
-      --ring: 13 148 136;
-
-      --radius: 1rem;
-
-      --chart-1: #0D9488;
-      --chart-2: #F43F5E;
-      --chart-3: #3B82F6;
-      --chart-4: #F59E0B;
-      --chart-5: #8B5CF6;
-
-      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-      --font-heading: "Inter", system-ui, sans-serif;
-      --font-serif: "Playfair Display", Georgia, serif;
-      --font-mono: "JetBrains Mono", monospace;
-    }
-
-    /* Apply base font */
-    body {
-      font-family: var(--font-sans);
-      background-color: rgb(var(--background));
-      color: rgb(var(--foreground));
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Hide scrollbars globally (both vertical and horizontal) */
-    * {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
-    }
-    *::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-    }
-
-    /* Safe area utilities for mobile */
-    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-    .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
-    .pl-safe { padding-left: env(safe-area-inset-left, 0px); }
-    .pr-safe { padding-right: env(safe-area-inset-right, 0px); }
-
-    /* Hide scrollbar but allow scrolling */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Smooth transitions for interactive elements */
-    button, a, [role="button"] {
-      transition: all 0.15s ease;
-    }
-
-    /* Better image rendering */
-    img {
-      image-rendering: -webkit-optimize-contrast;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <div class="flex flex-col h-screen bg-background overflow-hidden font-sans select-none">
-
-        <!-- Top Navigation / Header -->
-        <header class="flex flex-col pt-12 px-6 pb-2 bg-background sticky top-0 z-10 gap-4">
-            <div class="flex justify-between items-start">
+          <!-- Current (live) -->
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center mt-1">
+              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">14:00</span>
+              <div class="w-3 h-3 rounded-full my-2 live-dot"
+                   style="background:rgb(var(--primary));outline:4px solid rgb(var(--primary)/.15);z-index:1"></div>
+            </div>
+            <div class="flex-1 rounded-3xl p-5 border shadow-sm relative overflow-hidden active:scale-[.98] transition-all"
+                 style="background:rgb(var(--card));border-color:rgb(var(--primary)/.2)">
+              <div class="absolute top-0 right-0 w-24 h-24 rounded-full -mr-8 -mt-8"
+                   style="background:rgb(var(--primary)/.05)"></div>
+              <div class="flex justify-between items-start mb-3 relative" style="z-index:1">
                 <div>
-                    <p class="text-muted-foreground text-sm font-medium mb-0.5">Haftalik jadval</p>
-                    <h1 class="text-3xl font-heading font-bold text-foreground tracking-tight">
-                        Oktyabr <span class="text-primary text-xl font-medium ml-1">2023</span>
-                    </h1>
+                  <h4 class="font-heading font-bold text-lg mb-1">Xirurgiya Amaliyoti</h4>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+                        style="background:rgb(var(--secondary)/.5);color:rgb(var(--secondaryFg))">Klinik Amaliyot</span>
                 </div>
-                <button class="relative active:scale-95 transition-transform bg-muted p-2.5 rounded-2xl border border-border/50">
-                    <iconify-icon icon="lucide:search" width="20" class="text-muted-foreground"></iconify-icon>
+                <button class="w-10 h-10 rounded-xl flex items-center justify-center active:scale-90"
+                        style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">
+                  <iconify-icon icon="lucide:map" width="20"></iconify-icon>
                 </button>
+              </div>
+              <div class="rounded-2xl p-3 border relative" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.5);z-index:1">
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0"
+                       style="background:rgb(var(--card));border-color:rgb(var(--border))">
+                    <iconify-icon icon="lucide:hospital" width="16" style="color:rgb(var(--primary))"></iconify-icon>
+                  </div>
+                  <div class="leading-tight">
+                    <p class="text-sm font-semibold">1-Shahar Shifoxonasi</p>
+                    <p class="text-xs italic mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya Bo'limi, 3-qavat</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <!-- Week Calendar Strip -->
-            <div class="flex justify-between items-center py-2 overflow-x-auto no-scrollbar gap-3">
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-muted/50 border border-transparent">
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">Du</span>
-                    <span class="text-lg font-bold text-foreground">23</span>
-                </div>
-                <!-- Active Day -->
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20">
-                    <span class="text-[10px] font-bold opacity-80 uppercase">Se</span>
-                    <span class="text-lg font-bold">24</span>
-                    <div class="w-1 h-1 bg-white rounded-full mt-1"></div>
-                </div>
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-card border border-border/50">
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">Ch</span>
-                    <span class="text-lg font-bold text-foreground">25</span>
-                </div>
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-card border border-border/50">
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">Pa</span>
-                    <span class="text-lg font-bold text-foreground">26</span>
-                </div>
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-card border border-border/50">
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">Ju</span>
-                    <span class="text-lg font-bold text-foreground">27</span>
-                </div>
-                <div class="flex flex-col items-center justify-center min-w-[50px] h-20 rounded-2xl bg-card border border-border/50 opacity-50">
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">Sh</span>
-                    <span class="text-lg font-bold text-foreground">28</span>
-                </div>
+          <!-- Upcoming -->
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center mt-1">
+              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">16:30</span>
+              <div class="w-3 h-3 rounded-full my-2 border-4"
+                   style="background:rgb(var(--border));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
             </div>
-        </header>
-
-        <!-- Scrollable Content -->
-        <div class="flex-1 overflow-y-auto no-scrollbar pb-24 space-y-6">
-            
-            <!-- Timeline Section -->
-            <div class="px-6 mt-4 relative">
-                <!-- Timeline Vertical Line -->
-                <div class="absolute left-[38px] top-4 bottom-0 w-0.5 bg-border/40"></div>
-
-                <div class="space-y-8 relative">
-                    
-                    <!-- Past Class (Grayed) -->
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center mt-1">
-                            <span class="text-[10px] font-bold text-muted-foreground">08:30</span>
-                            <div class="w-3 h-3 rounded-full bg-muted border-2 border-background ring-4 ring-background z-10 my-2"></div>
-                        </div>
-                        <div class="flex-1 bg-muted/40 rounded-3xl p-5 border border-border/30 opacity-60">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-heading font-bold text-foreground leading-tight">Gematologiya</h4>
-                                <span class="bg-blue-500/10 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Lektsiya</span>
-                            </div>
-                            <div class="flex items-center gap-1.5 text-muted-foreground text-xs">
-                                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
-                                <span>Asosiy bino, 2-zal</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Current Class (Highlighted) -->
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center mt-1">
-                            <span class="text-[10px] font-bold text-primary">14:00</span>
-                            <div class="w-3 h-3 rounded-full bg-primary ring-4 ring-primary/10 z-10 my-2 shadow-[0_0_12px_rgba(13,148,136,0.4)]"></div>
-                        </div>
-                        <div class="flex-1 bg-card rounded-3xl p-5 border border-primary/20 shadow-sm relative overflow-hidden active:scale-[0.98] transition-all">
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8"></div>
-                            <div class="flex justify-between items-start mb-3 relative z-10">
-                                <div>
-                                    <h4 class="font-heading font-bold text-foreground text-lg leading-tight mb-1">Xirurgiya Amaliyoti</h4>
-                                    <div class="bg-secondary/50 text-secondary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full w-fit uppercase tracking-wider">Klinik Amaliyot</div>
-                                </div>
-                                <button class="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center active:scale-90 transition-transform">
-                                    <iconify-icon icon="lucide:map" width="20"></iconify-icon>
-                                </button>
-                            </div>
-                            <div class="bg-muted/50 rounded-2xl p-3 border border-border/50 relative z-10">
-                                <div class="flex items-start gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center shrink-0">
-                                        <iconify-icon icon="lucide:hospital" class="text-primary" width="16"></iconify-icon>
-                                    </div>
-                                    <div class="leading-tight">
-                                        <p class="text-sm font-semibold text-foreground">1-Shahar Shifoxonasi</p>
-                                        <p class="text-xs text-muted-foreground mt-0.5 italic">Kardiologiya Bo'limi, 3-qavat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Upcoming Class -->
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center mt-1">
-                            <span class="text-[10px] font-bold text-muted-foreground">16:30</span>
-                            <div class="w-3 h-3 rounded-full bg-border border-2 border-background ring-4 ring-background z-10 my-2"></div>
-                        </div>
-                        <div class="flex-1 bg-card rounded-3xl p-5 border border-border/50 active:scale-[0.98] transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-heading font-bold text-foreground leading-tight">Farmakologiya</h4>
-                                <span class="bg-blue-500/10 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Seminar</span>
-                            </div>
-                            <div class="flex items-center gap-1.5 text-muted-foreground text-xs">
-                                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
-                                <span>3-O'quv binosi, 402-xona</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- End of Day -->
-                    <div class="flex gap-4">
-                        <div class="flex flex-col items-center mt-1">
-                            <span class="text-[10px] font-bold text-muted-foreground">18:00</span>
-                            <div class="w-3 h-3 rounded-full bg-border border-2 border-background ring-4 ring-background z-10 my-2"></div>
-                        </div>
-                        <div class="flex-1 bg-card rounded-3xl p-5 border border-border/50 active:scale-[0.98] transition-all">
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-heading font-bold text-foreground leading-tight">Mustaqil ish</h4>
-                                <iconify-icon icon="lucide:book-open" class="text-muted-foreground/40" width="20"></iconify-icon>
-                            </div>
-                            <p class="text-xs text-muted-foreground mt-1">Markaziy kutubxona</p>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="flex-1 rounded-3xl p-5 border active:scale-[.98] transition-all"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-heading font-bold">Farmakologiya</h4>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+                      style="background:rgba(59,130,246,.1);color:#3b82f6">Seminar</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-xs" style="color:rgb(var(--mutedFg))">
+                <iconify-icon icon="lucide:map-pin" width="14"></iconify-icon>
+                <span>3-O'quv binosi, 402-xona</span>
+              </div>
             </div>
+          </div>
 
-            <!-- Health tip or Note -->
-            <div class="px-6">
-                <div class="bg-primary/5 rounded-3xl p-4 border border-primary/10 flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-                        <iconify-icon icon="lucide:lightbulb" class="text-primary" width="24"></iconify-icon>
-                    </div>
-                    <div>
-                        <p class="text-xs text-primary font-bold uppercase tracking-wider">Eslatma</p>
-                        <p class="text-sm text-foreground mt-0.5">Ertaga Neyroxirurgiya bo'yicha oraliq nazorat testi bor. Tayyorlanishni unutmang!</p>
-                    </div>
-                </div>
+          <!-- End -->
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center mt-1">
+              <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">18:00</span>
+              <div class="w-3 h-3 rounded-full my-2 border-4"
+                   style="background:rgb(var(--border));border-color:rgb(var(--bg));outline:4px solid rgb(var(--bg));z-index:1"></div>
             </div>
+            <div class="flex-1 rounded-3xl p-5 border active:scale-[.98] transition-all"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <div class="flex justify-between items-center">
+                <h4 class="font-heading font-bold">Mustaqil ish</h4>
+                <iconify-icon icon="lucide:book-open" width="20" style="color:rgb(var(--mutedFg)/.4)"></iconify-icon>
+              </div>
+              <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Markaziy kutubxona</p>
+            </div>
+          </div>
 
-            <div class="h-8"></div>
         </div>
+      </div>
 
-        <!-- Bottom Navigation Bar -->
-        <nav class="fixed bottom-0 left-0 right-0 h-[72px] bg-background border-t border-border flex justify-around items-center px-2 pb-safe-bottom z-50">
-            <!-- Tab 0: Bugun -->
-            <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform">
-                <iconify-icon icon="lucide:stethoscope" width="24" height="24"></iconify-icon>
-                <span class="text-[10px] font-medium">Bugun</span>
-            </button>
+      <!-- Reminder -->
+      <div class="px-6 mt-8">
+        <div class="rounded-3xl p-4 border flex items-center gap-4"
+             style="background:rgb(var(--primary)/.05);border-color:rgb(var(--primary)/.1)">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0"
+               style="background:rgb(var(--primary)/.1)">
+            <iconify-icon icon="lucide:lightbulb" width="24" style="color:rgb(var(--primary))"></iconify-icon>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Eslatma</p>
+            <p class="text-sm mt-0.5">Ertaga Neyroxirurgiya bo'yicha oraliq nazorat testi bor. Tayyorlanishni unutmang!</p>
+          </div>
+        </div>
+      </div>
 
-            <!-- Tab 1: Jadval (Active) -->
-            <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-primary active:scale-95 transition-transform">
-                <iconify-icon icon="lucide:calendar-days" width="24" height="24"></iconify-icon>
-                <span class="text-[10px] font-medium">Jadval</span>
-                <div class="w-1 h-1 bg-primary rounded-full absolute bottom-2"></div>
-            </button>
-
-            <!-- Tab 2: Amaliyot -->
-            <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform hover:text-foreground">
-                <iconify-icon icon="lucide:clipboard-check" width="24" height="24"></iconify-icon>
-                <span class="text-[10px] font-medium">Amaliyot</span>
-            </button>
-
-            <!-- Tab 3: Kutubxona -->
-            <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform hover:text-foreground">
-                <iconify-icon icon="lucide:book-open" width="24" height="24"></iconify-icon>
-                <span class="text-[10px] font-medium">Kutubxona</span>
-            </button>
-        </nav>
+      <div class="h-8"></div>
     </div>
-</div>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen</title>
+  </div><!-- /screen-1 -->
 
-  <!-- Google Fonts Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS v3 CDN (compatible with html2canvas) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ════════════════════════════════════════
+       SCREEN 2 – AMALIYOT (Practice)
+  ════════════════════════════════════════ -->
+  <div class="screen" id="screen-2">
 
-  <!-- Iconify Icons -->
-  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
-
-  <!-- No pre-cached icons -->
-
-  <script>
-    // Tailwind v3 configuration with custom theme colors
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            background: 'rgb(var(--background) / <alpha-value>)',
-            foreground: 'rgb(var(--foreground) / <alpha-value>)',
-            card: {
-              DEFAULT: 'rgb(var(--card) / <alpha-value>)',
-              foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
-            },
-            popover: {
-              DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
-              foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
-            },
-            primary: {
-              DEFAULT: 'rgb(var(--primary) / <alpha-value>)',
-              foreground: 'rgb(var(--primary-foreground) / <alpha-value>)',
-            },
-            secondary: {
-              DEFAULT: 'rgb(var(--secondary) / <alpha-value>)',
-              foreground: 'rgb(var(--secondary-foreground) / <alpha-value>)',
-            },
-            muted: {
-              DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
-              foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
-            },
-            accent: {
-              DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
-              foreground: 'rgb(var(--accent-foreground) / <alpha-value>)',
-            },
-            destructive: {
-              DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
-              foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
-            },
-            border: 'rgb(var(--border) / <alpha-value>)',
-            input: 'rgb(var(--input) / <alpha-value>)',
-            ring: 'rgb(var(--ring) / <alpha-value>)',
-            chart: {
-              1: 'var(--chart-1)',
-              2: 'var(--chart-2)',
-              3: 'var(--chart-3)',
-              4: 'var(--chart-4)',
-              5: 'var(--chart-5)',
-            },
-          },
-          fontFamily: {
-            sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-            heading: ['var(--font-heading)', 'system-ui', 'sans-serif'],
-            serif: ['var(--font-serif)', 'Georgia', 'serif'],
-            mono: ['var(--font-mono)', 'monospace'],
-          },
-          borderRadius: {
-            sm: 'calc(var(--radius) - 4px)',
-            md: 'calc(var(--radius) - 2px)',
-            lg: 'var(--radius)',
-            xl: 'calc(var(--radius) + 4px)',
-            '2xl': 'calc(var(--radius) + 8px)',
-            '3xl': 'calc(var(--radius) + 12px)',
-          },
-        },
-      },
-    }
-  </script>
-
-  <style>
-    /* CSS Custom Properties - Theme Values */
-    :root {
-      --background: 248 250 252;
-      --foreground: 15 23 42;
-
-      --card: 255 255 255;
-      --card-foreground: 15 23 42;
-
-      --popover: 255 255 255;
-      --popover-foreground: 15 23 42;
-
-      --primary: 13 148 136;
-      --primary-foreground: 255 255 255;
-
-      --secondary: 204 251 241;
-      --secondary-foreground: 15 118 110;
-
-      --muted: 241 245 249;
-      --muted-foreground: 100 116 139;
-
-      --accent: 244 63 94;
-      --accent-foreground: 255 255 255;
-
-      --destructive: 239 68 68;
-      --destructive-foreground: 255 255 255;
-
-      --border: 226 232 240;
-      --input: 226 232 240;
-      --ring: 13 148 136;
-
-      --radius: 1rem;
-
-      --chart-1: #0D9488;
-      --chart-2: #F43F5E;
-      --chart-3: #3B82F6;
-      --chart-4: #F59E0B;
-      --chart-5: #8B5CF6;
-
-      --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
-      --font-heading: "Inter", system-ui, sans-serif;
-      --font-serif: "Playfair Display", Georgia, serif;
-      --font-mono: "JetBrains Mono", monospace;
-    }
-
-    /* Apply base font */
-    body {
-      font-family: var(--font-sans);
-      background-color: rgb(var(--background));
-      color: rgb(var(--foreground));
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Hide scrollbars globally (both vertical and horizontal) */
-    * {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
-    }
-    *::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-    }
-
-    /* Safe area utilities for mobile */
-    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-    .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
-    .pl-safe { padding-left: env(safe-area-inset-left, 0px); }
-    .pr-safe { padding-right: env(safe-area-inset-right, 0px); }
-
-    /* Hide scrollbar but allow scrolling */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Smooth transitions for interactive elements */
-    button, a, [role="button"] {
-      transition: all 0.15s ease;
-    }
-
-    /* Better image rendering */
-    img {
-      image-rendering: -webkit-optimize-contrast;
-    }
-  </style>
-</head>
-<body>
-  <div class="flex flex-col h-screen bg-background overflow-hidden font-sans select-none">
-
-    <!-- Top Navigation / Header -->
-    <header class="flex justify-between items-start pt-12 px-6 pb-2 bg-background sticky top-0 z-10">
-        <div>
-            <p class="text-muted-foreground text-sm font-medium mb-0.5">Amaliy ko'nikmalar</p>
-            <h1 class="text-3xl font-heading font-bold text-foreground tracking-tight">
-                Mening <span class="text-primary">Tajribam</span>
-            </h1>
+    <header style="background:rgb(var(--bg));z-index:10;"
+            class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+      <div>
+        <p class="text-mutedFg text-sm font-medium mb-0.5">Amaliy ko'nikmalar</p>
+        <h1 class="text-3xl font-heading font-bold tracking-tight">
+          Mening <span style="color:rgb(var(--primary))">Tajribam</span>
+        </h1>
+      </div>
+      <div class="flex flex-col items-end">
+        <div class="px-3 py-1 rounded-full mb-1 border"
+             style="background:rgb(var(--primary)/.1);border-color:rgb(var(--primary)/.2)">
+          <span class="text-[10px] font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Level 1 Intern</span>
         </div>
-        <button class="relative active:scale-95 transition-transform flex flex-col items-end">
-            <div class="bg-primary/10 px-3 py-1 rounded-full mb-1 border border-primary/20">
-                <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Level 1 Intern</span>
-            </div>
-            <div class="flex items-center gap-2">
-                <div class="h-1.5 w-16 bg-muted rounded-full overflow-hidden">
-                    <div class="h-full bg-primary w-2/3"></div>
-                </div>
-            </div>
-        </button>
+        <div class="flex items-center gap-2">
+          <div class="h-1.5 w-16 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
+            <div class="h-full rounded-full" style="background:rgb(var(--primary));width:66%"></div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Scrollable Content -->
-    <div class="flex-1 overflow-y-auto no-scrollbar pb-24 space-y-8">
+    <div class="flex-1 overflow-y-auto pb-28">
 
-        <!-- Experience Summary Chart (Hero-like) -->
-        <section class="px-6 mt-4">
-            <div class="bg-card rounded-3xl p-6 shadow-sm border border-border/50 relative overflow-hidden group">
-                <div class="absolute -top-12 -right-12 w-40 h-40 bg-secondary/30 rounded-full blur-3xl"></div>
+      <!-- Stats card -->
+      <section class="px-6 mt-4">
+        <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl"
+               style="background:rgb(var(--secondary)/.3)"></div>
 
-                <div class="flex justify-between items-start mb-6 relative z-10">
-                    <div>
-                        <h2 class="text-xl font-heading font-bold text-foreground">Umumiy progress</h2>
-                        <p class="text-muted-foreground text-sm mt-1">Bu oylik amaliyot hisoboti</p>
-                    </div>
-                    <div class="bg-primary text-white p-2 rounded-xl">
-                        <iconify-icon icon="lucide:trending-up" width="20"></iconify-icon>
-                    </div>
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-3 gap-4 relative z-10">
-                    <div class="bg-muted/50 p-3 rounded-2xl border border-border/40">
-                        <span class="text-[10px] uppercase font-bold text-muted-foreground block mb-1">Jami</span>
-                        <span class="text-xl font-bold text-foreground">42</span>
-                    </div>
-                    <div class="bg-secondary/20 p-3 rounded-2xl border border-secondary/30">
-                        <span class="text-[10px] uppercase font-bold text-primary block mb-1">Tasdiq</span>
-                        <span class="text-xl font-bold text-primary">38</span>
-                    </div>
-                    <div class="bg-accent/10 p-3 rounded-2xl border border-accent/20">
-                        <span class="text-[10px] uppercase font-bold text-accent block mb-1">Kutilmoqda</span>
-                        <span class="text-xl font-bold text-accent">4</span>
-                    </div>
-                </div>
+          <div class="flex justify-between items-start mb-6 relative" style="z-index:1">
+            <div>
+              <h2 class="text-xl font-heading font-bold">Umumiy progress</h2>
+              <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Bu oylik amaliyot hisoboti</p>
             </div>
-        </section>
-
-        <!-- Skill Timeline -->
-        <section class="px-6 relative">
-            <h3 class="text-lg font-heading font-semibold text-foreground mb-6">Amaliyot kundaligi</h3>
-            
-            <!-- Timeline Line -->
-            <div class="absolute left-9 top-14 bottom-0 w-0.5 bg-border/40"></div>
-
-            <div class="space-y-8 relative">
-                <!-- Timeline Item 1 -->
-                <div class="flex gap-4 group">
-                    <div class="relative z-10">
-                        <div class="w-6 h-6 rounded-full bg-primary border-4 border-background ring-1 ring-primary/20 mt-1"></div>
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-card rounded-2xl p-4 border border-border/50 shadow-sm active:scale-[0.98] transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] font-bold text-muted-foreground">BUGUN, 10:20</span>
-                                <span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-full">MUSTAQIL</span>
-                            </div>
-                            <h4 class="font-bold text-foreground">Venadan qon olish</h4>
-                            <p class="text-xs text-muted-foreground mt-1 mb-3">Terapiya bo'limi, 4-palata</p>
-                            <div class="flex items-center gap-2 pt-3 border-t border-border/40">
-                                <img src="https://i.pravatar.cc/150?u=dr_alimov" class="w-5 h-5 rounded-full object-cover">
-                                <span class="text-[10px] font-medium text-muted-foreground">Dr. Alimov tomonidan tasdiqlandi</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="flex gap-4 group">
-                    <div class="relative z-10">
-                        <div class="w-6 h-6 rounded-full bg-primary border-4 border-background ring-1 ring-primary/20 mt-1"></div>
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-card rounded-2xl p-4 border border-border/50 shadow-sm active:scale-[0.98] transition-all">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] font-bold text-muted-foreground">KECHA, 16:45</span>
-                                <span class="text-[10px] font-bold bg-muted text-muted-foreground px-2 py-0.5 rounded-full uppercase">Yordamchi</span>
-                            </div>
-                            <h4 class="font-bold text-foreground">Appendektomiya</h4>
-                            <p class="text-xs text-muted-foreground mt-1 mb-3">Xirurgiya bloki, Operatsiya xonasi #2</p>
-                            <div class="flex items-center gap-2 pt-3 border-t border-border/40">
-                                <div class="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
-                                    <iconify-icon icon="lucide:clock" width="12" class="text-accent"></iconify-icon>
-                                </div>
-                                <span class="text-[10px] font-medium text-accent">Tasdiqlash kutilmoqda...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="flex gap-4 group">
-                    <div class="relative z-10">
-                        <div class="w-6 h-6 rounded-full bg-muted border-4 border-background ring-1 ring-border mt-1"></div>
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-card rounded-2xl p-4 border border-border/50 shadow-sm opacity-80">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] font-bold text-muted-foreground">22 OKTYABR</span>
-                                <span class="text-[10px] font-bold bg-primary/10 text-primary px-2 py-0.5 rounded-full uppercase">Mustaqil</span>
-                            </div>
-                            <h4 class="font-bold text-foreground">EKG tahlili</h4>
-                            <p class="text-xs text-muted-foreground mt-1">Kardiologiya markazi</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="p-2 rounded-xl" style="background:rgb(var(--primary));color:#fff">
+              <iconify-icon icon="lucide:trending-up" width="20"></iconify-icon>
             </div>
-        </section>
+          </div>
 
-        <div class="h-8"></div>
+          <div class="grid grid-cols-3 gap-4 relative" style="z-index:1">
+            <div class="p-3 rounded-2xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)">
+              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--mutedFg))">Jami</span>
+              <span class="text-xl font-bold">42</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)">
+              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--primary))">Tasdiq</span>
+              <span class="text-xl font-bold" style="color:rgb(var(--primary))">38</span>
+            </div>
+            <div class="p-3 rounded-2xl border" style="background:rgb(var(--accent)/.1);border-color:rgb(var(--accent)/.2)">
+              <span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--accent))">Kutilmoqda</span>
+              <span class="text-xl font-bold" style="color:rgb(var(--accent))">4</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Practice timeline -->
+      <section class="px-6 mt-8 relative">
+        <h3 class="text-lg font-heading font-semibold mb-6">Amaliyot kundaligi</h3>
+        <div class="absolute w-0.5" style="left:36px;top:56px;bottom:0;background:rgb(var(--border)/.4)"></div>
+
+        <div class="space-y-8 relative">
+
+          <div class="flex gap-4">
+            <div class="relative" style="z-index:1">
+              <div class="w-6 h-6 rounded-full border-4 mt-1"
+                   style="background:rgb(var(--primary));border-color:rgb(var(--bg));outline:2px solid rgb(var(--primary)/.25)"></div>
+            </div>
+            <div class="flex-1 rounded-2xl p-4 border shadow-sm active:scale-[.98] transition-all"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <div class="flex justify-between items-start mb-2">
+                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">BUGUN, 10:20</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                      style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">MUSTAQIL</span>
+              </div>
+              <h4 class="font-bold">Venadan qon olish</h4>
+              <p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Terapiya bo'limi, 4-palata</p>
+              <div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)">
+                <img src="https://i.pravatar.cc/150?u=dr_alimov" class="w-5 h-5 rounded-full object-cover">
+                <span class="text-[10px] font-medium" style="color:rgb(var(--mutedFg))">Dr. Alimov tomonidan tasdiqlandi</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="relative" style="z-index:1">
+              <div class="w-6 h-6 rounded-full border-4 mt-1"
+                   style="background:rgb(var(--primary));border-color:rgb(var(--bg));outline:2px solid rgb(var(--primary)/.25)"></div>
+            </div>
+            <div class="flex-1 rounded-2xl p-4 border shadow-sm active:scale-[.98] transition-all"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <div class="flex justify-between items-start mb-2">
+                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">KECHA, 16:45</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+                      style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Yordamchi</span>
+              </div>
+              <h4 class="font-bold">Appendektomiya</h4>
+              <p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Xirurgiya bloki, Operatsiya xonasi #2</p>
+              <div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)">
+                <div class="w-5 h-5 rounded-full flex items-center justify-center"
+                     style="background:rgb(var(--accent)/.1)">
+                  <iconify-icon icon="lucide:clock" width="12" style="color:rgb(var(--accent))"></iconify-icon>
+                </div>
+                <span class="text-[10px] font-medium" style="color:rgb(var(--accent))">Tasdiqlash kutilmoqda...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="relative" style="z-index:1">
+              <div class="w-6 h-6 rounded-full border-4 mt-1"
+                   style="background:rgb(var(--muted));border-color:rgb(var(--bg));outline:2px solid rgb(var(--border))"></div>
+            </div>
+            <div class="flex-1 rounded-2xl p-4 border shadow-sm opacity-80"
+                 style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+              <div class="flex justify-between items-start mb-2">
+                <span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">22 OKTYABR</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase"
+                      style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Mustaqil</span>
+              </div>
+              <h4 class="font-bold">EKG tahlili</h4>
+              <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Kardiologiya markazi</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="h-8"></div>
     </div>
 
-    <!-- Floating Action Button -->
-    <button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-primary-foreground rounded-2xl shadow-xl shadow-primary/30 flex items-center justify-center active:scale-90 transition-all z-40">
-        <iconify-icon icon="lucide:plus" width="28"></iconify-icon>
+    <!-- FAB -->
+    <button class="fixed w-14 h-14 rounded-2xl flex items-center justify-center active:scale-90 transition-all"
+            style="bottom:88px;right:24px;background:rgb(var(--primary));color:rgb(var(--primaryFg));box-shadow:0 8px 24px rgb(var(--primary)/.35);z-index:40">
+      <iconify-icon icon="lucide:plus" width="28"></iconify-icon>
+    </button>
+  </div><!-- /screen-2 -->
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 3 – KUTUBXONA (Library)
+  ════════════════════════════════════════ -->
+  <div class="screen" id="screen-3">
+
+    <header style="background:rgb(var(--bg));z-index:10;"
+            class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+      <div>
+        <p class="text-mutedFg text-sm font-medium mb-0.5">O'quv materiallari</p>
+        <h1 class="text-3xl font-heading font-bold tracking-tight">
+          <span style="color:rgb(var(--primary))">Kutubxona</span>
+        </h1>
+      </div>
+      <button class="p-2.5 rounded-2xl border active:scale-95"
+              style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)">
+        <iconify-icon icon="lucide:search" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
+      </button>
+    </header>
+
+    <div class="flex-1 overflow-y-auto pb-28">
+
+      <!-- Search bar -->
+      <div class="px-6 mt-4">
+        <div class="flex items-center gap-3 px-4 py-3 rounded-2xl border"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <iconify-icon icon="lucide:search" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+          <span class="text-sm" style="color:rgb(var(--mutedFg))">Kitob, mavzu qidiring...</span>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="pl-6 mt-6">
+        <h3 class="text-lg font-heading font-semibold mb-4">Fanlar bo'yicha</h3>
+        <div class="flex gap-3 overflow-x-auto pr-6 pb-1">
+
+          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-semibold"
+               style="background:rgb(var(--primary));color:#fff">Hammasi</div>
+          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
+               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Anatomiya</div>
+          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
+               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Farmakologiya</div>
+          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
+               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Xirurgiya</div>
+          <div class="flex-shrink-0 px-4 py-2.5 rounded-2xl border text-sm font-medium"
+               style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">Terapiya</div>
+        </div>
+      </div>
+
+      <!-- Books list -->
+      <div class="px-6 mt-6 space-y-4">
+        <h3 class="text-lg font-heading font-semibold mb-2">Tavsiya etilgan</h3>
+
+        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
+               style="background:rgb(var(--primary)/.1)">
+            <iconify-icon icon="lucide:book-open" width="28" style="color:rgb(var(--primary))"></iconify-icon>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold truncate">Gray's Anatomy</h4>
+            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Frank H. Netter</p>
+            <div class="flex items-center gap-1 mt-2">
+              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
+                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:45%"></div>
+              </div>
+              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">45%</span>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
+               style="background:rgb(var(--secondary)/.5)">
+            <iconify-icon icon="lucide:pill" width="28" style="color:rgb(var(--secondaryFg))"></iconify-icon>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold truncate">Farmakologiya asoslari</h4>
+            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Bertram G. Katzung</p>
+            <div class="flex items-center gap-1 mt-2">
+              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
+                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:20%"></div>
+              </div>
+              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">20%</span>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 rounded-2xl border active:scale-[.98] transition-all"
+             style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+          <div class="w-14 h-16 rounded-xl flex items-center justify-center flex-shrink-0"
+               style="background:rgb(var(--accent)/.1)">
+            <iconify-icon icon="lucide:stethoscope" width="28" style="color:rgb(var(--accent))"></iconify-icon>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold truncate">Klinik Xirurgiya</h4>
+            <p class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg))">Sabiston Textbook</p>
+            <div class="flex items-center gap-1 mt-2">
+              <div class="h-1 flex-1 rounded-full overflow-hidden" style="background:rgb(var(--muted))">
+                <div class="h-full rounded-full" style="background:rgb(var(--primary));width:70%"></div>
+              </div>
+              <span class="text-[10px] font-bold" style="color:rgb(var(--primary))">70%</span>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-right" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </div>
+
+      </div>
+
+      <div class="h-8"></div>
+    </div>
+  </div><!-- /screen-3 -->
+
+
+  <!-- ════════════════════════════════════════
+       BOTTOM NAVIGATION (fixed, shared)
+  ════════════════════════════════════════ -->
+  <nav id="bottom-nav"
+       class="fixed bottom-0 left-0 right-0 flex justify-around items-center px-2"
+       style="height:72px;background:rgb(var(--bg));border-top:1px solid rgb(var(--border));z-index:50">
+
+    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
+            data-tab="0" onclick="switchTab(0)">
+      <div class="relative">
+        <iconify-icon icon="lucide:stethoscope" width="24" height="24" class="nav-icon"></iconify-icon>
+        <div id="badge-0" class="absolute -top-1 -right-1 w-2 h-2 rounded-full border-2"
+             style="background:rgb(var(--accent));border-color:rgb(var(--bg))"></div>
+      </div>
+      <span class="text-[10px] font-medium nav-label">Bugun</span>
     </button>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 h-[72px] bg-background border-t border-border flex justify-around items-center px-2 pb-safe-bottom z-50">
-        <!-- Tab 0: Bugun -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform">
-            <iconify-icon icon="lucide:stethoscope" width="24" height="24"></iconify-icon>
-            <span class="text-[10px] font-medium">Bugun</span>
-        </button>
+    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
+            data-tab="1" onclick="switchTab(1)">
+      <iconify-icon icon="lucide:calendar-days" width="24" height="24" class="nav-icon"></iconify-icon>
+      <span class="text-[10px] font-medium nav-label">Jadval</span>
+    </button>
 
-        <!-- Tab 1: Jadval -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform">
-            <iconify-icon icon="lucide:calendar-days" width="24" height="24"></iconify-icon>
-            <span class="text-[10px] font-medium">Jadval</span>
-        </button>
+    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
+            data-tab="2" onclick="switchTab(2)">
+      <iconify-icon icon="lucide:clipboard-check" width="24" height="24" class="nav-icon"></iconify-icon>
+      <span class="text-[10px] font-medium nav-label">Amaliyot</span>
+    </button>
 
-        <!-- Tab 2: Amaliyot (ACTIVE) -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-primary active:scale-95 transition-transform">
-            <div class="relative">
-                <iconify-icon icon="lucide:clipboard-check" width="24" height="24"></iconify-icon>
-            </div>
-            <span class="text-[10px] font-medium">Amaliyot</span>
-        </button>
+    <button class="nav-btn flex flex-col items-center justify-center gap-1 w-16 h-full active:scale-95 transition-transform"
+            data-tab="3" onclick="switchTab(3)">
+      <iconify-icon icon="lucide:book-open" width="24" height="24" class="nav-icon"></iconify-icon>
+      <span class="text-[10px] font-medium nav-label">Kutubxona</span>
+    </button>
 
-        <!-- Tab 3: Kutubxona -->
-        <button class="flex flex-col items-center justify-center gap-1 w-16 h-full text-muted-foreground active:scale-95 transition-transform">
-            <iconify-icon icon="lucide:book-open" width="24" height="24"></iconify-icon>
-            <span class="text-[10px] font-medium">Kutubxona</span>
-        </button>
-    </nav>
-</div>
+  </nav>
+
+</div><!-- /app -->
+
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════ -->
+<script>
+  let currentTab = 0;
+
+  function switchTab(index) {
+    if (index === currentTab) return;
+
+    const oldScreen = document.getElementById('screen-' + currentTab);
+    const newScreen = document.getElementById('screen-' + index);
+
+    // direction
+    const goRight = index > currentTab;
+
+    // exit old
+    oldScreen.classList.remove('active');
+    oldScreen.classList.add(goRight ? 'exit-left' : '');
+    if (!goRight) {
+      oldScreen.style.transform = 'translateX(30px)';
+      oldScreen.style.opacity = '0';
+    }
+    setTimeout(() => {
+      oldScreen.style.transform = '';
+      oldScreen.style.opacity = '';
+      oldScreen.classList.remove('exit-left');
+    }, 300);
+
+    // enter new
+    newScreen.style.transform = goRight ? 'translateX(30px)' : 'translateX(-30px)';
+    newScreen.style.opacity = '0';
+    newScreen.style.pointerEvents = 'all';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        newScreen.classList.add('active');
+      });
+    });
+
+    currentTab = index;
+    updateNav();
+  }
+
+  function updateNav() {
+    document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+      const isActive = i === currentTab;
+      const icon = btn.querySelector('.nav-icon');
+      const label = btn.querySelector('.nav-label');
+      icon.style.color  = isActive ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
+      label.style.color = isActive ? 'rgb(var(--primary))' : 'rgb(var(--mutedFg))';
+
+      // active dot
+      let dot = btn.querySelector('.nav-active-dot');
+      if (isActive && !dot) {
+        dot = document.createElement('div');
+        dot.className = 'nav-active-dot';
+        dot.style.cssText = 'width:4px;height:4px;border-radius:50%;background:rgb(var(--primary));margin:0 auto;';
+        btn.appendChild(dot);
+      } else if (!isActive && dot) {
+        dot.remove();
+      }
+    });
+  }
+
+  // ── Checklist toggle ──
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    if (el.classList.contains('done')) {
+      el.style.background = 'rgb(var(--secondary)/.2)';
+      el.style.borderColor = 'rgb(var(--secondary)/.3)';
+      el.style.borderStyle = 'solid';
+    } else {
+      el.style.background = 'rgb(var(--card))';
+      el.style.borderColor = 'rgb(var(--accent)/.4)';
+      el.style.borderStyle = 'dashed';
+    }
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const items  = document.querySelectorAll('.check-item');
+    const done   = document.querySelectorAll('.check-item.done');
+    const pct    = Math.round((done.length / items.length) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('pct-label').textContent = pct + '%';
+  }
+
+  // init nav colors
+  updateNav();
+</script>
+
 </body>
 </html>
