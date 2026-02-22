@@ -1,38 +1,23 @@
 <!DOCTYPE html>
 <html lang="uz" id="html-root">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0D9488" id="theme-color-meta" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <meta name="theme-color" content="#0D9488" id="theme-color-meta"/>
   <title>MedStudent – Anusher</title>
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVkU3R1ZGVudCIsInNob3J0X25hbWUiOiJNZWRTdHVkZW50IiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2Y4ZmFmYyIsInRoZW1lX2NvbG9yIjoiIzBEOTQ4OCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7dXRmOCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PC9zdmc+Iiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTWVkU3R1ZGVudCIsInNob3J0X25hbWUiOiJNZWRTdHVkZW50IiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2Y4ZmFmYyIsInRoZW1lX2NvbG9yIjoiIzBEOTQ4OCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7dXRmOCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PC9zdmc+Iiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
   <script>
-    tailwind.config={theme:{extend:{colors:{bg:'rgb(var(--bg)/<alpha-value>)',fg:'rgb(var(--fg)/<alpha-value>)',card:'rgb(var(--card)/<alpha-value>)',primary:'rgb(var(--primary)/<alpha-value>)',primaryFg:'rgb(var(--primaryFg)/<alpha-value>)',secondary:'rgb(var(--secondary)/<alpha-value>)',secondaryFg:'rgb(var(--secondaryFg)/<alpha-value>)',muted:'rgb(var(--muted)/<alpha-value>)',mutedFg:'rgb(var(--mutedFg)/<alpha-value>)',accent:'rgb(var(--accent)/<alpha-value>)',border:'rgb(var(--border)/<alpha-value>)'},fontFamily:{sans:['"Plus Jakarta Sans"','system-ui','sans-serif'],heading:['"Inter"','system-ui','sans-serif']},borderRadius:{'2xl':'1rem','3xl':'1.5rem','4xl':'2rem'}}}}
+    tailwind.config={theme:{extend:{colors:{bg:'rgb(var(--bg)/<alpha-value>)',fg:'rgb(var(--fg)/<alpha-value>)',card:'rgb(var(--card)/<alpha-value>)',primary:'rgb(var(--primary)/<alpha-value>)',secondary:'rgb(var(--secondary)/<alpha-value>)',secondaryFg:'rgb(var(--secondaryFg)/<alpha-value>)',muted:'rgb(var(--muted)/<alpha-value>)',mutedFg:'rgb(var(--mutedFg)/<alpha-value>)',accent:'rgb(var(--accent)/<alpha-value>)',border:'rgb(var(--border)/<alpha-value>)'},fontFamily:{sans:['"Plus Jakarta Sans"','system-ui','sans-serif'],heading:['"Inter"','system-ui','sans-serif']},borderRadius:{'2xl':'1rem','3xl':'1.5rem','4xl':'2rem'}}}}
   </script>
   <style>
-    /* ── LIGHT MODE (default) ── */
-    :root {
-      --bg:248 250 252; --fg:15 23 42; --card:255 255 255;
-      --primary:13 148 136; --primaryFg:255 255 255;
-      --secondary:204 251 241; --secondaryFg:15 118 110;
-      --muted:241 245 249; --mutedFg:100 116 139;
-      --accent:244 63 94; --border:226 232 240;
-    }
-    /* ── DARK MODE ── */
-    .dark {
-      --bg:15 23 42; --fg:241 245 249; --card:30 41 59;
-      --primary:20 184 166; --primaryFg:255 255 255;
-      --secondary:19 78 74; --secondaryFg:94 234 212;
-      --muted:30 41 59; --mutedFg:148 163 184;
-      --accent:251 113 133; --border:51 65 85;
-    }
-    *{scrollbar-width:none;-ms-overflow-style:none;box-sizing:border-box;}
-    *::-webkit-scrollbar{display:none;}
+    :root{--bg:248 250 252;--fg:15 23 42;--card:255 255 255;--primary:13 148 136;--primaryFg:255 255 255;--secondary:204 251 241;--secondaryFg:15 118 110;--muted:241 245 249;--mutedFg:100 116 139;--accent:244 63 94;--border:226 232 240;}
+    .dark{--bg:15 23 42;--fg:241 245 249;--card:30 41 59;--primary:20 184 166;--primaryFg:255 255 255;--secondary:19 78 74;--secondaryFg:94 234 212;--muted:30 41 59;--mutedFg:148 163 184;--accent:251 113 133;--border:51 65 85;}
+    *{scrollbar-width:none;-ms-overflow-style:none;box-sizing:border-box;}*::-webkit-scrollbar{display:none;}
     body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:rgb(var(--bg));color:rgb(var(--fg));-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh;transition:background .3s,color .3s;}
     .screen{position:absolute;inset:0;display:flex;flex-direction:column;height:100%;opacity:0;pointer-events:none;visibility:hidden;}
     .screen.active{opacity:1;pointer-events:all;visibility:visible;}
@@ -53,25 +38,75 @@
     .pill{padding:6px 14px;border-radius:20px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
     .pill.active{background:rgb(var(--primary));color:#fff;}
     .pill:not(.active){background:rgb(var(--muted));color:rgb(var(--mutedFg));}
-    /* Dark mode toggle */
     .theme-toggle{width:44px;height:24px;border-radius:12px;position:relative;cursor:pointer;transition:background .3s;background:rgb(var(--muted));border:1px solid rgb(var(--border));}
     .theme-toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:rgb(var(--primary));transition:transform .3s;}
     .dark .theme-toggle-thumb{transform:translateX(20px);}
-    /* Map card */
-    .map-card{border-radius:20px;overflow:hidden;position:relative;}
-    .map-placeholder{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
-    /* PWA install banner */
-    #pwa-banner{position:fixed;bottom:80px;left:16px;right:16px;z-index:100;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;transform:translateY(120px);transition:transform .4s ease;background:rgb(var(--fg));color:rgb(var(--bg));}
-    #pwa-banner.show{transform:translateY(0);}
+    /* Search overlay */
+    #search-overlay{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .2s;background:rgb(var(--bg));}
+    #search-overlay.open{opacity:1;pointer-events:all;}
+    .search-result-item{padding:14px 16px;border-radius:16px;margin-bottom:8px;border:1px solid rgb(var(--border)/.5);background:rgb(var(--card));cursor:pointer;display:flex;align-items:center;gap:12px;}
+    /* Donut chart */
+    .donut-ring{transform:rotate(-90deg);transform-origin:50% 50%;}
+    @keyframes dash{from{stroke-dashoffset:283;}to{stroke-dashoffset:var(--target);}}
+    .donut-seg{animation:dash .8s ease forwards;}
+    /* Task priority */
+    .pri-high{border-left:3px solid rgb(var(--accent));}
+    .pri-mid{border-left:3px solid #f59e0b;}
+    .pri-low{border-left:3px solid rgb(var(--primary));}
+    /* Push notif toast */
+    #notif-toast{position:fixed;top:60px;left:16px;right:16px;z-index:400;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;transform:translateY(-120px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);background:rgb(var(--card));border:1px solid rgb(var(--border));box-shadow:0 8px 24px rgba(0,0,0,.12);}
+    #notif-toast.show{transform:translateY(0);}
     button,a,[role="button"]{transition:all .15s ease;}
     input,select,textarea{font-family:inherit;background:rgb(var(--muted)/.5);color:rgb(var(--fg));border-color:rgb(var(--border));}
     input::placeholder,textarea::placeholder{color:rgb(var(--mutedFg));}
+    #pwa-banner{position:fixed;bottom:80px;left:16px;right:16px;z-index:100;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;transform:translateY(120px);transition:transform .4s ease;background:rgb(var(--fg));color:rgb(var(--bg));}
+    #pwa-banner.show{transform:translateY(0);}
   </style>
 </head>
 <body>
-<div id="app" style="position:relative;height:100vh;overflow:hidden;" class="">
+<div id="app" style="position:relative;height:100vh;overflow:hidden;">
 
-<!-- ═══════ SCREEN 0: BUGUN ═══════ -->
+<!-- ══════════════════════════════════
+     SEARCH OVERLAY
+════════════════════════════════════ -->
+<div id="search-overlay">
+  <div class="px-5 pt-12 pb-3 flex items-center gap-3" style="background:rgb(var(--bg));">
+    <div class="flex-1 flex items-center gap-3 px-4 py-3 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border));">
+      <iconify-icon icon="lucide:search" width="18" style="color:rgb(var(--mutedFg));flex-shrink:0;"></iconify-icon>
+      <input id="search-input" type="text" placeholder="Qidirish..." oninput="doSearch(this.value)" class="flex-1 bg-transparent border-none outline-none text-sm" style="background:transparent;border:none;"/>
+    </div>
+    <button onclick="closeSearch()" class="font-semibold text-sm px-3 py-2 rounded-xl" style="color:rgb(var(--primary));background:rgb(var(--primary)/.1);" data-uz="Bekor" data-en="Cancel">Bekor</button>
+  </div>
+  <div class="px-5 pb-2">
+    <div class="flex gap-2 overflow-x-auto">
+      <button onclick="setSearchCat(this,'all')" class="pill active" id="sc-all" data-uz="Hammasi" data-en="All">Hammasi</button>
+      <button onclick="setSearchCat(this,'bemor')" class="pill" id="sc-bemor" data-uz="Bemorlar" data-en="Patients">Bemorlar</button>
+      <button onclick="setSearchCat(this,'konspekt')" class="pill" id="sc-konspekt" data-uz="Konspektlar" data-en="Notes">Konspektlar</button>
+      <button onclick="setSearchCat(this,'dori')" class="pill" id="sc-dori" data-uz="Dorilar" data-en="Medications">Dorilar</button>
+    </div>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5 pt-2" id="search-results">
+    <p class="text-sm text-center mt-16" style="color:rgb(var(--mutedFg));" data-uz="Qidiruv uchun yozing..." data-en="Start typing to search...">Qidiruv uchun yozing...</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PUSH NOTIFICATION TOAST
+════════════════════════════════════ -->
+<div id="notif-toast">
+  <div id="toast-icon" class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.15);">
+    <iconify-icon icon="lucide:bell" width="20" style="color:rgb(var(--primary));"></iconify-icon>
+  </div>
+  <div class="flex-1 min-w-0">
+    <p id="toast-title" class="text-sm font-bold truncate">Eslatma</p>
+    <p id="toast-body" class="text-xs mt-0.5 truncate" style="color:rgb(var(--mutedFg));">...</p>
+  </div>
+  <button onclick="document.getElementById('notif-toast').classList.remove('show')" style="color:rgb(var(--mutedFg));font-size:18px;line-height:1;">✕</button>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN 0 — BUGUN
+════════════════════════════════════ -->
 <div class="screen active" id="screen-0">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-2 sticky top-0">
     <div>
@@ -79,7 +114,9 @@
       <h1 class="text-3xl font-heading font-bold tracking-tight"><span data-uz="Xayrli tong," data-en="Good morning,">Xayrli tong,</span> <span style="color:rgb(var(--primary))">Anusher</span></h1>
     </div>
     <div class="flex items-center gap-2">
-      <!-- Dark mode toggle -->
+      <button onclick="openSearch()" class="w-9 h-9 rounded-xl flex items-center justify-center border active:scale-95" style="background:rgb(var(--muted));border-color:rgb(var(--border))">
+        <iconify-icon icon="lucide:search" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+      </button>
       <button onclick="toggleDark()" class="w-9 h-9 rounded-xl flex items-center justify-center border active:scale-95" style="background:rgb(var(--muted));border-color:rgb(var(--border))" id="dark-btn">
         <iconify-icon icon="lucide:moon" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
       </button>
@@ -97,87 +134,45 @@
       <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
         <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl" style="background:rgb(var(--secondary)/.3)"></div>
         <div class="flex justify-between items-end mb-4 relative" style="z-index:1">
-          <div>
-            <h2 class="text-xl font-heading font-bold" data-uz="Sumkangizni yigamiz" data-en="Pack your bag">Sumkangizni yigamiz</h2>
-            <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))" data-uz="Bugungi amaliyotga tayyormisiz?" data-en="Ready for today's practice?">Bugungi amaliyotga tayyormisiz?</p>
-          </div>
+          <div><h2 class="text-xl font-heading font-bold" data-uz="Sumkangizni yigamiz" data-en="Pack your bag">Sumkangizni yigamiz</h2><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))" data-uz="Bugungi amaliyotga tayyormisiz?" data-en="Ready for today's practice?">Bugungi amaliyotga tayyormisiz?</p></div>
           <span id="pct-label" class="text-2xl font-bold" style="color:rgb(var(--primary))">67%</span>
         </div>
-        <div class="h-2 w-full rounded-full overflow-hidden mb-5 relative" style="background:rgb(var(--muted));z-index:1">
-          <div id="progress-bar" class="h-full rounded-full" style="background:rgb(var(--primary));width:67%"></div>
-        </div>
+        <div class="h-2 w-full rounded-full overflow-hidden mb-5 relative" style="background:rgb(var(--muted));z-index:1"><div id="progress-bar" class="h-full rounded-full" style="background:rgb(var(--primary));width:67%"></div></div>
         <div class="space-y-3 relative" id="checklist" style="z-index:1">
-          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)">
-            <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div>
-            <span class="flex-1 font-medium item-label" data-uz="Oq xalat" data-en="White coat">Oq xalat</span>
-            <iconify-icon icon="lucide:shirt" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
-          </div>
-          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)">
-            <div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div>
-            <span class="flex-1 font-medium item-label" data-uz="Stetoskop" data-en="Stethoscope">Stetoskop</span>
-            <iconify-icon icon="lucide:stethoscope" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon>
-          </div>
-          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)">
-            <div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div>
-            <span class="flex-1 font-medium item-label" data-uz="Anatomiya Atlasi" data-en="Anatomy Atlas">Anatomiya Atlasi</span>
-            <iconify-icon icon="lucide:book" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
-          </div>
-          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)">
-            <div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div>
-            <span class="flex-1 font-medium item-label" data-uz="Tibbiy qolqop" data-en="Medical gloves">Tibbiy qolqop</span>
-            <iconify-icon icon="lucide:shield" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
-          </div>
+          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)"><div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div><span class="flex-1 font-medium item-label" data-uz="Oq xalat" data-en="White coat">Oq xalat</span><iconify-icon icon="lucide:shirt" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon></div>
+          <div class="check-item done flex items-center gap-4 p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)" onclick="toggleCheck(this)"><div class="check-circle" style="background:rgb(var(--primary));border-color:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff;opacity:1"></iconify-icon></div><span class="flex-1 font-medium item-label" data-uz="Stetoskop" data-en="Stethoscope">Stetoskop</span><iconify-icon icon="lucide:stethoscope" width="20" style="color:rgb(var(--primary)/.6)"></iconify-icon></div>
+          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)"><div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div><span class="flex-1 font-medium item-label" data-uz="Anatomiya Atlasi" data-en="Anatomy Atlas">Anatomiya Atlasi</span><iconify-icon icon="lucide:book" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon></div>
+          <div class="check-item flex items-center gap-4 p-3 rounded-2xl border border-dashed" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.4)" onclick="toggleCheck(this)"><div class="check-circle"><iconify-icon icon="lucide:check" width="14" class="check-icon" style="color:#fff"></iconify-icon></div><span class="flex-1 font-medium item-label" data-uz="Tibbiy qolqop" data-en="Medical gloves">Tibbiy qolqop</span><iconify-icon icon="lucide:shield" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon></div>
         </div>
-        <button onclick="openModal('add-modal')" class="mt-4 w-full flex items-center justify-center gap-2 p-3 rounded-2xl border border-dashed" style="border-color:rgb(var(--primary)/.3);color:rgb(var(--primary));font-weight:600;font-size:.875rem;position:relative;z-index:1;">
-          <iconify-icon icon="lucide:plus" width="16"></iconify-icon> <span data-uz="Narsa qoshish" data-en="Add item">Narsa qoshish</span>
-        </button>
+        <button onclick="openModal('add-modal')" class="mt-4 w-full flex items-center justify-center gap-2 p-3 rounded-2xl border border-dashed" style="border-color:rgb(var(--primary)/.3);color:rgb(var(--primary));font-weight:600;font-size:.875rem;position:relative;z-index:1;"><iconify-icon icon="lucide:plus" width="16"></iconify-icon> <span data-uz="Narsa qoshish" data-en="Add item">Narsa qoshish</span></button>
       </div>
     </section>
     <section class="px-6 mt-6">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-heading font-semibold" data-uz="Keyingi dars" data-en="Next class">Keyingi dars</h3>
-        <span class="text-xs font-medium px-2.5 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">14:00</span>
-      </div>
+      <div class="flex items-center justify-between mb-3"><h3 class="text-lg font-heading font-semibold" data-uz="Keyingi dars" data-en="Next class">Keyingi dars</h3><span class="text-xs font-medium px-2.5 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">14:00</span></div>
       <div class="rounded-3xl p-6 relative overflow-hidden shadow-lg" style="background:rgb(var(--primary));color:#fff;box-shadow:0 10px 30px rgb(var(--primary)/.25)">
         <div class="absolute top-0 right-0 p-8 opacity-10"><iconify-icon icon="lucide:activity" width="120" height="120"></iconify-icon></div>
         <div class="relative flex flex-col gap-4" style="z-index:1">
-          <div>
-            <div class="w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border" style="background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.15)">
-              <iconify-icon icon="lucide:clock" width="14"></iconify-icon>
-              <span class="text-xs font-medium" data-uz="1 soat qoldi" data-en="1 hour left">1 soat qoldi</span>
-            </div>
-            <h2 class="text-3xl font-heading font-bold mb-1" data-uz="Xirurgiya" data-en="Surgery">Xirurgiya</h2>
-            <p class="font-medium text-lg" style="opacity:.9">Dr. Alimov</p>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-start gap-2.5">
-              <iconify-icon icon="lucide:map-pin" width="18" class="mt-0.5" style="opacity:.9"></iconify-icon>
-              <div class="leading-tight">
-                <span class="block text-sm font-semibold" data-uz="1-Shahar Shifoxonasi" data-en="City Hospital #1">1-Shahar Shifoxonasi</span>
-                <span class="text-xs" style="opacity:.8" data-uz="B Blok, 304-xona" data-en="Block B, Room 304">B Blok, 304-xona</span>
-              </div>
-            </div>
-            <button onclick="goTo(9)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-90" style="background:#fff;color:rgb(var(--primary))">
-              <iconify-icon icon="lucide:map" width="20"></iconify-icon>
-            </button>
-          </div>
+          <div><div class="w-fit px-3 py-1 rounded-full mb-3 flex items-center gap-1.5 border" style="background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.15)"><iconify-icon icon="lucide:clock" width="14"></iconify-icon><span class="text-xs font-medium" data-uz="1 soat qoldi" data-en="1 hour left">1 soat qoldi</span></div><h2 class="text-3xl font-heading font-bold mb-1">Xirurgiya</h2><p class="font-medium text-lg" style="opacity:.9">Dr. Alimov</p></div>
+          <div class="flex items-center justify-between"><div class="flex items-start gap-2.5"><iconify-icon icon="lucide:map-pin" width="18" class="mt-0.5" style="opacity:.9"></iconify-icon><div class="leading-tight"><span class="block text-sm font-semibold" data-uz="1-Shahar Shifoxonasi" data-en="City Hospital #1">1-Shahar Shifoxonasi</span><span class="text-xs" style="opacity:.8">B Blok, 304-xona</span></div></div><button onclick="goTo(9)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg active:scale-90" style="background:#fff;color:rgb(var(--primary))"><iconify-icon icon="lucide:map" width="20"></iconify-icon></button></div>
         </div>
       </div>
     </section>
     <section class="pl-6 mt-6 pb-4">
       <h3 class="text-lg font-heading font-semibold mb-3 pr-6" data-uz="Bugungi darslar" data-en="Today's classes">Bugungi darslar</h3>
       <div class="flex gap-4 overflow-x-auto pr-6 pb-2 snap-x snap-mandatory">
-        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border opacity-60" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--mutedFg))">08:00</span><h4 class="font-semibold mb-1" data-uz="Terapiya" data-en="Therapy">Terapiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Lektsiya zal A</p></div></div>
-        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border-l-4 border shadow-sm" style="background:rgb(var(--card));border-left-color:rgb(var(--accent));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--accent))">14:00</span><h4 class="font-semibold mb-1" data-uz="Xirurgiya" data-en="Surgery">Xirurgiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))" data-uz="Amaliyot" data-en="Practice">Amaliyot</p></div></div>
-        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">16:30</span><h4 class="font-semibold mb-1" data-uz="Farmakologiya" data-en="Pharmacology">Farmakologiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))" data-uz="Seminar" data-en="Seminar">Seminar</p></div></div>
-        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">18:00</span><h4 class="font-semibold mb-1" data-uz="Mustaqil ish" data-en="Self-study">Mustaqil ish</h4><p class="text-xs" style="color:rgb(var(--mutedFg))" data-uz="Kutubxona" data-en="Library">Kutubxona</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border opacity-60" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--mutedFg))">08:00</span><h4 class="font-semibold mb-1">Terapiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Lektsiya zal A</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border-l-4 border shadow-sm" style="background:rgb(var(--card));border-left-color:rgb(var(--accent));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--accent))">14:00</span><h4 class="font-semibold mb-1">Xirurgiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Amaliyot</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">16:30</span><h4 class="font-semibold mb-1">Farmakologiya</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Seminar</p></div></div>
+        <div class="min-w-[150px] snap-start"><div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xs font-bold block mb-2" style="color:rgb(var(--primary))">18:00</span><h4 class="font-semibold mb-1">Mustaqil ish</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">Kutubxona</p></div></div>
       </div>
     </section>
     <div class="h-4"></div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 1: JADVAL ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 1 — JADVAL
+════════════════════════════════════ -->
 <div class="screen" id="screen-1">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex flex-col pt-10 px-6 pb-2 sticky top-0 gap-3">
     <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Haftalik jadval" data-en="Weekly schedule">Haftalik jadval</p><h1 class="text-3xl font-heading font-bold">Fevral <span style="color:rgb(var(--primary));font-size:1.1rem;font-weight:500">2025</span></h1></div>
@@ -194,7 +189,7 @@
     <div class="px-6 mt-4 relative">
       <div class="absolute w-0.5" style="left:38px;top:16px;bottom:0;background:rgb(var(--border)/.4)"></div>
       <div class="space-y-7 relative">
-        <div class="flex gap-4"><div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">08:00</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--muted));outline:4px solid rgb(var(--bg));z-index:1"></div></div><div class="flex-1 rounded-3xl p-5 border opacity-60" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><div class="flex justify-between mb-2"><h4 class="font-heading font-bold" data-uz="Gematologiya" data-en="Hematology">Gematologiya</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(59,130,246,.1);color:#3b82f6">Lektsiya</span></div><div class="flex items-center gap-1 text-xs" style="color:rgb(var(--mutedFg))"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon><span>Asosiy bino, 2-zal</span></div></div></div>
+        <div class="flex gap-4"><div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">08:00</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--muted));outline:4px solid rgb(var(--bg));z-index:1"></div></div><div class="flex-1 rounded-3xl p-5 border opacity-60" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><div class="flex justify-between mb-2"><h4 class="font-heading font-bold">Gematologiya</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(59,130,246,.1);color:#3b82f6">Lektsiya</span></div><div class="flex items-center gap-1 text-xs" style="color:rgb(var(--mutedFg))"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon><span>Asosiy bino, 2-zal</span></div></div></div>
         <div class="flex gap-4"><div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">14:00</span><div class="w-3 h-3 rounded-full my-2 live-dot" style="background:rgb(var(--primary));outline:4px solid rgb(var(--primary)/.15);z-index:1"></div></div><div class="flex-1 rounded-3xl p-5 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--primary)/.2)"><h4 class="font-heading font-bold text-lg mb-1">Xirurgiya Amaliyoti</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--secondary)/.5);color:rgb(var(--secondaryFg))">Klinik Amaliyot</span><div class="mt-3 rounded-2xl p-3 border flex items-center gap-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.5)"><iconify-icon icon="lucide:hospital" width="16" style="color:rgb(var(--primary))"></iconify-icon><div><p class="text-sm font-semibold">1-Shahar Shifoxonasi</p><p class="text-xs" style="color:rgb(var(--mutedFg))">Kardiologiya, 3-qavat</p></div></div></div></div>
         <div class="flex gap-4"><div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">16:30</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--border));outline:4px solid rgb(var(--bg));z-index:1"></div></div><div class="flex-1 rounded-3xl p-5 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between mb-2"><h4 class="font-heading font-bold">Farmakologiya</h4><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(59,130,246,.1);color:#3b82f6">Seminar</span></div><div class="flex items-center gap-1 text-xs" style="color:rgb(var(--mutedFg))"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon><span>3-Oquv binosi, 402-xona</span></div></div></div>
         <div class="flex gap-4"><div class="flex flex-col items-center mt-1"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">18:00</span><div class="w-3 h-3 rounded-full my-2" style="background:rgb(var(--border));outline:4px solid rgb(var(--bg));z-index:1"></div></div><div class="flex-1 rounded-3xl p-5 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between items-center"><h4 class="font-heading font-bold">Mustaqil ish</h4><iconify-icon icon="lucide:book-open" width="20" style="color:rgb(var(--mutedFg)/.4)"></iconify-icon></div><p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Markaziy kutubxona</p></div></div>
@@ -204,29 +199,28 @@
   </div>
 </div>
 
-<!-- ═══════ SCREEN 2: AMALIYOT ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 2 — AMALIYOT
+════════════════════════════════════ -->
 <div class="screen" id="screen-2">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Amaliy konikmalar" data-en="Clinical Skills">Amaliy konikmalar</p><h1 class="text-3xl font-heading font-bold"><span data-uz="Mening" data-en="My">Mening</span> <span style="color:rgb(var(--primary))" data-uz="Tajribam" data-en="Experience">Tajribam</span></h1></div>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Amaliy konikmalar" data-en="Clinical Skills">Amaliy konikmalar</p><h1 class="text-3xl font-heading font-bold"><span data-uz="Mening" data-en="My">Mening</span> <span style="color:rgb(var(--primary))">Tajribam</span></h1></div>
     <div class="flex flex-col items-end"><div class="px-3 py-1 rounded-full mb-1 border" style="background:rgb(var(--primary)/.1);border-color:rgb(var(--primary)/.2)"><span class="text-[10px] font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">Level 1 Intern</span></div><div class="h-1.5 w-16 rounded-full overflow-hidden" style="background:rgb(var(--muted))"><div class="h-full rounded-full" style="background:rgb(var(--primary));width:66%"></div></div></div>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
     <section class="px-6 mt-4">
       <div class="rounded-3xl p-6 shadow-sm border relative overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
         <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl" style="background:rgb(var(--secondary)/.3)"></div>
-        <div class="flex justify-between items-start mb-6 relative" style="z-index:1">
-          <div><h2 class="text-xl font-heading font-bold" data-uz="Umumiy progress" data-en="Overall progress">Umumiy progress</h2><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))" data-uz="Bu oylik amaliyot hisoboti" data-en="Monthly practice report">Bu oylik amaliyot hisoboti</p></div>
-          <div class="p-2 rounded-xl" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:trending-up" width="20"></iconify-icon></div>
-        </div>
+        <div class="flex justify-between items-start mb-6 relative" style="z-index:1"><div><h2 class="text-xl font-heading font-bold" data-uz="Umumiy progress" data-en="Overall progress">Umumiy progress</h2><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Bu oylik amaliyot hisoboti</p></div><div class="p-2 rounded-xl" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:trending-up" width="20"></iconify-icon></div></div>
         <div class="grid grid-cols-3 gap-4 relative" style="z-index:1">
-          <div class="p-3 rounded-2xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--mutedFg))" data-uz="Jami" data-en="Total">Jami</span><span class="text-xl font-bold">42</span></div>
-          <div class="p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--primary))" data-uz="Tasdiq" data-en="Confirmed">Tasdiq</span><span class="text-xl font-bold" style="color:rgb(var(--primary))">38</span></div>
-          <div class="p-3 rounded-2xl border" style="background:rgb(var(--accent)/.1);border-color:rgb(var(--accent)/.2)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--accent))" data-uz="Kutilmoqda" data-en="Pending">Kutilmoqda</span><span class="text-xl font-bold" style="color:rgb(var(--accent))">4</span></div>
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--mutedFg))">Jami</span><span class="text-xl font-bold">42</span></div>
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.3)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--primary))">Tasdiq</span><span class="text-xl font-bold" style="color:rgb(var(--primary))">38</span></div>
+          <div class="p-3 rounded-2xl border" style="background:rgb(var(--accent)/.1);border-color:rgb(var(--accent)/.2)"><span class="text-[10px] uppercase font-bold block mb-1" style="color:rgb(var(--accent))">Kutilmoqda</span><span class="text-xl font-bold" style="color:rgb(var(--accent))">4</span></div>
         </div>
       </div>
     </section>
     <section class="px-6 mt-6 relative">
-      <h3 class="text-lg font-heading font-semibold mb-5" data-uz="Amaliyot kundaligi" data-en="Practice log">Amaliyot kundaligi</h3>
+      <h3 class="text-lg font-heading font-semibold mb-5">Amaliyot kundaligi</h3>
       <div class="absolute w-0.5" style="left:36px;top:52px;bottom:0;background:rgb(var(--border)/.4)"></div>
       <div class="space-y-5 relative">
         <div class="flex gap-4"><div class="w-6 h-6 rounded-full border-4 mt-1 flex-shrink-0" style="background:rgb(var(--primary));border-color:rgb(var(--bg));z-index:1"></div><div class="flex-1 rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between mb-2"><span class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">BUGUN, 10:20</span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">MUSTAQIL</span></div><h4 class="font-bold">Venadan qon olish</h4><p class="text-xs mt-1 mb-3" style="color:rgb(var(--mutedFg))">Terapiya bolimi, 4-palata</p><div class="flex items-center gap-2 pt-3 border-t" style="border-color:rgb(var(--border)/.4)"><img src="https://i.pravatar.cc/150?u=dr_alimov" class="w-5 h-5 rounded-full"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Alimov tasdiqladi</span></div></div></div>
@@ -238,54 +232,71 @@
   <button class="fixed w-14 h-14 rounded-2xl flex items-center justify-center active:scale-90" style="bottom:84px;right:24px;background:rgb(var(--primary));color:#fff;box-shadow:0 8px 24px rgb(var(--primary)/.35);z-index:40"><iconify-icon icon="lucide:plus" width="28"></iconify-icon></button>
 </div>
 
-<!-- ═══════ SCREEN 3: BEMOR KUNDALIGI ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 3 — BEMORLAR
+════════════════════════════════════ -->
 <div class="screen" id="screen-3">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Klinik amaliyot" data-en="Clinical practice">Klinik amaliyot</p><h1 class="text-3xl font-heading font-bold"><span data-uz="Bemor" data-en="Patient">Bemor</span> <span style="color:rgb(var(--primary))" data-uz="Kundaligi" data-en="Diary">Kundaligi</span></h1></div>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Klinik amaliyot" data-en="Clinical practice">Klinik amaliyot</p><h1 class="text-3xl font-heading font-bold"><span data-uz="Bemor" data-en="Patient">Bemor</span> <span style="color:rgb(var(--primary))">Kundaligi</span></h1></div>
     <button onclick="openModal('patient-modal')" class="w-11 h-11 rounded-2xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:plus" width="22"></iconify-icon></button>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
     <div class="px-6 mt-4 grid grid-cols-3 gap-3">
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-2xl font-bold" style="color:rgb(var(--primary))">12</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))" data-uz="Jami" data-en="Total">Jami</p></div>
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><span class="text-2xl font-bold" style="color:rgb(var(--secondaryFg))">8</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--secondaryFg))" data-uz="Bu oy" data-en="This month">Bu oy</p></div>
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--accent)/.08);border-color:rgb(var(--accent)/.2)"><span class="text-2xl font-bold" style="color:rgb(var(--accent))">3</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--accent))" data-uz="Bugun" data-en="Today">Bugun</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-2xl font-bold" style="color:rgb(var(--primary))">12</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))">Jami</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><span class="text-2xl font-bold" style="color:rgb(var(--secondaryFg))">8</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--secondaryFg))">Bu oy</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--accent)/.08);border-color:rgb(var(--accent)/.2)"><span class="text-2xl font-bold" style="color:rgb(var(--accent))">3</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--accent))">Bugun</p></div>
     </div>
-    <div class="px-6 mt-5">
-      <div class="space-y-3" id="patient-list">
-        <div class="rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--primary)/.15);color:rgb(var(--primary))">AM</div><div><h4 class="font-bold text-sm">Aliyev Mansur, 54</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya — 301</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Kuzatuv</span></div>
-          <div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Gipertenziya. Qon bosimi 160/100. Metoprolol dozasi korib chiqildi.</p></div>
-          <div class="flex justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Karimova</span><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">10:30</span></div>
-        </div>
-        <div class="rounded-2xl p-4 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--accent)/.15);color:rgb(var(--accent))">ZN</div><div><h4 class="font-bold text-sm">Zokirova Nilufar, 32</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Xirurgiya — 205</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--accent)/.1);color:rgb(var(--accent))">Operatsiya</span></div>
-          <div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Appenditsit. Laparoskopik appendektomiyaga tayyorlanmoqda.</p></div>
-          <div class="flex justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Alimov</span><span class="text-[10px] font-bold" style="color:rgb(var(--accent))">14:00</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="px-6 mt-5"><div class="space-y-3" id="patient-list">
+      <div class="patient-entry rounded-2xl p-4 border shadow-sm" data-name="Aliyev Mansur" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--primary)/.15);color:rgb(var(--primary))">AM</div><div><h4 class="font-bold text-sm">Aliyev Mansur, 54</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Kardiologiya — 301</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Kuzatuv</span></div><div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Gipertenziya. Qon bosimi 160/100.</p></div><div class="flex justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Karimova</span><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">10:30</span></div></div>
+      <div class="patient-entry rounded-2xl p-4 border shadow-sm" data-name="Zokirova Nilufar" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-start justify-between mb-3"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:rgb(var(--accent)/.15);color:rgb(var(--accent))">ZN</div><div><h4 class="font-bold text-sm">Zokirova Nilufar, 32</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Xirurgiya — 205</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--accent)/.1);color:rgb(var(--accent))">Operatsiya</span></div><div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs leading-relaxed">Appenditsit. Laparoskopik appendektomiya.</p></div><div class="flex justify-between mt-3"><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Dr. Alimov</span><span class="text-[10px] font-bold" style="color:rgb(var(--accent))">14:00</span></div></div>
+    </div></div>
     <div class="h-6"></div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 4: STATISTIKA ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 4 — STATISTIKA (with donut)
+════════════════════════════════════ -->
 <div class="screen" id="screen-4">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Fevral 2025</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Statistika" data-en="Statistics">Statistika</span></h1></div>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Fevral 2025</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))">Statistika</span></h1></div>
     <div class="w-11 h-11 rounded-2xl flex items-center justify-center" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:bar-chart-2" width="22" style="color:rgb(var(--primary))"></iconify-icon></div>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
-    <div class="px-6 mt-4">
-      <div class="rounded-3xl p-6 border relative overflow-hidden" style="background:rgb(var(--primary));color:#fff;box-shadow:0 8px 24px rgb(var(--primary)/.3)">
-        <div class="absolute -bottom-8 -right-8 w-36 h-36 rounded-full opacity-20" style="background:#fff"></div>
-        <p class="text-sm opacity-80 mb-1" data-uz="Umumiy ball" data-en="Overall score">Umumiy ball</p>
-        <div class="flex items-end gap-3"><span class="text-5xl font-heading font-bold">87</span><span class="text-lg opacity-80 mb-1">/100</span></div>
-        <div class="flex items-center gap-2 mt-3"><iconify-icon icon="lucide:trending-up" width="16"></iconify-icon><span class="text-sm opacity-90">+12 ball o'tgan oyga nisbatan</span></div>
+    <!-- Score + Donut row -->
+    <div class="px-6 mt-4 flex gap-4">
+      <!-- Score card -->
+      <div class="flex-1 rounded-3xl p-5 border relative overflow-hidden" style="background:rgb(var(--primary));color:#fff;box-shadow:0 8px 24px rgb(var(--primary)/.3)">
+        <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-full opacity-20" style="background:#fff"></div>
+        <p class="text-xs opacity-80 mb-1">Umumiy ball</p>
+        <div class="flex items-end gap-2"><span class="text-4xl font-heading font-bold">87</span><span class="text-base opacity-80 mb-1">/100</span></div>
+        <div class="flex items-center gap-1.5 mt-2"><iconify-icon icon="lucide:trending-up" width="14"></iconify-icon><span class="text-xs opacity-90">+12 ball</span></div>
+      </div>
+      <!-- Donut chart -->
+      <div class="rounded-3xl p-5 border flex flex-col items-center justify-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);min-width:140px;">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="rgb(var(--muted))" stroke-width="12"/>
+          <!-- Confirmed: 38/42 = 90% of 251 = 226 offset -->
+          <circle cx="50" cy="50" r="40" fill="none" stroke="rgb(var(--primary))" stroke-width="12"
+            stroke-dasharray="251" stroke-dashoffset="251" class="donut-ring"
+            style="--target:25;animation:dash 1s .2s ease forwards;"/>
+          <!-- Pending: 4/42 = 10% -->
+          <circle cx="50" cy="50" r="40" fill="none" stroke="rgb(var(--accent))" stroke-width="12"
+            stroke-dasharray="251" stroke-dashoffset="226" class="donut-ring"
+            style="animation:none;"/>
+          <text x="50" y="46" text-anchor="middle" font-size="14" font-weight="bold" fill="currentColor">42</text>
+          <text x="50" y="60" text-anchor="middle" font-size="8" fill="rgb(var(--mutedFg))">amaliyot</text>
+        </svg>
+        <div class="flex gap-3 mt-2">
+          <div class="flex items-center gap-1"><div class="w-2 h-2 rounded-full" style="background:rgb(var(--primary))"></div><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Tasdiq</span></div>
+          <div class="flex items-center gap-1"><div class="w-2 h-2 rounded-full" style="background:rgb(var(--accent))"></div><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Kutish</span></div>
+        </div>
       </div>
     </div>
-    <div class="px-6 mt-6">
+    <!-- Bar chart -->
+    <div class="px-6 mt-5">
       <div class="rounded-3xl p-5 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-        <h3 class="font-heading font-bold mb-4" data-uz="Haftalik amaliyotlar" data-en="Weekly practices">Haftalik amaliyotlar</h3>
+        <h3 class="font-heading font-bold mb-4">Haftalik amaliyotlar</h3>
         <div class="flex items-end justify-between gap-2" style="height:100px;">
           <div class="flex flex-col items-center gap-1 flex-1"><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">6</span><div class="bar w-full" style="background:rgb(var(--primary));height:60px;"></div><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Du</span></div>
           <div class="flex flex-col items-center gap-1 flex-1"><span class="text-[10px] font-bold" style="color:rgb(var(--primary))">4</span><div class="bar w-full" style="background:rgb(var(--primary));height:40px;"></div><span class="text-[10px]" style="color:rgb(var(--mutedFg))">Se</span></div>
@@ -297,7 +308,7 @@
       </div>
     </div>
     <div class="px-6 mt-5">
-      <h3 class="font-heading font-bold mb-4" data-uz="Fanlar boyicha" data-en="By subject">Fanlar boyicha</h3>
+      <h3 class="font-heading font-bold mb-4">Fanlar bo'yicha</h3>
       <div class="space-y-3">
         <div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between items-center mb-2"><span class="font-semibold text-sm">Xirurgiya</span><span class="text-sm font-bold" style="color:rgb(var(--primary))">92%</span></div><div class="h-2 rounded-full overflow-hidden" style="background:rgb(var(--muted))"><div class="h-full rounded-full" style="background:rgb(var(--primary));width:92%"></div></div></div>
         <div class="rounded-2xl p-4 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between items-center mb-2"><span class="font-semibold text-sm">Terapiya</span><span class="text-sm font-bold" style="color:rgb(var(--primary))">85%</span></div><div class="h-2 rounded-full overflow-hidden" style="background:rgb(var(--muted))"><div class="h-full rounded-full" style="background:rgb(var(--primary));width:85%"></div></div></div>
@@ -309,52 +320,67 @@
   </div>
 </div>
 
-<!-- ═══════ SCREEN 5: DORI-DARMON ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 5 — DORILAR
+════════════════════════════════════ -->
 <div class="screen" id="screen-5">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Davolash jadvali" data-en="Medication schedule">Davolash jadvali</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Dorilar" data-en="Medications">Dorilar</span></h1></div>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Davolash jadvali</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))">Dorilar</span></h1></div>
     <button onclick="openModal('med-modal')" class="w-11 h-11 rounded-2xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:plus" width="22"></iconify-icon></button>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
-    <div class="px-6 mt-4"><div class="rounded-3xl p-5 border flex items-center gap-4" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.2)"><iconify-icon icon="lucide:pill" width="24" style="color:rgb(var(--primary))"></iconify-icon></div><div><p class="text-sm font-bold" data-uz="Bugun 3 ta dori" data-en="3 medications today">Bugun 3 ta dori</p><p class="text-xs mt-0.5" style="color:rgb(var(--secondaryFg))" data-uz="1 ta qabul qilindi, 2 ta qoldi" data-en="1 taken, 2 remaining">1 ta qabul qilindi, 2 ta qoldi</p></div><div class="ml-auto"><span class="text-2xl font-bold" style="color:rgb(var(--primary))">33%</span></div></div></div>
+    <div class="px-6 mt-4"><div class="rounded-3xl p-5 border flex items-center gap-4" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.2)"><iconify-icon icon="lucide:pill" width="24" style="color:rgb(var(--primary))"></iconify-icon></div><div><p class="text-sm font-bold">Bugun 3 ta dori</p><p class="text-xs mt-0.5" style="color:rgb(var(--secondaryFg))">1 ta qabul qilindi, 2 ta qoldi</p></div><div class="ml-auto"><span class="text-2xl font-bold" style="color:rgb(var(--primary))">33%</span></div></div></div>
     <div class="px-6 mt-5" id="med-list">
-      <div class="rounded-2xl p-4 border shadow-sm mb-3" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--secondary)/.4)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--primary))"></iconify-icon></div><div><h4 class="font-bold text-sm">Metformin</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">500mg · Kuniga 2 marta</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--primary))">08:00</p><p class="text-[10px]" style="color:rgb(var(--mutedFg))">Qabul qilindi ✓</p></div></div></div>
-      <div class="rounded-2xl p-4 border shadow-sm mb-3" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.3)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><div><h4 class="font-bold text-sm">Lisinopril</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">10mg · Kuniga 1 marta</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--accent))">14:00</p><p class="text-[10px]" style="color:rgb(var(--accent))">Hali vaqt kelmadi</p></div></div></div>
-      <div class="rounded-2xl p-4 border shadow-sm mb-3" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.3)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><div><h4 class="font-bold text-sm">Atorvastatin</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">20mg · Kechqurun</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--accent))">21:00</p><p class="text-[10px]" style="color:rgb(var(--accent))">Hali vaqt kelmadi</p></div></div></div>
+      <div class="med-entry rounded-2xl p-4 border shadow-sm mb-3" data-name="Metformin" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--secondary)/.4)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--primary))"></iconify-icon></div><div><h4 class="font-bold text-sm">Metformin</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">500mg · Kuniga 2 marta</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--primary))">08:00</p><p class="text-[10px]" style="color:rgb(var(--mutedFg))">Qabul qilindi ✓</p></div></div></div>
+      <div class="med-entry rounded-2xl p-4 border shadow-sm mb-3" data-name="Lisinopril" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.3)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><div><h4 class="font-bold text-sm">Lisinopril</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">10mg · Kuniga 1 marta</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--accent))">14:00</p><p class="text-[10px]" style="color:rgb(var(--accent))">Hali vaqt kelmadi</p></div></div></div>
+      <div class="med-entry rounded-2xl p-4 border shadow-sm mb-3" data-name="Atorvastatin" style="background:rgb(var(--card));border-color:rgb(var(--accent)/.3)"><div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><div><h4 class="font-bold text-sm">Atorvastatin</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">20mg · Kechqurun</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--accent))">21:00</p><p class="text-[10px]" style="color:rgb(var(--accent))">Hali vaqt kelmadi</p></div></div></div>
     </div>
     <div class="h-6"></div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 6: KONSPEKTLAR ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 6 — KONSPEKTLAR
+════════════════════════════════════ -->
 <div class="screen" id="screen-6">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Oquv materiallari" data-en="Study materials">Oquv materiallari</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Konspektlar" data-en="Notes">Konspektlar</span></h1></div>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Oquv materiallari</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))">Konspektlar</span></h1></div>
     <button onclick="openModal('note-modal')" class="w-11 h-11 rounded-2xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:plus" width="22"></iconify-icon></button>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
     <div class="flex gap-2 px-6 mt-4 overflow-x-auto pb-1">
-      <span class="pill active" onclick="filterNotes(this,'all')" data-uz="Hammasi" data-en="All">Hammasi</span>
+      <span class="pill active" onclick="filterNotes(this,'all')">Hammasi</span>
       <span class="pill" onclick="filterNotes(this,'xirurgiya')">Xirurgiya</span>
       <span class="pill" onclick="filterNotes(this,'terapiya')">Terapiya</span>
       <span class="pill" onclick="filterNotes(this,'farmakologiya')">Farmakologiya</span>
     </div>
     <div class="px-6 mt-4 space-y-3" id="notes-list">
-      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="xirurgiya" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:file-text" width="24" style="color:rgb(var(--primary))"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Xirurgiya — 3-mavzu</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">PDF · 2.4 MB · 22 Fevral</p></div><iconify-icon icon="lucide:download" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
-      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="farmakologiya" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,.1)"><iconify-icon icon="lucide:file-text" width="24" style="color:#f59e0b"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Farmakologiya slaydlari</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">PPTX · 5.1 MB · 21 Fevral</p></div><iconify-icon icon="lucide:download" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
-      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="terapiya" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(59,130,246,.1)"><iconify-icon icon="lucide:notebook" width="24" style="color:#3b82f6"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Terapiya konspekti</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Shaxsiy yozuv · 20 Fevral</p></div><iconify-icon icon="lucide:edit-3" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
+      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="xirurgiya" data-name="Xirurgiya 3-mavzu" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:file-text" width="24" style="color:rgb(var(--primary))"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Xirurgiya — 3-mavzu</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">PDF · 2.4 MB · 22 Fevral</p></div><iconify-icon icon="lucide:download" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
+      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="farmakologiya" data-name="Farmakologiya slaydlari" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(245,158,11,.1)"><iconify-icon icon="lucide:file-text" width="24" style="color:#f59e0b"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Farmakologiya slaydlari</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">PPTX · 5.1 MB · 21 Fevral</p></div><iconify-icon icon="lucide:download" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
+      <div class="note-item rounded-2xl p-4 border shadow-sm" data-cat="terapiya" data-name="Terapiya konspekti" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(59,130,246,.1)"><iconify-icon icon="lucide:notebook" width="24" style="color:#3b82f6"></iconify-icon></div><div class="flex-1 min-w-0"><h4 class="font-bold text-sm truncate">Terapiya konspekti</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Shaxsiy yozuv · 20 Fevral</p></div><iconify-icon icon="lucide:edit-3" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div></div>
     </div>
     <div class="h-6"></div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 7: ESLATMALAR ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 7 — ESLATMALAR
+════════════════════════════════════ -->
 <div class="screen" id="screen-7">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Xabarnomalar" data-en="Notifications">Xabarnomalar</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Eslatmalar" data-en="Reminders">Eslatmalar</span></h1></div>
-    <button onclick="clearAllNotifs()" class="text-xs font-semibold px-3 py-2 rounded-xl active:scale-95" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))" data-uz="Hammasini oqish" data-en="Mark all read">Hammasini oqish</button>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Xabarnomalar</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))">Eslatmalar</span></h1></div>
+    <div class="flex gap-2">
+      <button onclick="requestNotifPerm()" class="w-10 h-10 rounded-xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:bell-ring" width="18" style="color:rgb(var(--primary))"></iconify-icon></button>
+      <button onclick="clearAllNotifs()" class="text-xs font-semibold px-3 py-2 rounded-xl active:scale-95" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Hammasini oqish</button>
+    </div>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <!-- Push permission banner -->
+    <div id="notif-perm-banner" class="mx-6 mt-4 p-4 rounded-2xl border flex items-center gap-3" style="background:rgb(var(--primary)/.08);border-color:rgb(var(--primary)/.2);">
+      <iconify-icon icon="lucide:bell-ring" width="20" style="color:rgb(var(--primary));flex-shrink:0;"></iconify-icon>
+      <div class="flex-1"><p class="text-sm font-bold" data-uz="Push bildirishnomalar" data-en="Push notifications">Push bildirishnomalar</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))" data-uz="Dars boshlanishidan xabar oling" data-en="Get notified before class starts">Dars boshlanishidan xabar oling</p></div>
+      <button onclick="requestNotifPerm()" class="text-xs font-bold px-3 py-1.5 rounded-xl flex-shrink-0 active:scale-95" style="background:rgb(var(--primary));color:#fff" data-uz="Yoqish" data-en="Enable">Yoqish</button>
+    </div>
     <div class="px-6 mt-4">
       <p class="text-xs font-bold uppercase tracking-wider mb-3" style="color:rgb(var(--mutedFg))">Bugun</p>
       <div class="space-y-3" id="notif-list">
@@ -365,337 +391,222 @@
     </div>
     <div class="px-6 mt-6 mb-4">
       <button onclick="openModal('reminder-modal')" class="w-full flex items-center justify-center gap-2 p-4 rounded-2xl border border-dashed" style="border-color:rgb(var(--primary)/.3);color:rgb(var(--primary));font-weight:600;">
-        <iconify-icon icon="lucide:bell-plus" width="18"></iconify-icon> <span data-uz="Yangi eslatma qoshish" data-en="Add new reminder">Yangi eslatma qoshish</span>
+        <iconify-icon icon="lucide:bell-plus" width="18"></iconify-icon> Yangi eslatma qoshish
       </button>
     </div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 8: PROFIL ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 8 — PROFIL
+════════════════════════════════════ -->
 <div class="screen" id="screen-8">
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
-    <div class="relative">
-      <div class="h-32" style="background:linear-gradient(135deg,rgb(var(--primary)),rgb(13 110 100))"></div>
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-        <img src="https://i.pravatar.cc/150?u=medical_student_anusher" class="w-20 h-20 rounded-full object-cover border-4" style="border-color:rgb(var(--bg))">
-      </div>
-    </div>
-    <div class="mt-12 text-center px-6">
-      <h1 class="text-2xl font-heading font-bold">Anusher Qurbonov</h1>
-      <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))" data-uz="Tibbiyot talabasi, 3-kurs" data-en="Medical student, Year 3">Tibbiyot talabasi, 3-kurs</p>
-      <span class="text-xs font-bold px-3 py-1 rounded-full mt-2 inline-block" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Level 1 Intern</span>
-    </div>
+    <div class="relative"><div class="h-32" style="background:linear-gradient(135deg,rgb(var(--primary)),rgb(13 110 100))"></div><div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"><img src="https://i.pravatar.cc/150?u=medical_student_anusher" class="w-20 h-20 rounded-full object-cover border-4" style="border-color:rgb(var(--bg))"></div></div>
+    <div class="mt-12 text-center px-6"><h1 class="text-2xl font-heading font-bold">Anusher Qurbonov</h1><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Tibbiyot talabasi, 3-kurs</p><span class="text-xs font-bold px-3 py-1 rounded-full mt-2 inline-block" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">Level 1 Intern</span></div>
     <div class="px-6 mt-6 grid grid-cols-3 gap-3">
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">42</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))" data-uz="Amaliyot" data-en="Practices">Amaliyot</p></div>
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">87</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))" data-uz="Ball" data-en="Score">Ball</p></div>
-      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">12</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))" data-uz="Bemor" data-en="Patients">Bemor</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">42</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))">Amaliyot</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">87</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))">Ball</p></div>
+      <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" style="color:rgb(var(--primary))">12</span><p class="text-[10px] font-bold uppercase mt-1" style="color:rgb(var(--mutedFg))">Bemor</p></div>
     </div>
-    <div class="px-6 mt-6">
-      <h3 class="font-heading font-bold mb-4" data-uz="Yutuqlar" data-en="Achievements">Yutuqlar</h3>
-      <div class="grid grid-cols-3 gap-3">
-        <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🏆</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">Birinchi bemor</p></div>
-        <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">⭐</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">10 amaliyot</p></div>
-        <div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">💊</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">Farma ustasi</p></div>
-        <div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🔬</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">Lab mutaxassisi</p></div>
-        <div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🏥</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">50 amaliyot</p></div>
-        <div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🎓</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">Senior Intern</p></div>
-      </div>
-    </div>
-    <div class="px-6 mt-6 mb-4">
-      <h3 class="font-heading font-bold mb-3" data-uz="Sozlamalar" data-en="Settings">Sozlamalar</h3>
-      <div class="space-y-2">
-        <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="flex items-center gap-3"><iconify-icon icon="lucide:globe" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm">Til / Language</span></div>
-          <button onclick="toggleLang()" class="text-xs font-bold px-3 py-1.5 rounded-xl" style="background:rgb(var(--primary));color:#fff" id="lang-btn-2">EN</button>
-        </div>
-        <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="flex items-center gap-3"><iconify-icon icon="lucide:moon" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm" data-uz="Qorong'i rejim" data-en="Dark mode">Qorong'i rejim</span></div>
-          <div class="theme-toggle" onclick="toggleDark()"><div class="theme-toggle-thumb"></div></div>
-        </div>
-        <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-          <div class="flex items-center gap-3"><iconify-icon icon="lucide:download" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm" data-uz="Ilovani o'rnatish (PWA)" data-en="Install app (PWA)">Ilovani o'rnatish (PWA)</span></div>
-          <button id="pwa-install-btn" onclick="installPWA()" class="text-xs font-bold px-3 py-1.5 rounded-xl active:scale-95" style="background:rgb(var(--primary));color:#fff" data-uz="O'rnatish" data-en="Install">O'rnatish</button>
-        </div>
-      </div>
-    </div>
+    <div class="px-6 mt-6"><h3 class="font-heading font-bold mb-4">Yutuqlar</h3><div class="grid grid-cols-3 gap-3"><div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🏆</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">Birinchi bemor</p></div><div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">⭐</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">10 amaliyot</p></div><div class="rounded-2xl p-4 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">💊</div><p class="text-[10px] font-bold" style="color:rgb(var(--primary))">Farma ustasi</p></div><div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🔬</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">Lab mutaxassisi</p></div><div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🏥</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">50 amaliyot</p></div><div class="rounded-2xl p-4 border text-center opacity-40" style="background:rgb(var(--muted));border-color:rgb(var(--border)/.5)"><div class="text-2xl mb-1">🎓</div><p class="text-[10px] font-bold" style="color:rgb(var(--mutedFg))">Senior Intern</p></div></div></div>
+    <div class="px-6 mt-6 mb-4"><h3 class="font-heading font-bold mb-3">Sozlamalar</h3><div class="space-y-2">
+      <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><iconify-icon icon="lucide:globe" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm">Til / Language</span></div><button onclick="toggleLang()" class="text-xs font-bold px-3 py-1.5 rounded-xl" style="background:rgb(var(--primary));color:#fff" id="lang-btn-2">EN</button></div>
+      <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><iconify-icon icon="lucide:moon" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm">Qorong'i rejim</span></div><div class="theme-toggle" onclick="toggleDark()"><div class="theme-toggle-thumb"></div></div></div>
+      <div class="flex items-center justify-between p-4 rounded-2xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex items-center gap-3"><iconify-icon icon="lucide:bell" width="20" style="color:rgb(var(--primary))"></iconify-icon><span class="font-medium text-sm">Push bildirishnomalar</span></div><button onclick="requestNotifPerm()" class="text-xs font-bold px-3 py-1.5 rounded-xl active:scale-95" style="background:rgb(var(--primary));color:#fff">Yoqish</button></div>
+    </div></div>
   </div>
 </div>
 
-<!-- ═══════ SCREEN 9: XARITA / MANZILLAR ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 9 — MANZILLAR
+════════════════════════════════════ -->
 <div class="screen" id="screen-9">
   <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
-    <div>
-      <p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Joylashuvlar" data-en="Locations">Joylashuvlar</p>
-      <h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Manzillar" data-en="Addresses">Manzillar</span></h1>
-    </div>
-    <button onclick="switchTab(0)" class="w-10 h-10 rounded-2xl flex items-center justify-center border active:scale-95" style="background:rgb(var(--muted));border-color:rgb(var(--border))">
-      <iconify-icon icon="lucide:arrow-left" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon>
-    </button>
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5">Joylashuvlar</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))">Manzillar</span></h1></div>
+    <button onclick="switchTab(0)" class="w-10 h-10 rounded-2xl flex items-center justify-center border active:scale-95" style="background:rgb(var(--muted));border-color:rgb(var(--border))"><iconify-icon icon="lucide:arrow-left" width="20" style="color:rgb(var(--mutedFg))"></iconify-icon></button>
   </header>
   <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
-
-    <!-- Location 1: 1-Shahar Shifoxonasi -->
     <div class="px-6 mt-4">
       <div class="rounded-3xl overflow-hidden border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-        <!-- Map visual -->
-        <div class="map-placeholder relative" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);">
-          <!-- SVG mock map -->
-          <svg width="100%" height="180" viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg">
-            <rect width="360" height="180" fill="#dbeafe"/>
-            <rect x="0" y="80" width="360" height="12" fill="#93c5fd" opacity=".6"/>
-            <rect x="60" y="0" width="12" height="180" fill="#93c5fd" opacity=".6"/>
-            <rect x="180" y="0" width="12" height="180" fill="#93c5fd" opacity=".4"/>
-            <rect x="0" y="130" width="360" height="10" fill="#93c5fd" opacity=".4"/>
-            <rect x="100" y="50" width="80" height="50" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
-            <rect x="200" y="30" width="100" height="70" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
-            <rect x="20" y="100" width="60" height="40" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
-            <rect x="260" y="110" width="70" height="40" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
-            <circle cx="180" cy="86" r="14" fill="#0D9488"/>
-            <text x="180" y="91" text-anchor="middle" fill="white" font-size="14">🏥</text>
-          </svg>
-          <div class="absolute bottom-3 right-3 flex gap-2">
-            <a href="https://maps.google.com/?q=41.2995,69.2401" target="_blank"
-               class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold active:scale-95"
-               style="background:rgb(var(--primary));color:#fff;text-decoration:none;">
-              <iconify-icon icon="lucide:navigation" width="14"></iconify-icon>
-              <span data-uz="Yo'l ko'rsatish" data-en="Directions">Yo'l ko'rsatish</span>
-            </a>
-          </div>
+        <div style="position:relative;height:160px;background:linear-gradient(135deg,#e0f2fe,#bae6fd);">
+          <svg width="100%" height="160" viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="160" fill="#dbeafe"/><rect x="0" y="75" width="360" height="10" fill="#93c5fd" opacity=".6"/><rect x="60" y="0" width="10" height="160" fill="#93c5fd" opacity=".5"/><rect x="180" y="0" width="10" height="160" fill="#93c5fd" opacity=".3"/><rect x="90" y="30" width="70" height="35" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/><rect x="200" y="20" width="90" height="50" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/><rect x="20" y="95" width="55" height="35" rx="4" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/><circle cx="180" cy="80" r="14" fill="#0D9488"/><text x="180" y="85" text-anchor="middle" fill="white" font-size="14">🏥</text></svg>
+          <div style="position:absolute;bottom:12px;right:12px;"><a href="https://maps.google.com/?q=41.2995,69.2401" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold active:scale-95" style="background:rgb(var(--primary));color:#fff;text-decoration:none;display:flex;"><iconify-icon icon="lucide:navigation" width="14"></iconify-icon> Yo'l ko'rsatish</a></div>
         </div>
-        <!-- Info -->
         <div class="p-5">
-          <div class="flex items-start gap-3 mb-4">
-            <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.1)">
-              <iconify-icon icon="lucide:hospital" width="24" style="color:rgb(var(--primary))"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-heading font-bold text-lg" data-uz="1-Shahar Shifoxonasi" data-en="City Hospital #1">1-Shahar Shifoxonasi</h3>
-              <p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Mirzo Ulug'bek tumani, Toshkent</p>
-            </div>
-          </div>
+          <div class="flex items-start gap-3 mb-4"><div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:hospital" width="24" style="color:rgb(var(--primary))"></iconify-icon></div><div><h3 class="font-heading font-bold text-lg">1-Shahar Shifoxonasi</h3><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Mirzo Ulug'bek tumani, Toshkent</p></div></div>
           <div class="space-y-2">
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:map-pin" width="16" style="color:rgb(var(--primary))"></iconify-icon>
-              <span class="text-sm">41.2995° N, 69.2401° E</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:clock" width="16" style="color:rgb(var(--primary))"></iconify-icon>
-              <span class="text-sm" data-uz="Ish vaqti: 08:00 – 20:00" data-en="Working hours: 08:00 – 20:00">Ish vaqti: 08:00 – 20:00</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:phone" width="16" style="color:rgb(var(--primary))"></iconify-icon>
-              <span class="text-sm">+998 71 200-00-01</span>
-            </div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)"><iconify-icon icon="lucide:map-pin" width="16" style="color:rgb(var(--primary))"></iconify-icon><span class="text-sm">41.2995° N, 69.2401° E</span></div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)"><iconify-icon icon="lucide:clock" width="16" style="color:rgb(var(--primary))"></iconify-icon><span class="text-sm">Ish vaqti: 08:00 – 20:00</span></div>
+            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)"><iconify-icon icon="lucide:phone" width="16" style="color:rgb(var(--primary))"></iconify-icon><span class="text-sm">+998 71 200-00-01</span></div>
           </div>
-          <div class="mt-4 grid grid-cols-2 gap-2">
-            <div class="p-3 rounded-xl border text-center" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.4)">
-              <p class="text-[10px] font-bold uppercase" style="color:rgb(var(--primary))" data-uz="Bugungi darslar" data-en="Today's classes">Bugungi darslar</p>
-              <p class="font-bold mt-1">Xirurgiya</p>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">14:00 · B Blok 304</p>
-            </div>
-            <div class="p-3 rounded-xl border text-center" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)">
-              <p class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))" data-uz="Masofa" data-en="Distance">Masofa</p>
-              <p class="font-bold mt-1">2.4 km</p>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))" data-uz="~8 daqiqa" data-en="~8 min">~8 daqiqa</p>
-            </div>
-          </div>
+          <div class="mt-4 grid grid-cols-2 gap-2"><div class="p-3 rounded-xl border text-center" style="background:rgb(var(--secondary)/.2);border-color:rgb(var(--secondary)/.4)"><p class="text-[10px] font-bold uppercase" style="color:rgb(var(--primary))">Bugungi dars</p><p class="font-bold mt-1">Xirurgiya</p><p class="text-xs" style="color:rgb(var(--mutedFg))">14:00 · B304</p></div><div class="p-3 rounded-xl border text-center" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)"><p class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Masofa</p><p class="font-bold mt-1">2.4 km</p><p class="text-xs" style="color:rgb(var(--mutedFg))">~8 daqiqa</p></div></div>
         </div>
       </div>
     </div>
-
-    <!-- Location 2: Tibbiyot Universiteti -->
     <div class="px-6 mt-5">
       <div class="rounded-3xl overflow-hidden border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-        <div class="map-placeholder relative" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">
-          <svg width="100%" height="160" viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg">
-            <rect width="360" height="160" fill="#fce7f3"/>
-            <rect x="0" y="70" width="360" height="10" fill="#f9a8d4" opacity=".7"/>
-            <rect x="120" y="0" width="10" height="160" fill="#f9a8d4" opacity=".5"/>
-            <rect x="240" y="0" width="10" height="160" fill="#f9a8d4" opacity=".4"/>
-            <rect x="30" y="20" width="70" height="40" rx="4" fill="#fde8f0" stroke="#f9a8d4" stroke-width="1"/>
-            <rect x="150" y="90" width="90" height="50" rx="4" fill="#fde8f0" stroke="#f9a8d4" stroke-width="1"/>
-            <rect x="270" y="20" width="60" height="40" rx="4" fill="#fde8f0" stroke="#f9a8d4" stroke-width="1"/>
-            <circle cx="185" cy="72" r="14" fill="#e11d48"/>
-            <text x="185" y="77" text-anchor="middle" fill="white" font-size="14">🎓</text>
-          </svg>
-          <div class="absolute bottom-3 right-3">
-            <a href="https://maps.google.com/?q=41.3111,69.2797" target="_blank"
-               class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold active:scale-95"
-               style="background:rgb(var(--accent));color:#fff;text-decoration:none;">
-              <iconify-icon icon="lucide:navigation" width="14"></iconify-icon>
-              <span data-uz="Yo'l ko'rsatish" data-en="Directions">Yo'l ko'rsatish</span>
-            </a>
-          </div>
+        <div style="position:relative;height:130px;background:linear-gradient(135deg,#fce7f3,#fbcfe8);">
+          <svg width="100%" height="130" viewBox="0 0 360 130" xmlns="http://www.w3.org/2000/svg"><rect width="360" height="130" fill="#fce7f3"/><rect x="0" y="60" width="360" height="8" fill="#f9a8d4" opacity=".7"/><rect x="120" y="0" width="8" height="130" fill="#f9a8d4" opacity=".5"/><rect x="30" y="15" width="70" height="35" rx="4" fill="#fde8f0" stroke="#f9a8d4" stroke-width="1"/><rect x="160" y="75" width="85" height="40" rx="4" fill="#fde8f0" stroke="#f9a8d4" stroke-width="1"/><circle cx="185" cy="63" r="13" fill="#e11d48"/><text x="185" y="68" text-anchor="middle" fill="white" font-size="13">🎓</text></svg>
+          <div style="position:absolute;bottom:12px;right:12px;"><a href="https://maps.google.com/?q=41.3111,69.2797" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold" style="background:rgb(var(--accent));color:#fff;text-decoration:none;display:flex;"><iconify-icon icon="lucide:navigation" width="14"></iconify-icon> Yo'l ko'rsatish</a></div>
         </div>
         <div class="p-5">
-          <div class="flex items-start gap-3 mb-4">
-            <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--accent)/.1)">
-              <iconify-icon icon="lucide:graduation-cap" width="24" style="color:rgb(var(--accent))"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-heading font-bold text-lg" data-uz="Tibbiyot Universiteti" data-en="Medical University">Tibbiyot Universiteti</h3>
-              <p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Shayxontohur tumani, Toshkent</p>
-            </div>
-          </div>
-          <div class="space-y-2">
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:map-pin" width="16" style="color:rgb(var(--accent))"></iconify-icon>
-              <span class="text-sm">41.3111° N, 69.2797° E</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:clock" width="16" style="color:rgb(var(--accent))"></iconify-icon>
-              <span class="text-sm" data-uz="Ish vaqti: 08:00 – 18:00" data-en="Working hours: 08:00 – 18:00">Ish vaqti: 08:00 – 18:00</span>
-            </div>
-            <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-              <iconify-icon icon="lucide:phone" width="16" style="color:rgb(var(--accent))"></iconify-icon>
-              <span class="text-sm">+998 71 246-75-30</span>
-            </div>
-          </div>
-          <div class="mt-4 grid grid-cols-2 gap-2">
-            <div class="p-3 rounded-xl border text-center" style="background:rgb(var(--accent)/.08);border-color:rgb(var(--accent)/.2)">
-              <p class="text-[10px] font-bold uppercase" style="color:rgb(var(--accent))" data-uz="Bugungi darslar" data-en="Today's classes">Bugungi darslar</p>
-              <p class="font-bold mt-1">Farmakologiya</p>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))">16:30 · 402-xona</p>
-            </div>
-            <div class="p-3 rounded-xl border text-center" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border)/.4)">
-              <p class="text-[10px] font-bold uppercase" style="color:rgb(var(--mutedFg))" data-uz="Masofa" data-en="Distance">Masofa</p>
-              <p class="font-bold mt-1">4.1 km</p>
-              <p class="text-xs" style="color:rgb(var(--mutedFg))" data-uz="~14 daqiqa" data-en="~14 min">~14 daqiqa</p>
-            </div>
-          </div>
+          <div class="flex items-start gap-3 mb-3"><div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:graduation-cap" width="24" style="color:rgb(var(--accent))"></iconify-icon></div><div><h3 class="font-heading font-bold text-lg">Tibbiyot Universiteti</h3><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Shayxontohur tumani, Toshkent</p></div></div>
+          <div class="space-y-2"><div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)"><iconify-icon icon="lucide:phone" width="16" style="color:rgb(var(--accent))"></iconify-icon><span class="text-sm">+998 71 246-75-30</span></div><div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)"><iconify-icon icon="lucide:clock" width="16" style="color:rgb(var(--accent))"></iconify-icon><span class="text-sm">08:00 – 18:00</span></div></div>
         </div>
       </div>
     </div>
-
-    <!-- Location 3: Kutubxona -->
-    <div class="px-6 mt-5 mb-6">
-      <div class="rounded-3xl p-5 border shadow-sm" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style="background:rgba(59,130,246,.1)">
-            <iconify-icon icon="lucide:library" width="24" style="color:#3b82f6"></iconify-icon>
-          </div>
-          <div>
-            <h3 class="font-heading font-bold" data-uz="Markaziy Kutubxona" data-en="Central Library">Markaziy Kutubxona</h3>
-            <p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Universitet kampusi, 1-bino</p>
-          </div>
-        </div>
-        <div class="space-y-2">
-          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-            <iconify-icon icon="lucide:clock" width="16" style="color:#3b82f6"></iconify-icon>
-            <span class="text-sm" data-uz="Ish vaqti: 09:00 – 21:00" data-en="Open: 09:00 – 21:00">Ish vaqti: 09:00 – 21:00</span>
-          </div>
-          <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgb(var(--muted)/.5)">
-            <iconify-icon icon="lucide:book" width="16" style="color:#3b82f6"></iconify-icon>
-            <span class="text-sm" data-uz="Tibbiy adabiyotlar: 2-qavat" data-en="Medical literature: 2nd floor">Tibbiy adabiyotlar: 2-qavat</span>
-          </div>
-        </div>
-        <a href="https://maps.google.com/?q=41.3100,69.2800" target="_blank"
-           class="mt-4 w-full flex items-center justify-center gap-2 p-3 rounded-2xl font-bold text-sm active:scale-[.98] no-underline"
-           style="background:rgba(59,130,246,.1);color:#3b82f6;display:flex;text-decoration:none;">
-          <iconify-icon icon="lucide:navigation" width="16"></iconify-icon>
-          <span data-uz="Yo'l ko'rsatish" data-en="Get directions">Yo'l ko'rsatish</span>
-        </a>
-      </div>
-    </div>
+    <div class="h-6"></div>
   </div>
 </div>
 
-<!-- ═══════ BOTTOM NAV ═══════ -->
+<!-- ══════════════════════════════════
+     SCREEN 10 — VAZIFALAR
+════════════════════════════════════ -->
+<div class="screen" id="screen-10">
+  <header style="background:rgb(var(--bg));z-index:10;transition:background .3s;" class="flex justify-between items-start pt-10 px-6 pb-3 sticky top-0">
+    <div><p style="color:rgb(var(--mutedFg))" class="text-sm font-medium mb-0.5" data-uz="Topshiriqlar" data-en="Tasks">Topshiriqlar</p><h1 class="text-3xl font-heading font-bold"><span style="color:rgb(var(--primary))" data-uz="Vazifalar" data-en="To-Do">Vazifalar</span></h1></div>
+    <button onclick="openModal('task-modal')" class="w-11 h-11 rounded-2xl flex items-center justify-center active:scale-95" style="background:rgb(var(--primary));color:#fff"><iconify-icon icon="lucide:plus" width="22"></iconify-icon></button>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <!-- Summary -->
+    <div class="px-6 mt-4 grid grid-cols-3 gap-3">
+      <div class="rounded-2xl p-3 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" id="task-total-count" style="color:rgb(var(--primary))">5</span><p class="text-[10px] font-bold uppercase mt-0.5" style="color:rgb(var(--mutedFg))">Jami</p></div>
+      <div class="rounded-2xl p-3 border text-center" style="background:rgb(var(--accent)/.08);border-color:rgb(var(--accent)/.2)"><span class="text-xl font-bold" id="task-high-count" style="color:rgb(var(--accent))">2</span><p class="text-[10px] font-bold uppercase mt-0.5" style="color:rgb(var(--accent))">Muhim</p></div>
+      <div class="rounded-2xl p-3 border text-center" style="background:rgb(var(--secondary)/.3);border-color:rgb(var(--secondary)/.4)"><span class="text-xl font-bold" id="task-done-count" style="color:rgb(var(--secondaryFg))">1</span><p class="text-[10px] font-bold uppercase mt-0.5" style="color:rgb(var(--secondaryFg))">Bajarildi</p></div>
+    </div>
+    <!-- Filter pills -->
+    <div class="flex gap-2 px-6 mt-4 overflow-x-auto pb-1">
+      <span class="pill active" onclick="filterTasks(this,'all')" data-uz="Hammasi" data-en="All">Hammasi</span>
+      <span class="pill" onclick="filterTasks(this,'high')" data-uz="Muhim" data-en="High">Muhim</span>
+      <span class="pill" onclick="filterTasks(this,'mid')" data-uz="O'rta" data-en="Medium">O'rta</span>
+      <span class="pill" onclick="filterTasks(this,'low')" data-uz="Oddiy" data-en="Low">Oddiy</span>
+      <span class="pill" onclick="filterTasks(this,'done')" data-uz="Bajarilgan" data-en="Done">Bajarilgan</span>
+    </div>
+    <!-- Tasks -->
+    <div class="px-6 mt-4 space-y-3" id="task-list">
+      <!-- High priority -->
+      <div class="task-item rounded-2xl p-4 border shadow-sm pri-high" data-pri="high" data-done="false" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="flex items-start gap-3">
+          <button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all" style="border-color:rgb(var(--accent))"><iconify-icon icon="lucide:check" width="12" style="color:rgb(var(--accent));opacity:0" class="task-check"></iconify-icon></button>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--accent)/.1);color:rgb(var(--accent))" data-uz="MUHIM" data-en="HIGH">MUHIM</span><span class="text-[10px]" style="color:rgb(var(--accent))">⏰ 22 Fevral</span></div>
+            <h4 class="font-bold text-sm task-title">Neyroxirurgiya test tayyorgarlik</h4>
+            <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">3-4 mavzularni takrorlash</p>
+          </div>
+        </div>
+      </div>
+      <div class="task-item rounded-2xl p-4 border shadow-sm pri-high" data-pri="high" data-done="false" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="flex items-start gap-3">
+          <button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all" style="border-color:rgb(var(--accent))"><iconify-icon icon="lucide:check" width="12" style="color:rgb(var(--accent));opacity:0" class="task-check"></iconify-icon></button>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--accent)/.1);color:rgb(var(--accent))">MUHIM</span><span class="text-[10px]" style="color:rgb(var(--accent))">⏰ 23 Fevral</span></div>
+            <h4 class="font-bold text-sm task-title">Amaliyot hisobotini topshirish</h4>
+            <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Dr. Karimovaga yuborish</p>
+          </div>
+        </div>
+      </div>
+      <!-- Mid priority -->
+      <div class="task-item rounded-2xl p-4 border shadow-sm pri-mid" data-pri="mid" data-done="false" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="flex items-start gap-3">
+          <button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0" style="border-color:#f59e0b"><iconify-icon icon="lucide:check" width="12" style="color:#f59e0b;opacity:0" class="task-check"></iconify-icon></button>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(245,158,11,.1);color:#f59e0b" data-uz="O'RTA" data-en="MEDIUM">O'RTA</span><span class="text-[10px]" style="color:#f59e0b">📅 25 Fevral</span></div>
+            <h4 class="font-bold text-sm task-title">Farmakologiya konspekti yozish</h4>
+            <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">12-14 mavzular</p>
+          </div>
+        </div>
+      </div>
+      <div class="task-item rounded-2xl p-4 border shadow-sm pri-mid" data-pri="mid" data-done="false" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+        <div class="flex items-start gap-3">
+          <button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0" style="border-color:#f59e0b"><iconify-icon icon="lucide:check" width="12" style="color:#f59e0b;opacity:0" class="task-check"></iconify-icon></button>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(245,158,11,.1);color:#f59e0b">O'RTA</span><span class="text-[10px]" style="color:#f59e0b">📅 28 Fevral</span></div>
+            <h4 class="font-bold text-sm task-title">Kutubxonadan kitob qaytarish</h4>
+            <p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">Anatomiya Atlasi — 2-jild</p>
+          </div>
+        </div>
+      </div>
+      <!-- Done -->
+      <div class="task-item rounded-2xl p-4 border shadow-sm pri-low" data-pri="low" data-done="true" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.5);opacity:.6">
+        <div class="flex items-start gap-3">
+          <button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0" style="border-color:rgb(var(--primary));background:rgb(var(--primary))"><iconify-icon icon="lucide:check" width="12" style="color:#fff;opacity:1" class="task-check"></iconify-icon></button>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">ODDIY</span></div>
+            <h4 class="font-bold text-sm task-title" style="text-decoration:line-through">Dars jadvalini tekshirish</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-6"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOTTOM NAV
+════════════════════════════════════ -->
 <nav class="fixed bottom-0 left-0 right-0 flex justify-around items-center" style="height:68px;background:rgb(var(--bg));border-top:1px solid rgb(var(--border));z-index:50;transition:background .3s,border-color .3s;">
-  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="0" onclick="switchTab(0)">
-    <div class="relative"><iconify-icon icon="lucide:stethoscope" width="22" class="nav-icon"></iconify-icon><div id="nav-badge" class="absolute -top-1 -right-1 w-2 h-2 rounded-full" style="background:rgb(var(--accent))"></div></div>
-    <span class="text-[9px] font-semibold nav-label" data-uz="Bugun" data-en="Today">Bugun</span>
-  </button>
-  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="1" onclick="switchTab(1)">
-    <iconify-icon icon="lucide:calendar-days" width="22" class="nav-icon"></iconify-icon>
-    <span class="text-[9px] font-semibold nav-label" data-uz="Jadval" data-en="Schedule">Jadval</span>
-  </button>
-  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="2" onclick="switchTab(2)">
-    <iconify-icon icon="lucide:clipboard-check" width="22" class="nav-icon"></iconify-icon>
-    <span class="text-[9px] font-semibold nav-label" data-uz="Amaliyot" data-en="Practice">Amaliyot</span>
-  </button>
-  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="3" onclick="switchTab(3)">
-    <iconify-icon icon="lucide:heart-pulse" width="22" class="nav-icon"></iconify-icon>
-    <span class="text-[9px] font-semibold nav-label" data-uz="Bemorlar" data-en="Patients">Bemorlar</span>
-  </button>
-  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" onclick="openModal('more-modal')">
-    <iconify-icon icon="lucide:grid-3x3" width="22" class="nav-icon" style="color:rgb(var(--mutedFg))"></iconify-icon>
-    <span class="text-[9px] font-semibold nav-label" style="color:rgb(var(--mutedFg))" data-uz="Boshqa" data-en="More">Boshqa</span>
-  </button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="0" onclick="switchTab(0)"><div class="relative"><iconify-icon icon="lucide:stethoscope" width="22" class="nav-icon"></iconify-icon><div id="nav-badge" class="absolute -top-1 -right-1 w-2 h-2 rounded-full" style="background:rgb(var(--accent))"></div></div><span class="text-[9px] font-semibold nav-label" data-uz="Bugun" data-en="Today">Bugun</span></button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="1" onclick="switchTab(1)"><iconify-icon icon="lucide:calendar-days" width="22" class="nav-icon"></iconify-icon><span class="text-[9px] font-semibold nav-label" data-uz="Jadval" data-en="Schedule">Jadval</span></button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="2" onclick="switchTab(2)"><iconify-icon icon="lucide:clipboard-check" width="22" class="nav-icon"></iconify-icon><span class="text-[9px] font-semibold nav-label" data-uz="Amaliyot" data-en="Practice">Amaliyot</span></button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" data-tab="3" onclick="switchTab(3)"><iconify-icon icon="lucide:heart-pulse" width="22" class="nav-icon"></iconify-icon><span class="text-[9px] font-semibold nav-label" data-uz="Bemorlar" data-en="Patients">Bemorlar</span></button>
+  <button class="nav-btn flex flex-col items-center justify-center gap-0.5 w-12 h-full active:scale-95" onclick="openModal('more-modal')"><iconify-icon icon="lucide:grid-3x3" width="22" class="nav-icon" style="color:rgb(var(--mutedFg))"></iconify-icon><span class="text-[9px] font-semibold nav-label" style="color:rgb(var(--mutedFg))">Boshqa</span></button>
 </nav>
 
 <!-- MORE MODAL -->
 <div class="modal-bg" id="more-modal" onclick="if(event.target===this)closeModal('more-modal')">
   <div class="modal-sheet">
-    <div class="flex items-center justify-between mb-5">
-      <h3 class="text-lg font-heading font-bold" data-uz="Boshqa qismlar" data-en="More sections">Boshqa qismlar</h3>
-      <button onclick="closeModal('more-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button>
-    </div>
+    <div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Boshqa qismlar</h3><button onclick="closeModal('more-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
     <div class="grid grid-cols-2 gap-3">
-      <button onclick="goTo(4)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:bar-chart-2" width="20" style="color:rgb(var(--primary))"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Statistika" data-en="Statistics">Statistika</span></button>
-      <button onclick="goTo(5)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,.1)"><iconify-icon icon="lucide:pill" width="20" style="color:#f59e0b"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Dorilar" data-en="Medications">Dorilar</span></button>
-      <button onclick="goTo(6)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(59,130,246,.1)"><iconify-icon icon="lucide:folder-open" width="20" style="color:#3b82f6"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Konspektlar" data-en="Notes">Konspektlar</span></button>
-      <button onclick="goTo(7)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95 relative" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:bell" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Eslatmalar" data-en="Reminders">Eslatmalar</span><div class="absolute top-3 right-3 w-2 h-2 rounded-full" style="background:rgb(var(--accent))"></div></button>
-      <button onclick="goTo(9)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.1)"><iconify-icon icon="lucide:map-pin" width="20" style="color:#10b981"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Manzillar" data-en="Locations">Manzillar</span></button>
-      <button onclick="goTo(8)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--secondary)/.5)"><iconify-icon icon="lucide:user-circle" width="20" style="color:rgb(var(--secondaryFg))"></iconify-icon></div><span class="font-semibold text-sm" data-uz="Profil" data-en="Profile">Profil</span></button>
+      <button onclick="goTo(4)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:bar-chart-2" width="20" style="color:rgb(var(--primary))"></iconify-icon></div><span class="font-semibold text-sm">Statistika</span></button>
+      <button onclick="goTo(10)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(139,92,246,.1)"><iconify-icon icon="lucide:list-todo" width="20" style="color:#8b5cf6"></iconify-icon></div><span class="font-semibold text-sm">Vazifalar</span></button>
+      <button onclick="goTo(5)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,.1)"><iconify-icon icon="lucide:pill" width="20" style="color:#f59e0b"></iconify-icon></div><span class="font-semibold text-sm">Dorilar</span></button>
+      <button onclick="goTo(6)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(59,130,246,.1)"><iconify-icon icon="lucide:folder-open" width="20" style="color:#3b82f6"></iconify-icon></div><span class="font-semibold text-sm">Konspektlar</span></button>
+      <button onclick="goTo(7)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95 relative" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:bell" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><span class="font-semibold text-sm">Eslatmalar</span><div class="absolute top-3 right-3 w-2 h-2 rounded-full" style="background:rgb(var(--accent))"></div></button>
+      <button onclick="goTo(9)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.1)"><iconify-icon icon="lucide:map-pin" width="20" style="color:#10b981"></iconify-icon></div><span class="font-semibold text-sm">Manzillar</span></button>
+      <button onclick="goTo(8)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95 col-span-2" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--secondary)/.5)"><iconify-icon icon="lucide:user-circle" width="20" style="color:rgb(var(--secondaryFg))"></iconify-icon></div><span class="font-semibold text-sm">Profil</span></button>
     </div>
   </div>
 </div>
 
 <!-- ADD ITEM MODAL -->
-<div class="modal-bg" id="add-modal" onclick="if(event.target===this)closeModal('add-modal')">
-  <div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold" data-uz="Narsa qoshish" data-en="Add item">Narsa qoshish</h3><button onclick="closeModal('add-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
-  <input id="new-item-input" type="text" placeholder="..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));" onkeydown="if(event.key==='Enter')addFromModal()">
-  <button onclick="addFromModal()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff" data-uz="Qoshish" data-en="Add">Qoshish</button></div>
-</div>
+<div class="modal-bg" id="add-modal" onclick="if(event.target===this)closeModal('add-modal')"><div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Narsa qoshish</h3><button onclick="closeModal('add-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div><input id="new-item-input" type="text" placeholder="..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));" onkeydown="if(event.key==='Enter')addFromModal()"><button onclick="addFromModal()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div></div>
 
 <!-- REMINDER MODAL -->
-<div class="modal-bg" id="reminder-modal" onclick="if(event.target===this)closeModal('reminder-modal')">
-  <div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold" data-uz="Eslatma qoshish" data-en="Add reminder">Eslatma qoshish</h3><button onclick="closeModal('reminder-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
-  <input id="reminder-title" type="text" placeholder="..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <input id="reminder-time" type="time" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <button onclick="addReminder()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff" data-uz="Saqlash" data-en="Save">Saqlash</button></div>
-</div>
+<div class="modal-bg" id="reminder-modal" onclick="if(event.target===this)closeModal('reminder-modal')"><div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Eslatma qoshish</h3><button onclick="closeModal('reminder-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div><input id="reminder-title" type="text" placeholder="..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><input id="reminder-time" type="time" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><button onclick="addReminder()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Saqlash</button></div></div>
 
 <!-- PATIENT MODAL -->
-<div class="modal-bg" id="patient-modal" onclick="if(event.target===this)closeModal('patient-modal')">
-  <div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold" data-uz="Yangi bemor" data-en="New patient">Yangi bemor</h3><button onclick="closeModal('patient-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
-  <input id="p-name" type="text" placeholder="Ismi, yoshi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <input id="p-room" type="text" placeholder="Bolim, xona..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <select id="p-status" class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))"><option>Kuzatuv</option><option>Operatsiya</option><option>Tekshiruv</option><option>Yangi qabul</option></select>
-  <textarea id="p-note" placeholder="Klinik holat..." rows="2" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4 resize-none" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"></textarea>
-  <button onclick="addPatient()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div>
-</div>
+<div class="modal-bg" id="patient-modal" onclick="if(event.target===this)closeModal('patient-modal')"><div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Yangi bemor</h3><button onclick="closeModal('patient-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div><input id="p-name" type="text" placeholder="Ismi, yoshi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><input id="p-room" type="text" placeholder="Bolim, xona..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><select id="p-status" class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))"><option>Kuzatuv</option><option>Operatsiya</option><option>Tekshiruv</option><option>Yangi qabul</option></select><textarea id="p-note" placeholder="Klinik holat..." rows="2" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4 resize-none" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"></textarea><button onclick="addPatient()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div></div>
 
 <!-- MED MODAL -->
-<div class="modal-bg" id="med-modal" onclick="if(event.target===this)closeModal('med-modal')">
-  <div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold" data-uz="Dori qoshish" data-en="Add medication">Dori qoshish</h3><button onclick="closeModal('med-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
-  <input id="med-name" type="text" placeholder="Dori nomi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <input id="med-dose" type="text" placeholder="Dozasi (mg)..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <input id="med-time" type="time" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <button onclick="addMed()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div>
-</div>
+<div class="modal-bg" id="med-modal" onclick="if(event.target===this)closeModal('med-modal')"><div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Dori qoshish</h3><button onclick="closeModal('med-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div><input id="med-name" type="text" placeholder="Dori nomi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><input id="med-dose" type="text" placeholder="Dozasi (mg)..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><input id="med-time" type="time" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><button onclick="addMed()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div></div>
 
 <!-- NOTE MODAL -->
-<div class="modal-bg" id="note-modal" onclick="if(event.target===this)closeModal('note-modal')">
-  <div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold" data-uz="Konspekt qoshish" data-en="Add note">Konspekt qoshish</h3><button onclick="closeModal('note-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
-  <input id="note-title" type="text" placeholder="Sarlavha..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
-  <select id="note-cat" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))"><option value="xirurgiya">Xirurgiya</option><option value="terapiya">Terapiya</option><option value="farmakologiya">Farmakologiya</option></select>
-  <button onclick="addNote()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div>
+<div class="modal-bg" id="note-modal" onclick="if(event.target===this)closeModal('note-modal')"><div class="modal-sheet"><div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Konspekt qoshish</h3><button onclick="closeModal('note-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div><input id="note-title" type="text" placeholder="Sarlavha..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));"><select id="note-cat" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))"><option value="xirurgiya">Xirurgiya</option><option value="terapiya">Terapiya</option><option value="farmakologiya">Farmakologiya</option></select><button onclick="addNote()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button></div></div>
+
+<!-- TASK MODAL -->
+<div class="modal-bg" id="task-modal" onclick="if(event.target===this)closeModal('task-modal')">
+  <div class="modal-sheet">
+    <div class="flex items-center justify-between mb-5"><h3 class="text-lg font-heading font-bold">Yangi vazifa</h3><button onclick="closeModal('task-modal')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted))"><iconify-icon icon="lucide:x" width="16"></iconify-icon></button></div>
+    <input id="task-title-inp" type="text" placeholder="Vazifa nomi..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <input id="task-desc-inp" type="text" placeholder="Izoh (ixtiyoriy)..." class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <input id="task-deadline-inp" type="date" class="w-full p-4 rounded-2xl border text-sm outline-none mb-3" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+    <select id="task-pri-inp" class="w-full p-4 rounded-2xl border text-sm outline-none mb-4" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));color:rgb(var(--fg))">
+      <option value="high">🔴 Muhim (High)</option>
+      <option value="mid" selected>🟡 O'rta (Medium)</option>
+      <option value="low">🟢 Oddiy (Low)</option>
+    </select>
+    <button onclick="addTask()" class="w-full p-4 rounded-2xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff">Qoshish</button>
+  </div>
 </div>
 
 <!-- PWA Banner -->
-<div id="pwa-banner">
-  <iconify-icon icon="lucide:smartphone" width="24"></iconify-icon>
-  <div class="flex-1"><p class="text-sm font-bold">MedStudent ilovasini o'rnating</p><p class="text-xs opacity-70">Offline ishlaydi · Tezroq ochiladi</p></div>
-  <button onclick="installPWA()" class="text-xs font-bold px-3 py-2 rounded-xl flex-shrink-0" style="background:rgb(var(--primary));color:#fff">O'rnatish</button>
-  <button onclick="document.getElementById('pwa-banner').classList.remove('show')" class="opacity-60 ml-1">✕</button>
-</div>
+<div id="pwa-banner"><iconify-icon icon="lucide:smartphone" width="24"></iconify-icon><div class="flex-1"><p class="text-sm font-bold">MedStudent ilovasini o'rnating</p><p class="text-xs opacity-70">Offline ishlaydi</p></div><button onclick="installPWA()" class="text-xs font-bold px-3 py-2 rounded-xl flex-shrink-0" style="background:rgb(var(--primary));color:#fff">O'rnatish</button><button onclick="document.getElementById('pwa-banner').classList.remove('show')" class="opacity-60 ml-1 text-lg">✕</button></div>
 
 <script>
-let currentTab=0, lang='uz', darkMode=false, deferredPrompt=null;
+let currentTab=0, lang='uz', darkMode=false, deferredPrompt=null, searchCat='all';
 
-/* ── Tab switching ── */
+/* ── Nav ── */
 function switchTab(i){
   if(i===currentTab)return;
   document.getElementById('screen-'+currentTab).classList.remove('active');
@@ -706,8 +617,8 @@ function goTo(i){closeModal('more-modal');setTimeout(()=>switchTab(i),200);}
 function updateNav(){
   document.querySelectorAll('.nav-btn').forEach((btn,i)=>{
     const on=i===currentTab;
-    const ic=btn.querySelector('.nav-icon'); if(ic)ic.style.color=on?'rgb(var(--primary))':'rgb(var(--mutedFg))';
-    const lb=btn.querySelector('.nav-label'); if(lb)lb.style.color=on?'rgb(var(--primary))':'rgb(var(--mutedFg))';
+    const ic=btn.querySelector('.nav-icon');if(ic)ic.style.color=on?'rgb(var(--primary))':'rgb(var(--mutedFg))';
+    const lb=btn.querySelector('.nav-label');if(lb)lb.style.color=on?'rgb(var(--primary))':'rgb(var(--mutedFg))';
   });
 }
 
@@ -716,21 +627,16 @@ function toggleDark(){
   darkMode=!darkMode;
   document.getElementById('html-root').classList.toggle('dark',darkMode);
   const btn=document.getElementById('dark-btn');
-  if(btn) btn.innerHTML=darkMode
+  if(btn)btn.innerHTML=darkMode
     ?'<iconify-icon icon="lucide:sun" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>'
     :'<iconify-icon icon="lucide:moon" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>';
-  document.getElementById('theme-color-meta').content=darkMode?'#0f172a':'#0D9488';
 }
 
-/* ── Language toggle ── */
+/* ── Language ── */
 function toggleLang(){
   lang=lang==='uz'?'en':'uz';
-  document.querySelectorAll('[data-uz]').forEach(el=>{
-    el.textContent=el.getAttribute('data-'+lang)||el.textContent;
-  });
-  ['lang-btn','lang-btn-2'].forEach(id=>{
-    const b=document.getElementById(id);if(b)b.textContent=lang==='uz'?'EN':'UZ';
-  });
+  document.querySelectorAll('[data-uz]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang)||el.textContent;});
+  ['lang-btn','lang-btn-2'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=lang==='uz'?'EN':'UZ';});
 }
 
 /* ── Checklist ── */
@@ -772,6 +678,37 @@ function addReminder(){
   document.getElementById('notif-list').prepend(d);
   document.getElementById('reminder-title').value='';document.getElementById('reminder-time').value='';
   closeModal('reminder-modal');
+  showToast('Yangi eslatma',title);
+  // Schedule real notification if permitted
+  if(Notification.permission==='granted'&&time&&time!=='--:--'){
+    const[h,m]=time.split(':');const now=new Date();const t=new Date();t.setHours(+h,+m,0,0);
+    const ms=t-now; if(ms>0) setTimeout(()=>new Notification('MedStudent – Eslatma',{body:title,icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>'}),ms);
+  }
+}
+
+/* ── Push Notification permission ── */
+function requestNotifPerm(){
+  if(!('Notification' in window)){showToast('Xato','Brauzeringiz push bildirishnomalarni qollab-quvvatlamaydi');return;}
+  Notification.requestPermission().then(p=>{
+    const banner=document.getElementById('notif-perm-banner');
+    if(p==='granted'){
+      showToast('✅ Yoqildi','Bildirishnomalar muvaffaqiyatli yoqildi!');
+      if(banner)banner.style.display='none';
+      // Send a welcome notification
+      setTimeout(()=>new Notification('MedStudent',{body:'Xayrli kun, Anusher! Bugungi dars 14:00 da.',icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>'}),1000);
+    } else {
+      showToast('Rad etildi','Sozlamalardan ruxsat bering');
+    }
+  });
+}
+
+/* ── Toast ── */
+function showToast(title,body,icon='lucide:bell'){
+  document.getElementById('toast-title').textContent=title;
+  document.getElementById('toast-body').textContent=body;
+  const t=document.getElementById('notif-toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
 }
 
 /* ── Patients ── */
@@ -782,13 +719,14 @@ function addPatient(){
   const note=document.getElementById('p-note').value.trim();
   const init=name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
   const colors=[['rgb(var(--primary)/.15)','rgb(var(--primary))'],['rgb(var(--accent)/.15)','rgb(var(--accent))'],['rgba(59,130,246,.15)','#3b82f6']];
-  const [bg,fg]=colors[Math.floor(Math.random()*colors.length)];
-  const d=document.createElement('div');d.className='rounded-2xl p-4 border shadow-sm mb-3';
+  const[bg,fg]=colors[Math.floor(Math.random()*colors.length)];
+  const d=document.createElement('div');d.className='patient-entry rounded-2xl p-4 border shadow-sm';d.dataset.name=name;
   d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--border)/.5)';
   d.innerHTML='<div class="flex items-center justify-between mb-2"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background:'+bg+';color:'+fg+'">'+init+'</div><div><h4 class="font-bold text-sm">'+name+'</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">'+(room||'—')+'</p></div></div><span class="text-[10px] font-bold px-2 py-1 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">'+status+'</span></div>'+(note?'<div class="rounded-xl p-3 border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border)/.3)"><p class="text-xs">'+note+'</p></div>':'');
   document.getElementById('patient-list').prepend(d);
   ['p-name','p-room','p-note'].forEach(id=>document.getElementById(id).value='');
   closeModal('patient-modal');
+  showToast('Yangi bemor qo\'shildi',name);
 }
 
 /* ── Medications ── */
@@ -796,7 +734,7 @@ function addMed(){
   const name=document.getElementById('med-name').value.trim();if(!name)return;
   const dose=document.getElementById('med-dose').value.trim();
   const time=document.getElementById('med-time').value||'--:--';
-  const d=document.createElement('div');d.className='rounded-2xl p-4 border shadow-sm mb-3';
+  const d=document.createElement('div');d.className='med-entry rounded-2xl p-4 border shadow-sm mb-3';d.dataset.name=name;
   d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--accent)/.3)';
   d.innerHTML='<div class="flex items-center justify-between"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgb(var(--accent)/.1)"><iconify-icon icon="lucide:pill" width="20" style="color:rgb(var(--accent))"></iconify-icon></div><div><h4 class="font-bold text-sm">'+name+'</h4><p class="text-xs" style="color:rgb(var(--mutedFg))">'+(dose?dose+'mg · ':'')+'Yangi</p></div></div><div class="text-right"><p class="text-xs font-bold" style="color:rgb(var(--accent))">'+time+'</p></div></div>';
   document.getElementById('med-list').prepend(d);
@@ -806,7 +744,7 @@ function addMed(){
 
 /* ── Notes ── */
 function filterNotes(btn,cat){
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#screen-6 .pill').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.note-item').forEach(el=>{el.style.display=(cat==='all'||el.dataset.cat===cat)?'block':'none';});
 }
@@ -814,8 +752,8 @@ function addNote(){
   const title=document.getElementById('note-title').value.trim();if(!title)return;
   const cat=document.getElementById('note-cat').value;
   const colors={xirurgiya:['rgb(var(--primary)/.1)','rgb(var(--primary))'],terapiya:['rgba(59,130,246,.1)','#3b82f6'],farmakologiya:['rgba(245,158,11,.1)','#f59e0b']};
-  const [bg,fg]=colors[cat]||colors.xirurgiya;
-  const d=document.createElement('div');d.className='note-item rounded-2xl p-4 border shadow-sm mb-3';d.dataset.cat=cat;
+  const[bg,fg]=colors[cat]||colors.xirurgiya;
+  const d=document.createElement('div');d.className='note-item rounded-2xl p-4 border shadow-sm mb-3';d.dataset.cat=cat;d.dataset.name=title;
   d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--border)/.5)';
   d.innerHTML='<div class="flex items-center gap-3"><div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:'+bg+'"><iconify-icon icon="lucide:file-text" width="24" style="color:'+fg+'"></iconify-icon></div><div class="flex-1"><h4 class="font-bold text-sm">'+title+'</h4><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">'+cat+' · Bugun</p></div><iconify-icon icon="lucide:edit-3" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon></div>';
   document.getElementById('notes-list').prepend(d);
@@ -823,16 +761,106 @@ function addNote(){
   closeModal('note-modal');
 }
 
-/* ── PWA ── */
-window.addEventListener('beforeinstallprompt',e=>{
-  e.preventDefault(); deferredPrompt=e;
-  setTimeout(()=>document.getElementById('pwa-banner').classList.add('show'),3000);
-});
-function installPWA(){
-  document.getElementById('pwa-banner').classList.remove('show');
-  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>deferredPrompt=null);}
-  else{alert('Brauzeringiz menyusidan "Uy ekraniga qo\'shish" ni tanlang');}
+/* ── Tasks ── */
+function addTask(){
+  const title=document.getElementById('task-title-inp').value.trim();if(!title)return;
+  const desc=document.getElementById('task-desc-inp').value.trim();
+  const deadline=document.getElementById('task-deadline-inp').value;
+  const pri=document.getElementById('task-pri-inp').value;
+  const priColors={high:['rgb(var(--accent))','rgb(var(--accent)/.1)','MUHIM'],mid:['#f59e0b','rgba(245,158,11,.1)','O\'RTA'],low:['rgb(var(--primary))','rgb(var(--primary)/.1)','ODDIY']};
+  const[c,bg,label]=priColors[pri];
+  const dl=deadline?new Date(deadline).toLocaleDateString('uz-UZ',{day:'numeric',month:'long'}):'';
+  const d=document.createElement('div');d.className='task-item rounded-2xl p-4 border shadow-sm pri-'+pri;d.dataset.pri=pri;d.dataset.done='false';
+  d.style.cssText='background:rgb(var(--card));border-color:rgb(var(--border)/.5)';
+  d.innerHTML=`<div class="flex items-start gap-3"><button onclick="toggleTask(this)" class="mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0" style="border-color:${c}"><iconify-icon icon="lucide:check" width="12" style="color:${c};opacity:0" class="task-check"></iconify-icon></button><div class="flex-1"><div class="flex items-center gap-2 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:${bg};color:${c}">${label}</span>${dl?`<span class="text-[10px]" style="color:${c}">📅 ${dl}</span>`:''}</div><h4 class="font-bold text-sm task-title">${title}</h4>${desc?`<p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">${desc}</p>`:''}</div></div>`;
+  document.getElementById('task-list').prepend(d);
+  ['task-title-inp','task-desc-inp','task-deadline-inp'].forEach(id=>document.getElementById(id).value='');
+  closeModal('task-modal');
+  updateTaskCounts();
+  showToast('Yangi vazifa',title);
 }
+function toggleTask(btn){
+  const item=btn.closest('.task-item');
+  const isDone=item.dataset.done==='true';
+  const icon=btn.querySelector('.task-check');
+  if(isDone){
+    item.dataset.done='false';item.style.opacity='1';
+    const titleEl=item.querySelector('.task-title');if(titleEl)titleEl.style.textDecoration='none';
+    btn.style.background='';icon.style.opacity='0';
+    item.style.background='rgb(var(--card))';
+  } else {
+    item.dataset.done='true';item.style.opacity='.6';
+    const titleEl=item.querySelector('.task-title');if(titleEl)titleEl.style.textDecoration='line-through';
+    btn.style.background=btn.style.borderColor;icon.style.opacity='1';btn.querySelector('iconify-icon').style.color='#fff';
+    item.style.background='rgb(var(--muted)/.4)';
+  }
+  updateTaskCounts();
+}
+function filterTasks(btn,cat){
+  document.querySelectorAll('#screen-10 .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.task-item').forEach(el=>{
+    const show=(cat==='all')||(cat==='done'&&el.dataset.done==='true')||(cat!=='done'&&el.dataset.pri===cat&&el.dataset.done!=='true');
+    el.style.display=show?'block':'none';
+  });
+}
+function updateTaskCounts(){
+  const all=document.querySelectorAll('.task-item');
+  const done=[...all].filter(t=>t.dataset.done==='true');
+  const high=[...all].filter(t=>t.dataset.pri==='high'&&t.dataset.done!=='true');
+  document.getElementById('task-total-count').textContent=all.length;
+  document.getElementById('task-high-count').textContent=high.length;
+  document.getElementById('task-done-count').textContent=done.length;
+}
+
+/* ── Search ── */
+function openSearch(){document.getElementById('search-overlay').classList.add('open');document.getElementById('search-input').focus();}
+function closeSearch(){document.getElementById('search-overlay').classList.remove('open');document.getElementById('search-input').value='';document.getElementById('search-results').innerHTML='<p class="text-sm text-center mt-16" style="color:rgb(var(--mutedFg))">Qidiruv uchun yozing...</p>';}
+function setSearchCat(btn,cat){
+  searchCat=cat;
+  document.querySelectorAll('#search-overlay .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  doSearch(document.getElementById('search-input').value);
+}
+function doSearch(q){
+  const res=document.getElementById('search-results');
+  if(!q.trim()){res.innerHTML='<p class="text-sm text-center mt-16" style="color:rgb(var(--mutedFg))">Qidiruv uchun yozing...</p>';return;}
+  const ql=q.toLowerCase();let items=[];
+  // Patients
+  if(searchCat==='all'||searchCat==='bemor'){
+    document.querySelectorAll('.patient-entry').forEach(el=>{
+      const name=el.dataset.name||'';
+      if(name.toLowerCase().includes(ql)) items.push({type:'bemor',icon:'lucide:heart-pulse',color:'rgb(var(--primary))',label:name,sub:'Bemor kundaligi',screen:3});
+    });
+  }
+  // Notes
+  if(searchCat==='all'||searchCat==='konspekt'){
+    document.querySelectorAll('.note-item').forEach(el=>{
+      const name=el.dataset.name||el.querySelector('h4')?.textContent||'';
+      if(name.toLowerCase().includes(ql)) items.push({type:'konspekt',icon:'lucide:file-text',color:'#3b82f6',label:name,sub:'Konspektlar',screen:6});
+    });
+  }
+  // Meds
+  if(searchCat==='all'||searchCat==='dori'){
+    document.querySelectorAll('.med-entry').forEach(el=>{
+      const name=el.dataset.name||el.querySelector('h4')?.textContent||'';
+      if(name.toLowerCase().includes(ql)) items.push({type:'dori',icon:'lucide:pill',color:'#f59e0b',label:name,sub:'Dorilar',screen:5});
+    });
+  }
+  if(items.length===0){res.innerHTML='<p class="text-sm text-center mt-16" style="color:rgb(var(--mutedFg))">Hech narsa topilmadi 🔍</p>';return;}
+  res.innerHTML=items.map(it=>`
+    <div class="search-result-item" onclick="closeSearch();switchTab(${it.screen})">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:${it.color}20">
+        <iconify-icon icon="${it.icon}" width="20" style="color:${it.color}"></iconify-icon>
+      </div>
+      <div><p class="text-sm font-bold">${it.label}</p><p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">${it.sub}</p></div>
+      <iconify-icon icon="lucide:arrow-right" width="16" style="color:rgb(var(--mutedFg));margin-left:auto;"></iconify-icon>
+    </div>`).join('');
+}
+
+/* ── PWA ── */
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;setTimeout(()=>document.getElementById('pwa-banner').classList.add('show'),3000);});
+function installPWA(){document.getElementById('pwa-banner').classList.remove('show');if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>deferredPrompt=null);}else{showToast('PWA','Brauzer menyusidan "Uy ekraniga qo\'shish" ni tanlang');}}
 
 /* ── Modals ── */
 function openModal(id){document.getElementById(id).classList.add('open');}
