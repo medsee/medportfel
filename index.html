@@ -250,7 +250,7 @@ button{transition:all .15s ease;cursor:pointer;}
                 </div>
               </div>
               <div class="p-2">
-                <button onclick="toggleAvMenu();switchTab(8)" class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-left" style="background:none;border:none;color:rgb(var(--fg));"><iconify-icon icon="lucide:user-circle" width="15" style="color:rgb(var(--mutedFg))"></iconify-icon>Profil</button>
+                <button onclick="toggleAvMenu();switchTab(6)" class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-left" style="background:none;border:none;color:rgb(var(--fg));"><iconify-icon icon="lucide:user-circle" width="15" style="color:rgb(var(--mutedFg))"></iconify-icon>Profil</button>
                 <button onclick="toggleAvMenu();doLogout()" class="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-medium text-left" style="background:none;border:none;color:rgb(var(--accent));"><iconify-icon icon="lucide:log-out" width="15" style="color:rgb(var(--accent))"></iconify-icon>Chiqish</button>
               </div>
             </div>
@@ -627,6 +627,8 @@ button{transition:all .15s ease;cursor:pointer;}
     <div class="grid grid-cols-2 gap-2">
       <button onclick="goTo(4)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);border:1px solid rgb(var(--border)/.5);"><div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:bar-chart-2" width="17" style="color:rgb(var(--primary))"></iconify-icon></div><span class="font-semibold text-sm">Statistika</span></button>
       <button onclick="goTo(5)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);border:1px solid rgb(var(--border)/.5);"><div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.1)"><iconify-icon icon="lucide:file-text" width="17" style="color:#065f46"></iconify-icon></div><span class="font-semibold text-sm">Hujjat</span></button>
+      <button onclick="goTo(7)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);border:1px solid rgb(var(--border)/.5);"><div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(139,92,246,.1)"><iconify-icon icon="lucide:calendar-range" width="17" style="color:#7c3aed"></iconify-icon></div><span class="font-semibold text-sm">Jadvalim</span></button>
+      <button onclick="goTo(8)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);border:1px solid rgb(var(--border)/.5);"><div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,.1)"><iconify-icon icon="lucide:users" width="17" style="color:#d97706"></iconify-icon></div><span class="font-semibold text-sm">Talabalar</span></button>
       <button onclick="goTo(6)" class="flex items-center gap-3 p-4 rounded-2xl border active:scale-95 col-span-2" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);border:1px solid rgb(var(--border)/.5);"><div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgb(var(--primary)/.1)"><iconify-icon icon="lucide:user-circle" width="17" style="color:rgb(var(--primary))"></iconify-icon></div><span class="font-semibold text-sm">Profil</span></button>
     </div>
   </div>
@@ -1201,6 +1203,1379 @@ function closeM(id){document.getElementById(id).classList.remove('open');}
 // Init schedule render
 setTimeout(renderTodaySchedule,100);
 </script>
+
+<!-- ══════════════════════════════════════
+     SCREEN 7 — JADVALIM (Talabaning shaxsiy jadvali + lokatsiya)
+══════════════════════════════════════ -->
+<div class="screen" id="screen-7">
+  <header style="background:rgb(var(--bg));z-index:10;" class="sticky top-0 pt-10 px-4 pb-3">
+    <div class="flex items-center gap-2 mb-1">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(139,92,246,.2)"><iconify-icon icon="lucide:calendar-range" width="13" style="color:#7c3aed"></iconify-icon></div>
+      <span class="text-[10px] font-bold uppercase tracking-wider" style="color:#7c3aed">Shaxsiy jadval</span>
+    </div>
+    <div class="flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Mening <span style="color:#7c3aed">Jadvalim</span></h1>
+      <div id="jadval-kurs-info" class="text-[10px] font-bold px-2.5 py-1 rounded-full" style="background:rgba(139,92,246,.1);color:#7c3aed"></div>
+    </div>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <!-- Kun selector -->
+    <div class="px-4 mt-3 flex gap-2 overflow-x-auto pb-1" id="day-selector">
+      <!-- filled by JS -->
+    </div>
+    <!-- Today's classes list -->
+    <div class="px-4 mt-3" id="jadval-classes">
+      <!-- filled by JS -->
+    </div>
+    <!-- Location map card (shown when class selected) -->
+    <div id="loc-card" class="mx-4 mt-4 rounded-2xl border overflow-hidden hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);">
+      <div class="p-4 border-b flex items-center gap-3" style="border-color:rgb(var(--border)/.5);">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 samdtu-grad"><iconify-icon icon="lucide:map-pin" width="17" style="color:#fff"></iconify-icon></div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-sm" id="loc-name">—</p>
+          <p class="text-[11px] mt-0.5" style="color:rgb(var(--mutedFg));" id="loc-sub">—</p>
+        </div>
+        <button onclick="document.getElementById('loc-card').classList.add('hidden')" style="background:none;border:none;color:rgb(var(--mutedFg));font-size:18px;line-height:1;">×</button>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="p-2.5 rounded-xl text-center" style="background:rgb(var(--muted)/.5)">
+            <p class="text-[9px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Bino</p>
+            <p class="font-bold text-sm mt-0.5" id="loc-building">—</p>
+          </div>
+          <div class="p-2.5 rounded-xl text-center" style="background:rgb(var(--muted)/.5)">
+            <p class="text-[9px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Xona</p>
+            <p class="font-bold text-sm mt-0.5" id="loc-room">—</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <a id="loc-yandex" href="#" target="_blank" class="flex items-center justify-center gap-2 p-3 rounded-xl font-bold text-xs text-white text-center" style="background:#fc3f1d;text-decoration:none;">
+            🗺️ Yandex Maps
+          </a>
+          <a id="loc-google" href="#" target="_blank" class="flex items-center justify-center gap-2 p-3 rounded-xl font-bold text-xs text-white text-center" style="background:#4285f4;text-decoration:none;">
+            📍 Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- All week table -->
+    <div class="px-4 mt-4 mb-6">
+      <h3 class="text-sm font-bold mb-3">Haftalik jadval</h3>
+      <div id="week-table" class="space-y-1"><!-- filled by JS --></div>
+    </div>
+  </div>
 </div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 8 — TALABALAR BAZASI
+══════════════════════════════════════ -->
+<div class="screen" id="screen-8">
+  <header style="background:rgb(var(--bg));z-index:10;" class="sticky top-0 pt-10 px-4 pb-3">
+    <div class="flex items-center gap-2 mb-1">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center" style="background:rgba(245,158,11,.2)"><iconify-icon icon="lucide:users" width="13" style="color:#d97706"></iconify-icon></div>
+      <span class="text-[10px] font-bold uppercase tracking-wider" style="color:#d97706">SamDTU Talabalar</span>
+    </div>
+    <div class="flex justify-between items-center gap-2">
+      <h1 class="text-xl font-bold">Talabalar <span style="color:#d97706">Bazasi</span></h1>
+      <button onclick="openM('m-filter')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold" style="background:rgba(245,158,11,.1);color:#d97706;border:none;">
+        <iconify-icon icon="lucide:filter" width="13"></iconify-icon>Filter
+      </button>
+    </div>
+    <!-- Search bar -->
+    <div class="flex items-center gap-2 mt-2 px-3 py-2.5 rounded-xl border" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border));">
+      <iconify-icon icon="lucide:search" width="15" style="color:rgb(var(--mutedFg));flex-shrink:0;"></iconify-icon>
+      <input id="stud-search" type="text" placeholder="Ism yoki username..." oninput="filterStudents()" class="flex-1 text-sm outline-none" style="background:transparent;border:none;"/>
+    </div>
+  </header>
+  <div class="flex-1 overflow-y-auto" style="padding-bottom:5.5rem;">
+    <!-- Stats row -->
+    <div class="px-4 mt-3 grid grid-cols-3 gap-2">
+      <div class="rounded-2xl p-3 border text-center" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><span class="text-xl font-bold" id="sb-total" style="color:#d97706">0</span><p class="text-[9px] font-bold uppercase mt-0.5" style="color:rgb(var(--mutedFg))">Jami</p></div>
+      <div class="rounded-2xl p-3 border text-center" style="background:rgba(16,185,129,.07);border-color:rgba(16,185,129,.2)"><span class="text-xl font-bold" id="sb-faol" style="color:#065f46">0</span><p class="text-[9px] font-bold uppercase mt-0.5" style="color:#065f46">Faol</p></div>
+      <div class="rounded-2xl p-3 border text-center" style="background:rgba(244,63,94,.07);border-color:rgba(244,63,94,.2)"><span class="text-xl font-bold" id="sb-nb" style="color:rgb(var(--accent))">0</span><p class="text-[9px] font-bold uppercase mt-0.5" style="color:rgb(var(--accent))">NB</p></div>
+    </div>
+    <!-- Filter pills -->
+    <div class="px-4 mt-3 flex gap-2 overflow-x-auto pb-1">
+      <button onclick="setStudFilter(this,'all')" class="pill active" id="sf-all">Hammasi</button>
+      <button onclick="setStudFilter(this,'nb')" class="pill">NB</button>
+      <button onclick="setStudFilter(this,'1')" class="pill">1-kurs</button>
+      <button onclick="setStudFilter(this,'3')" class="pill">3-kurs</button>
+      <button onclick="setStudFilter(this,'5')" class="pill">5-kurs</button>
+    </div>
+    <!-- Student list -->
+    <div class="px-4 mt-3 space-y-2 pb-4" id="student-db-list">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- FILTER MODAL -->
+<div class="modal-bg" id="m-filter" onclick="if(event.target===this)closeM('m-filter')">
+  <div class="modal-sheet">
+    <div class="flex justify-between mb-4"><h3 class="text-base font-bold">Filter</h3><button onclick="closeM('m-filter')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted));border:none;"><iconify-icon icon="lucide:x" width="14"></iconify-icon></button></div>
+    <div class="space-y-4">
+      <div><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:rgb(var(--mutedFg))">Kurs</p>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="setKursFilter(this,'all')" class="pill active" id="kf-all">Barchasi</button>
+          <button onclick="setKursFilter(this,'1')" class="pill">1-kurs</button>
+          <button onclick="setKursFilter(this,'2')" class="pill">2-kurs</button>
+          <button onclick="setKursFilter(this,'3')" class="pill">3-kurs</button>
+          <button onclick="setKursFilter(this,'4')" class="pill">4-kurs</button>
+          <button onclick="setKursFilter(this,'5')" class="pill">5-kurs</button>
+          <button onclick="setKursFilter(this,'6')" class="pill">6-kurs</button>
+        </div>
+      </div>
+      <div><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:rgb(var(--mutedFg))">Holat</p>
+        <div class="flex gap-2">
+          <button onclick="setNBFilter(this,'all')" class="pill active" id="nf-all">Barchasi</button>
+          <button onclick="setNBFilter(this,'faol')" class="pill">Faol</button>
+          <button onclick="setNBFilter(this,'nb')" class="pill">NB</button>
+        </div>
+      </div>
+      <div><p class="text-xs font-bold uppercase tracking-wider mb-2" style="color:rgb(var(--mutedFg))">Saralash</p>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="setSortFilter(this,'name')" class="pill active" id="sort-name">Ism</button>
+          <button onclick="setSortFilter(this,'ball')" class="pill">Ball ↓</button>
+          <button onclick="setSortFilter(this,'amaliyot')" class="pill">Amaliyot ↓</button>
+          <button onclick="setSortFilter(this,'davomat')" class="pill">Davomat ↓</button>
+        </div>
+      </div>
+    </div>
+    <button onclick="closeM('m-filter')" class="w-full mt-5 py-3 rounded-xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff;border:none;">Qo'llash</button>
+  </div>
+</div>
+
+<!-- STUDENT DETAIL MODAL -->
+<div class="modal-bg" id="m-stud-detail" onclick="if(event.target===this)closeM('m-stud-detail')">
+  <div class="modal-sheet">
+    <div class="flex justify-between mb-4">
+      <h3 class="text-base font-bold">Talaba ma'lumotlari</h3>
+      <button onclick="closeM('m-stud-detail')" class="w-8 h-8 rounded-full flex items-center justify-center" style="background:rgb(var(--muted));border:none;"><iconify-icon icon="lucide:x" width="14"></iconify-icon></button>
+    </div>
+    <div id="stud-detail-body"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════
+// SCHEDULE DATABASE (SamDTU)
+// ════════════════════════════════════
+const SCHEDULE_DB = {
+  "1-101": {
+    guruh:"101-guruh", kurs:1, faculty:"Umumiy tibbiyot",
+    week:[
+      {day:1,time:"08:00",dur:90,subj:"Anatomiya",prof:"Prof. Ergashev B.T.",type:"Lektsiya",online:false,building:"A Bino",floor:2,room:"201",lat:39.6542,lng:66.9597},
+      {day:1,time:"10:00",dur:90,subj:"Biologiya kimyo",prof:"Dos. Nazarova M.K.",type:"Amaliy",online:false,building:"B Bino",floor:1,room:"104",lat:39.6548,lng:66.9601},
+      {day:2,time:"08:00",dur:90,subj:"Lotin tili",prof:"O'q. Yusupova S.A.",type:"Seminar",online:false,building:"A Bino",floor:3,room:"312",lat:39.6542,lng:66.9597},
+      {day:2,time:"10:00",dur:90,subj:"Fizika",prof:"Dos. Toshmatov J.B.",type:"Lektsiya",online:true,building:"Online",floor:null,room:null,lat:null,lng:null},
+      {day:3,time:"08:00",dur:90,subj:"Anatomiya (amaliy)",prof:"Prof. Ergashev B.T.",type:"Amaliy",online:false,building:"Morfologiya",floor:1,room:"Sekciya zal",lat:39.6538,lng:66.9590},
+      {day:4,time:"08:00",dur:90,subj:"Kimyo",prof:"Dos. Qodirov N.A.",type:"Lektsiya",online:false,building:"V Bino",floor:2,room:"Kimyo lab",lat:39.6551,lng:66.9610},
+      {day:5,time:"08:00",dur:90,subj:"Tibbiy informatika",prof:"O'q. Rashidov F.M.",type:"Amaliy",online:true,building:"Online",floor:null,room:null,lat:null,lng:null},
+    ]
+  },
+  "3-301": {
+    guruh:"301-guruh", kurs:3, faculty:"Umumiy tibbiyot",
+    week:[
+      {day:1,time:"08:00",dur:90,subj:"Gematologiya",prof:"Prof. Salimov T.R.",type:"Lektsiya",online:false,building:"Asosiy Bino",floor:2,room:"2-Zal",lat:39.6542,lng:66.9597},
+      {day:1,time:"14:00",dur:120,subj:"Xirurgiya Amaliyoti",prof:"Prof. Alimov K.B.",type:"Klinik amaliyot",online:false,building:"1-Shahar Shifoxonasi",floor:3,room:"Kardiologiya 304",lat:39.6612,lng:66.9721},
+      {day:2,time:"08:00",dur:90,subj:"Patologik anatomiya",prof:"Dos. Mirzayev A.S.",type:"Lektsiya",online:false,building:"Morfologiya",floor:1,room:"Sekciya zal",lat:39.6538,lng:66.9590},
+      {day:2,time:"10:00",dur:90,subj:"Farmakologiya",prof:"Dos. Xoliqova D.N.",type:"Seminar",online:false,building:"B Bino",floor:4,room:"402",lat:39.6548,lng:66.9601},
+      {day:3,time:"08:00",dur:120,subj:"Terapiya",prof:"Prof. Karimov U.T.",type:"Klinik amaliyot",online:false,building:"2-Shahar Shifoxonasi",floor:2,room:"Terapiya 205",lat:39.6580,lng:66.9650},
+      {day:4,time:"08:00",dur:90,subj:"Mikrobiologiya",prof:"Dos. Nazarova L.M.",type:"Lektsiya",online:false,building:"A Bino",floor:2,room:"210",lat:39.6542,lng:66.9597},
+      {day:4,time:"16:30",dur:90,subj:"Farmakologiya (seminar)",prof:"Dos. Xoliqova D.N.",type:"Seminar",online:false,building:"B Bino",floor:4,room:"402",lat:39.6548,lng:66.9601},
+      {day:5,time:"08:00",dur:90,subj:"Immunologiya",prof:"Prof. Tursunov R.A.",type:"Lektsiya",online:true,building:"Online",floor:null,room:null,lat:null,lng:null},
+    ]
+  },
+  "3-302": {
+    guruh:"302-guruh", kurs:3, faculty:"Umumiy tibbiyot",
+    week:[
+      {day:1,time:"10:00",dur:90,subj:"Gematologiya",prof:"Prof. Salimov T.R.",type:"Lektsiya",online:false,building:"Asosiy Bino",floor:2,room:"2-Zal",lat:39.6542,lng:66.9597},
+      {day:2,time:"14:00",dur:120,subj:"Xirurgiya Amaliyoti",prof:"Prof. Alimov K.B.",type:"Klinik amaliyot",online:false,building:"1-Shahar Shifoxonasi",floor:3,room:"Kardiologiya 304",lat:39.6612,lng:66.9721},
+      {day:3,time:"08:00",dur:90,subj:"Farmakologiya",prof:"Dos. Xoliqova D.N.",type:"Seminar",online:false,building:"B Bino",floor:4,room:"402",lat:39.6548,lng:66.9601},
+      {day:4,time:"08:00",dur:120,subj:"Terapiya",prof:"Prof. Karimov U.T.",type:"Klinik amaliyot",online:false,building:"2-Shahar Shifoxonasi",floor:2,room:"Terapiya 205",lat:39.6580,lng:66.9650},
+      {day:5,time:"10:00",dur:90,subj:"Mikrobiologiya",prof:"Dos. Nazarova L.M.",type:"Lektsiya",online:false,building:"A Bino",floor:2,room:"210",lat:39.6542,lng:66.9597},
+    ]
+  },
+  "5-501": {
+    guruh:"501-guruh", kurs:5, faculty:"Umumiy tibbiyot",
+    week:[
+      {day:1,time:"08:00",dur:120,subj:"Ichki kasalliklar",prof:"Prof. Abdullayev N.K.",type:"Klinik amaliyot",online:false,building:"Viloyat Shifoxonasi",floor:4,room:"Kardiologiya",lat:39.6590,lng:66.9680},
+      {day:2,time:"08:00",dur:90,subj:"Neyroxirurgiya",prof:"Prof. Yusupov M.I.",type:"Lektsiya",online:false,building:"Asosiy Bino",floor:3,room:"Aktovy Zal",lat:39.6542,lng:66.9597},
+      {day:3,time:"08:00",dur:120,subj:"Akusherlik va ginekologiya",prof:"Prof. Hasanova Z.R.",type:"Klinik amaliyot",online:false,building:"Tug'ruqxona №1",floor:2,room:"Klinik qabul",lat:39.6620,lng:66.9740},
+      {day:4,time:"08:00",dur:90,subj:"Pediatriya",prof:"Prof. Qodirov A.B.",type:"Lektsiya",online:false,building:"A Bino",floor:2,room:"205",lat:39.6542,lng:66.9597},
+      {day:5,time:"08:00",dur:120,subj:"Psixiatriya",prof:"Dos. Toshpulatov S.M.",type:"Amaliy",online:false,building:"Ruhiy Kasalliklar Shifoxonasi",floor:1,room:"Qabul",lat:39.6560,lng:66.9630},
+    ]
+  }
+};
+
+// ════════════════════════════════════
+// DEMO STUDENTS DATABASE
+// ════════════════════════════════════
+const DEMO_STUDENTS = [
+  {id:"s001",fullname:"Anusher Qurbonov",username:"qurbonov_a",avatar:"👨‍⚕️",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:42,ball:87,davomat:91,nb:false,lastSeen:"2025-02-21 14:35",status:"faol"},
+  {id:"s002",fullname:"Dilnoza Yusupova",username:"yusupova_d",avatar:"👩‍⚕️",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:38,ball:91,davomat:95,nb:false,lastSeen:"2025-02-21 10:20",status:"faol"},
+  {id:"s003",fullname:"Bobur Karimov",username:"karimov_b",avatar:"👨‍🔬",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:29,ball:72,davomat:78,nb:false,lastSeen:"2025-02-20 16:10",status:"faol"},
+  {id:"s004",fullname:"Jasur Toshmatov",username:"toshmatov_j",avatar:"👨‍⚕️",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:3,ball:34,davomat:42,nb:true,lastSeen:"2025-02-15 09:00",status:"nb"},
+  {id:"s005",fullname:"Malika Ro'ziyeva",username:"roziyeva_m",avatar:"👩‍🔬",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:5,ball:41,davomat:55,nb:true,lastSeen:"2025-02-18 11:30",status:"nb"},
+  {id:"s006",fullname:"Sardor Normatov",username:"normatov_s",avatar:"🩺",kurs:"3",guruh:"301",faculty:"Umumiy tibbiyot",amaliyot:1,ball:18,davomat:30,nb:true,lastSeen:"2025-02-10 08:00",status:"nb"},
+  {id:"s007",fullname:"Zulfiya Hasanova",username:"hasanova_z",avatar:"👩‍⚕️",kurs:"3",guruh:"302",faculty:"Umumiy tibbiyot",amaliyot:35,ball:88,davomat:90,nb:false,lastSeen:"2025-02-21 13:00",status:"faol"},
+  {id:"s008",fullname:"Akbar Xoliqov",username:"xoliqov_a",avatar:"👨‍⚕️",kurs:"5",guruh:"501",faculty:"Umumiy tibbiyot",amaliyot:120,ball:94,davomat:97,nb:false,lastSeen:"2025-02-21 15:50",status:"faol"},
+  {id:"s009",fullname:"Shahlo Tursunova",username:"tursunova_sh",avatar:"👩‍⚕️",kurs:"1",guruh:"101",faculty:"Umumiy tibbiyot",amaliyot:5,ball:62,davomat:85,nb:false,lastSeen:"2025-02-20 10:00",status:"faol"},
+  {id:"s010",fullname:"Ibrohim Nazarov",username:"nazarov_i",avatar:"👨‍🔬",kurs:"1",guruh:"101",faculty:"Umumiy tibbiyot",amaliyot:4,ball:58,davomat:80,nb:false,lastSeen:"2025-02-19 09:30",status:"faol"},
+  {id:"s011",fullname:"Feruza Eshmatova",username:"eshmatova_f",avatar:"👩‍⚕️",kurs:"3",guruh:"302",faculty:"Umumiy tibbiyot",amaliyot:31,ball:80,davomat:88,nb:false,lastSeen:"2025-02-21 09:00",status:"faol"},
+  {id:"s012",fullname:"Nodir Rahimov",username:"rahimov_n",avatar:"👨‍🔬",kurs:"5",guruh:"501",faculty:"Umumiy tibbiyot",amaliyot:98,ball:89,davomat:93,nb:false,lastSeen:"2025-02-21 12:00",status:"faol"},
+];
+
+// ════════════════════════════════════
+// SCREEN 7 — JADVAL LOGIC
+// ════════════════════════════════════
+const UZ_DAY_SHORT=['Yak','Du','Se','Ch','Pa','Ju','Sh'];
+const UZ_DAY_FULL=['Yakshanba','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'];
+const TYPE_COLORS={
+  'Lektsiya':'#3b82f6','Amaliy':'rgb(var(--teal))','Seminar':'#7c3aed',
+  'Klinik amaliyot':'#dc2626','Mustaqil':'rgb(var(--mutedFg))'
+};
+let selectedDay = (new Date().getDay()||7); // 1=Mon..7=Sun
+
+function getMyScheduleKey(){
+  if(!cu) return "3-301"; // demo
+  return `${cu.kurs}-${cu.guruh}`;
+}
+function getMySchedule(){
+  const key=getMyScheduleKey();
+  return SCHEDULE_DB[key] || SCHEDULE_DB["3-301"];
+}
+
+function initJadval(){
+  const sched=getMySchedule();
+  // Info chip
+  document.getElementById('jadval-kurs-info').textContent=`${sched.kurs}-kurs · ${sched.guruh}`;
+  renderDaySelector();
+  renderJadvalClasses();
+  renderWeekTable();
+}
+
+function renderDaySelector(){
+  const today=(new Date().getDay()||7);
+  const sched=getMySchedule();
+  const activeDays=new Set(sched.week.map(c=>c.day));
+  const el=document.getElementById('day-selector');
+  el.innerHTML=[1,2,3,4,5,6,7].map(d=>{
+    const isToday=d===today, isSel=d===selectedDay, hasClass=activeDays.has(d);
+    const dayNames=['','Du','Se','Ch','Pa','Ju','Sh','Ya'];
+    return `<button onclick="selectDay(${d})" class="flex-shrink-0 flex flex-col items-center gap-0.5 w-12 h-14 rounded-2xl font-bold text-sm transition-all active:scale-95 ${!hasClass?'opacity-40':''}" 
+      style="${isSel?'background:rgb(var(--primary));color:#fff;':'background:rgb(var(--card));color:rgb(var(--fg));border:1px solid rgb(var(--border)/.5);'}${isToday&&!isSel?'border:2px solid rgb(var(--primary)/.4);':''}border:none;">
+      <span class="text-[9px] font-bold mt-2.5" style="${isSel?'opacity:.8':''}">${dayNames[d]}</span>
+      <span class="text-base font-bold leading-none">${d===today?'•':d}</span>
+      ${hasClass?`<div class="w-1 h-1 rounded-full ${isSel?'bg-white':'bg-current'} opacity-60"></div>`:''}
+    </button>`;
+  }).join('');
+}
+
+function selectDay(d){
+  selectedDay=d;
+  renderDaySelector();
+  renderJadvalClasses();
+  document.getElementById('loc-card').classList.add('hidden');
+}
+
+function renderJadvalClasses(){
+  const sched=getMySchedule();
+  const classes=sched.week.filter(c=>c.day===selectedDay).sort((a,b)=>a.time.localeCompare(b.time));
+  const el=document.getElementById('jadval-classes');
+  const dayName=UZ_DAY_FULL[selectedDay%7];
+  const now=new Date(), todayDay=(now.getDay()||7), nowMin=now.getHours()*60+now.getMinutes();
+
+  if(!classes.length){
+    el.innerHTML=`<div class="text-center py-12"><p class="text-4xl mb-3">📭</p><p class="font-bold">Bu kuni dars yo'q</p><p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">${dayName}</p></div>`;
+    return;
+  }
+
+  el.innerHTML=`<h3 class="text-sm font-bold mb-2" style="color:rgb(var(--mutedFg))">${dayName} — ${classes.length} ta dars</h3>`+
+  classes.map(c=>{
+    const[sh,sm]=c.time.split(':').map(Number);
+    const cMin=sh*60+sm;
+    const isActive=selectedDay===todayDay&&Math.abs(cMin-nowMin)<c.dur&&cMin<=nowMin;
+    const isPast=selectedDay===todayDay&&cMin+c.dur<nowMin;
+    const tc=TYPE_COLORS[c.type]||'rgb(var(--mutedFg))';
+    const endMin=cMin+c.dur,endH=String(Math.floor(endMin/60)).padStart(2,'0'),endM=String(endMin%60).padStart(2,'0');
+    return `<div onclick="showLocCard(${JSON.stringify(c).replace(/"/g,'&quot;')})" class="rounded-2xl p-4 border mb-2 cursor-pointer active:scale-[.98] transition-all ${isPast?'opacity-55':''}" 
+      style="${isActive?'background:rgb(var(--primary));border-color:transparent;':'background:rgb(var(--card));border-color:rgb(var(--border)/.5);'}border-left:4px solid ${isActive?'rgba(255,255,255,.4)':tc};">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[9px] font-bold px-2 py-0.5 rounded-full" style="${isActive?'background:rgba(255,255,255,.2);color:#fff':('background:'+tc+'20;color:'+tc)}">${c.type}</span>
+            ${c.online?'<span class="text-[9px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,.1);color:#065f46">🟢 Online</span>':''}
+            ${isActive?'<span class="text-[9px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(255,255,255,.2);color:#fff">🔴 Hozir</span>':''}
+          </div>
+          <h4 class="font-bold text-sm ${isActive?'text-white':''} truncate">${c.subj}</h4>
+          <p class="text-[11px] mt-0.5 ${isActive?'text-white opacity-80':''}" style="${!isActive?'color:rgb(var(--primary))':''}">👨‍🏫 ${c.prof}</p>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <p class="font-bold text-sm ${isActive?'text-white':''}">${c.time}</p>
+          <p class="text-[10px] ${isActive?'text-white opacity-75':''}" style="${!isActive?'color:rgb(var(--mutedFg))':''}">${endH}:${endM}</p>
+          <p class="text-[9px] font-bold mt-0.5 ${isActive?'text-white opacity-75':''}" style="${!isActive?'color:rgb(var(--mutedFg))':''}">${c.dur} min</p>
+        </div>
+      </div>
+      ${!c.online?`<div class="mt-3 flex items-center gap-2 pt-2.5 ${isActive?'border-t border-white/20':'border-t'}" style="${!isActive?'border-color:rgb(var(--border)/.4)':''}">
+        <iconify-icon icon="lucide:map-pin" width="13" style="${isActive?'color:rgba(255,255,255,.7)':'color:rgb(var(--primary))'}"></iconify-icon>
+        <div class="flex-1 min-w-0">
+          <p class="text-[11px] font-semibold truncate ${isActive?'text-white':''}">${c.building}</p>
+          <p class="text-[9px] ${isActive?'text-white opacity-70':''}" style="${!isActive?'color:rgb(var(--mutedFg))':''}">
+            ${c.floor?c.floor+'-qavat · ':''} ${c.room||''}
+          </p>
+        </div>
+        <span class="text-[9px] font-bold px-2 py-1 rounded-lg" style="${isActive?'background:rgba(255,255,255,.2);color:#fff':'background:rgb(var(--primary)/.1);color:rgb(var(--primary))'}">📍 Xarita</span>
+      </div>`:'<div class="mt-2 flex items-center gap-2"><iconify-icon icon="lucide:video" width="13" style="color:#065f46"></iconify-icon><p class="text-[11px] font-semibold" style="color:#065f46">Onlayn — link yuboriladi</p></div>'}
+    </div>`;
+  }).join('');
+}
+
+function showLocCard(c){
+  if(c.online||!c.lat){showToast('🌐 Online dars','Bu dars onlayn o\'tkaziladi — link yuboriladi');return;}
+  document.getElementById('loc-name').textContent=c.building;
+  document.getElementById('loc-sub').textContent=c.subj+' · '+c.prof;
+  document.getElementById('loc-building').textContent=c.building+(c.floor?' · '+c.floor+'-qavat':'');
+  document.getElementById('loc-room').textContent=c.room||'—';
+  document.getElementById('loc-yandex').href=`https://yandex.uz/maps/?ll=${c.lng},${c.lat}&z=17&pt=${c.lng},${c.lat}`;
+  document.getElementById('loc-google').href=`https://www.google.com/maps?q=${c.lat},${c.lng}&z=17`;
+  document.getElementById('loc-card').classList.remove('hidden');
+  document.getElementById('loc-card').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function renderWeekTable(){
+  const sched=getMySchedule();
+  const dayNames=['','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba','Yakshanba'];
+  let html='';
+  for(let d=1;d<=6;d++){
+    const classes=sched.week.filter(c=>c.day===d).sort((a,b)=>a.time.localeCompare(b.time));
+    if(!classes.length) continue;
+    html+=`<div class="rounded-2xl border overflow-hidden mb-3" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);">
+      <div class="px-4 py-2.5 flex items-center justify-between" style="background:rgb(var(--muted)/.5);border-bottom:1px solid rgb(var(--border)/.4);">
+        <span class="text-xs font-bold">${dayNames[d]}</span>
+        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">${classes.length} dars</span>
+      </div>`;
+    classes.forEach(c=>{
+      const tc=TYPE_COLORS[c.type]||'rgb(var(--mutedFg))';
+      html+=`<div class="flex items-center gap-3 px-4 py-3 border-b last:border-0" style="border-color:rgb(var(--border)/.3);">
+        <div class="w-0.5 h-full rounded-full self-stretch" style="background:${tc};min-height:32px;"></div>
+        <div class="w-14 flex-shrink-0"><p class="text-xs font-bold">${c.time}</p><p class="text-[9px]" style="color:rgb(var(--mutedFg))">${c.dur}min</p></div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-bold truncate">${c.subj}</p>
+          <p class="text-[10px] truncate" style="color:rgb(var(--mutedFg))">${c.prof}</p>
+        </div>
+        <div class="text-right flex-shrink-0">
+          ${c.online?'<span class="text-[9px] font-bold" style="color:#065f46">Online</span>':
+          `<p class="text-[9px] font-bold truncate max-w-[80px]" style="color:rgb(var(--primary))">${c.building}</p>
+          <p class="text-[9px]" style="color:rgb(var(--mutedFg))">${c.room||''}</p>`}
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  }
+  document.getElementById('week-table').innerHTML=html;
+}
+
+// ════════════════════════════════════
+// SCREEN 8 — TALABALAR BAZASI LOGIC
+// ════════════════════════════════════
+let studFilter={kurs:'all',nb:'all',sort:'name'};
+
+function getAllStudents(){
+  // Merge demo students with registered users
+  const users=JSON.parse(localStorage.getItem('ms_users')||'{}');
+  const registered=Object.values(users).map(u=>({
+    id:'u_'+u.id,fullname:u.fullname,username:u.username,avatar:u.avatar||'👤',
+    kurs:u.kurs||'3',guruh:u.guruh||'—',faculty:'Umumiy tibbiyot',
+    amaliyot:0,ball:0,davomat:0,nb:false,
+    lastSeen:u.created||'—',status:'yangi',registered:true
+  }));
+  // Avoid duplicates by username
+  const regUsernames=new Set(registered.map(u=>u.username));
+  const demo=DEMO_STUDENTS.filter(s=>!regUsernames.has(s.username));
+  return [...registered, ...demo];
+}
+
+function initStudentDB(){
+  renderStudentDB();
+  updateStudStats();
+}
+
+function renderStudentDB(){
+  let students=getAllStudents();
+  const q=(document.getElementById('stud-search')?.value||'').toLowerCase();
+  if(q) students=students.filter(s=>s.fullname.toLowerCase().includes(q)||s.username.toLowerCase().includes(q));
+  if(studFilter.kurs!=='all') students=students.filter(s=>String(s.kurs)===studFilter.kurs);
+  if(studFilter.nb==='nb') students=students.filter(s=>s.nb);
+  if(studFilter.nb==='faol') students=students.filter(s=>!s.nb);
+  if(studFilter.sort==='ball') students.sort((a,b)=>b.ball-a.ball);
+  else if(studFilter.sort==='amaliyot') students.sort((a,b)=>b.amaliyot-a.amaliyot);
+  else if(studFilter.sort==='davomat') students.sort((a,b)=>b.davomat-a.davomat);
+  else students.sort((a,b)=>a.fullname.localeCompare(b.fullname));
+
+  const el=document.getElementById('student-db-list');
+  if(!students.length){el.innerHTML='<p class="text-sm text-center py-12" style="color:rgb(var(--mutedFg))">Topilmadi 🔍</p>';return;}
+  el.innerHTML=students.map((s,i)=>{
+    const nbBg=s.nb?'background:rgba(244,63,94,.05);border-color:rgba(244,63,94,.2)':'background:rgb(var(--card));border-color:rgb(var(--border)/.5)';
+    const rankColor=i<3?['#f59e0b','#94a3b8','#cd7c54'][i]:null;
+    return `<div onclick="showStudentDetail('${s.id}')" class="rounded-2xl p-3.5 border flex items-center gap-3 cursor-pointer active:scale-[.98]" style="${nbBg}">
+      <div class="relative flex-shrink-0">
+        <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-xl" style="background:rgb(var(--muted)/.5)">${s.avatar}</div>
+        ${rankColor?`<div class="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full flex items-center justify-center text-[8px] font-bold" style="background:${rankColor};color:#fff;width:18px;height:18px;">${i+1}</div>`:''}
+        ${s.registered?`<div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center" style="background:#10b981;border-color:rgb(var(--card));width:14px;height:14px;"></div>`:''}
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-1.5">
+          <p class="font-bold text-sm truncate">${s.fullname}</p>
+          ${s.nb?'<span class="text-[8px] font-bold px-1.5 py-0.5 rounded-md flex-shrink-0" style="background:rgba(244,63,94,.15);color:rgb(var(--accent))">NB</span>':''}
+        </div>
+        <p class="text-[10px] mt-0.5" style="color:rgb(var(--mutedFg))">@${s.username} · ${s.kurs}-kurs ${s.guruh}-guruh</p>
+        <div class="flex items-center gap-3 mt-1">
+          <span class="text-[9px] font-bold" style="color:rgb(var(--primary))">⭐ ${s.ball}</span>
+          <span class="text-[9px]" style="color:rgb(var(--mutedFg))">📋 ${s.amaliyot}</span>
+          <span class="text-[9px]" style="color:${s.davomat>=80?'#065f46':'rgb(var(--accent))'}">📅 ${s.davomat}%</span>
+        </div>
+      </div>
+      <div class="flex-shrink-0">
+        ${s.nb?
+          '<div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:rgba(244,63,94,.1)"><iconify-icon icon="lucide:alert-triangle" width="15" style="color:rgb(var(--accent))"></iconify-icon></div>':
+          s.registered?
+          '<div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,.1)"><iconify-icon icon="lucide:user-check" width="15" style="color:#065f46"></iconify-icon></div>':
+          '<iconify-icon icon="lucide:chevron-right" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>'
+        }
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStudStats(){
+  const all=getAllStudents();
+  document.getElementById('sb-total').textContent=all.length;
+  document.getElementById('sb-faol').textContent=all.filter(s=>!s.nb).length;
+  document.getElementById('sb-nb').textContent=all.filter(s=>s.nb).length;
+}
+
+function filterStudents(){renderStudentDB();}
+function setStudFilter(btn,val){
+  studFilter.kurs=val==='nb'?studFilter.kurs:val==='all'?'all':val;
+  if(val==='nb'){studFilter.nb='nb';}else if(val==='all'){studFilter.nb='all';}
+  document.querySelectorAll('#screen-8 .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderStudentDB();
+}
+function setKursFilter(btn,val){
+  studFilter.kurs=val;
+  document.querySelectorAll('[id^="kf-"]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setNBFilter(btn,val){
+  studFilter.nb=val;
+  document.querySelectorAll('[id^="nf-"]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setSortFilter(btn,val){
+  studFilter.sort=val;
+  document.querySelectorAll('[id^="sort-"]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderStudentDB();
+}
+
+function showStudentDetail(id){
+  const all=getAllStudents();
+  const s=all.find(x=>x.id===id);
+  if(!s) return;
+  const schedKey=`${s.kurs}-${s.guruh}`;
+  const sched=SCHEDULE_DB[schedKey];
+  const schedHtml=sched?sched.week.slice(0,3).map(c=>`
+    <div class="flex items-center gap-2 p-2 rounded-xl" style="background:rgb(var(--muted)/.4)">
+      <span class="text-[10px] font-bold w-10 flex-shrink-0">${c.time}</span>
+      <span class="text-[10px] font-bold flex-1 truncate">${c.subj}</span>
+      <span class="text-[9px]" style="color:rgb(var(--mutedFg))">${['','Du','Se','Ch','Pa','Ju','Sh'][c.day]}</span>
+    </div>`).join(''):'<p class="text-xs" style="color:rgb(var(--mutedFg))">Jadval topilmadi</p>';
+  document.getElementById('stud-detail-body').innerHTML=`
+    <div class="flex items-center gap-4 mb-5">
+      <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style="background:rgb(var(--muted)/.5)">${s.avatar}</div>
+      <div>
+        <h3 class="text-lg font-bold">${s.fullname}</h3>
+        <p class="text-sm" style="color:rgb(var(--mutedFg))">@${s.username}</p>
+        <div class="flex items-center gap-2 mt-1">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">${s.kurs}-kurs · ${s.guruh}-guruh</span>
+          ${s.nb?'<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(244,63,94,.1);color:rgb(var(--accent))">⚠️ NB</span>':
+          s.registered?'<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,.1);color:#065f46">✅ Ro\'yxatdan o\'tgan</span>':
+          '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))">Demo</span>'}
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <div class="text-center p-3 rounded-xl" style="background:rgb(var(--primary)/.08)"><p class="text-xl font-bold" style="color:rgb(var(--primary))">${s.ball}</p><p class="text-[9px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Ball</p></div>
+      <div class="text-center p-3 rounded-xl" style="background:rgba(16,185,129,.08)"><p class="text-xl font-bold" style="color:#065f46">${s.amaliyot}</p><p class="text-[9px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Amaliyot</p></div>
+      <div class="text-center p-3 rounded-xl" style="background:${s.davomat>=80?'rgba(16,185,129,.08)':'rgba(244,63,94,.08)'}"><p class="text-xl font-bold" style="color:${s.davomat>=80?'#065f46':'rgb(var(--accent))'}}">${s.davomat}%</p><p class="text-[9px] font-bold uppercase" style="color:rgb(var(--mutedFg))">Davomat</p></div>
+    </div>
+    <div class="p-3 rounded-xl mb-4" style="background:rgb(var(--muted)/.4)">
+      <p class="text-[9px] font-bold uppercase mb-1" style="color:rgb(var(--mutedFg))">Oxirgi kirgan</p>
+      <p class="text-sm font-semibold">${s.lastSeen}</p>
+    </div>
+    <div class="mb-4">
+      <p class="text-[10px] font-bold uppercase mb-2" style="color:rgb(var(--mutedFg))">Yaqin darslar (${s.kurs}-kurs ${s.guruh})</p>
+      <div class="space-y-1">${schedHtml}</div>
+    </div>
+    <div class="flex gap-2">
+      <button onclick="sendMsgToStudent('${s.fullname}');closeM('m-stud-detail')" class="flex-1 py-3 rounded-xl text-sm font-bold" style="background:rgb(var(--primary));color:#fff;border:none;">📬 Xabar yuborish</button>
+      ${s.nb?`<button onclick="removeNB('${s.id}');closeM('m-stud-detail')" class="flex-1 py-3 rounded-xl text-sm font-bold" style="background:rgba(16,185,129,.1);color:#065f46;border:1px solid rgba(16,185,129,.2);">✅ NB olib tashlash</button>`:''}
+    </div>`;
+  openM('m-stud-detail');
+}
+
+function sendMsgToStudent(name){
+  addInboxMsg('👨‍🏫 Admin','Shaxsiy xabar',`${name} siz uchun admin tomonidan yangi xabar yuborildi.`,'prof');
+  showToast('📬 Xabar yuborildi',name+' ga xabar ketdi');
+}
+function removeNB(id){
+  const all=getAllStudents();
+  const s=all.find(x=>x.id===id);
+  if(s){s.nb=false;s.status='faol';}
+  renderStudentDB();updateStudStats();
+  showToast('✅ NB olib tashlandi','Talaba holati yangilandi');
+}
+
+// ════════════════════════════════════
+// OVERRIDE switchTab to init new screens
+// ════════════════════════════════════
+const _origSwitchTab=switchTab;
+switchTab = function(i){
+  _origSwitchTab(i);
+  if(i===7) initJadval();
+  if(i===8){initStudentDB();updateStudStats();}
+};
+
+// Init on load
+setTimeout(()=>{
+  updateStudStats();
+  // if user is on jadval screen on load
+  if(tab===7) initJadval();
+},200);
+</script>
+</div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="uz" id="html-root">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SamDTU — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+<style>
+:root{--bg:248 250 252;--fg:15 23 42;--card:255 255 255;--primary:30 64 175;--secondary:219 234 254;--secondaryFg:30 64 175;--muted:241 245 249;--mutedFg:100 116 139;--accent:244 63 94;--border:226 232 240;--teal:13 148 136;}
+.dark{--bg:10 15 30;--fg:226 232 240;--card:20 30 55;--primary:96 165 250;--secondary:30 50 100;--secondaryFg:147 197 253;--muted:20 30 55;--mutedFg:100 116 139;--accent:251 113 133;--border:40 60 100;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+*::-webkit-scrollbar{width:4px;height:4px;}
+*::-webkit-scrollbar-track{background:transparent;}
+*::-webkit-scrollbar-thumb{background:rgb(var(--border));border-radius:4px;}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:rgb(var(--bg));color:rgb(var(--fg));min-height:100vh;transition:background .3s,color .3s;}
+.panel{display:none;}.panel.active{display:block;}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+.modal-bg.open{opacity:1;pointer-events:all;}
+.modal-card{background:rgb(var(--card));border-radius:20px;padding:24px;width:min(480px,calc(100vw-32px));max-height:90vh;overflow-y:auto;transform:scale(.95);transition:transform .2s;}
+.modal-bg.open .modal-card{transform:scale(1);}
+.pill{padding:6px 14px;border-radius:20px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;border:none;}
+.pill.active{background:rgb(var(--primary));color:#fff;}
+.pill:not(.active){background:rgb(var(--muted));color:rgb(var(--mutedFg));}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp .3s ease both;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none;vertical-align:middle;}
+#toast{position:fixed;top:16px;right:16px;z-index:999;border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:12px;transform:translateX(120%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);background:rgb(var(--card));border:1px solid rgb(var(--border));box-shadow:0 8px 32px rgba(0,0,0,.12);max-width:360px;}
+#toast.show{transform:translateX(0);}
+.badge-nb{background:rgba(244,63,94,.12);color:#be123c;border:1px solid rgba(244,63,94,.2);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;}
+.badge-faol{background:rgba(16,185,129,.1);color:#065f46;border:1px solid rgba(16,185,129,.2);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;}
+.badge-yangi{background:rgba(245,158,11,.1);color:#92400e;border:1px solid rgba(245,158,11,.2);padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;}
+.samdtu-grad{background:linear-gradient(135deg,#1e3a8a,#1e40af,#0d9488);}
+input,select,textarea{font-family:inherit;color:rgb(var(--fg));}
+input::placeholder,textarea::placeholder{color:rgb(var(--mutedFg));}
+th{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;background:rgb(var(--muted)/.5);}
+td{padding:10px 14px;font-size:.8rem;border-bottom:1px solid rgb(var(--border)/.4);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgb(var(--muted)/.3);transition:background .15s;}
+.stat-card{background:rgb(var(--card));border:1px solid rgb(var(--border)/.5);border-radius:16px;padding:20px;}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast"><span id="t-icon" class="text-xl">✅</span><div><p id="t-title" class="text-sm font-bold"></p><p id="t-body" class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))"></p></div><button onclick="document.getElementById('toast').classList.remove('show')" style="background:none;border:none;color:rgb(var(--mutedFg));margin-left:8px;cursor:pointer;font-size:16px;">×</button></div>
+
+<!-- ══════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════ -->
+<div id="login-screen" class="min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-sm fade-up">
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 rounded-2xl samdtu-grad flex items-center justify-center mx-auto mb-4 shadow-xl">
+        <iconify-icon icon="lucide:shield-check" width="32" style="color:#fff"></iconify-icon>
+      </div>
+      <h1 class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">Admin Panel</h1>
+      <p class="text-sm mt-1" style="color:rgb(var(--mutedFg))">Samarqand Davlat Tibbiyot Universiteti</p>
+    </div>
+    <div class="rounded-2xl p-6 border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+      <div id="login-err" class="text-sm font-semibold px-4 py-3 rounded-xl mb-4 hidden" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:1px solid rgba(244,63,94,.2)"></div>
+      <div class="mb-4">
+        <label class="text-[10px] font-bold uppercase tracking-wider mb-1.5 block" style="color:rgb(var(--mutedFg))">Admin login</label>
+        <div class="flex items-center gap-3 px-4 py-3 rounded-xl border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));">
+          <iconify-icon icon="lucide:user-cog" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>
+          <input id="a-user" type="text" placeholder="admin" onkeydown="if(event.key==='Enter')doAdminLogin()" class="flex-1 outline-none text-sm" style="background:transparent;border:none;"/>
+        </div>
+      </div>
+      <div class="mb-5">
+        <label class="text-[10px] font-bold uppercase tracking-wider mb-1.5 block" style="color:rgb(var(--mutedFg))">Parol</label>
+        <div class="flex items-center gap-3 px-4 py-3 rounded-xl border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));">
+          <iconify-icon icon="lucide:lock" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>
+          <input id="a-pwd" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doAdminLogin()" class="flex-1 outline-none text-sm" style="background:transparent;border:none;"/>
+        </div>
+        <p class="text-[10px] mt-1.5" style="color:rgb(var(--mutedFg))">Demo: admin / samdtu2025</p>
+      </div>
+      <button onclick="doAdminLogin()" id="a-btn" class="w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2" style="background:rgb(var(--primary));color:#fff;border:none;box-shadow:0 8px 24px rgb(var(--primary)/.3);">
+        <iconify-icon icon="lucide:log-in" width="16"></iconify-icon>Kirish
+        <div class="spinner" id="a-sp"></div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ADMIN DASHBOARD
+══════════════════════════════════ -->
+<div id="dashboard" class="hidden min-h-screen">
+  <!-- TOP BAR -->
+  <header class="sticky top-0 z-50 border-b px-4 lg:px-6" style="background:rgb(var(--card));border-color:rgb(var(--border));">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="w-9 h-9 rounded-xl flex items-center justify-center lg:hidden" style="background:rgb(var(--muted));border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:menu" width="18" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </button>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center samdtu-grad"><iconify-icon icon="lucide:graduation-cap" width="15" style="color:#fff"></iconify-icon></div>
+          <div class="hidden sm:block">
+            <p class="text-[9px] font-bold uppercase tracking-wider" style="color:rgb(var(--primary))">SamDTU</p>
+            <p class="text-xs font-bold leading-none">Admin Panel</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div id="admin-date" class="text-xs font-semibold px-3 py-1.5 rounded-xl hidden sm:block" style="background:rgb(var(--muted));color:rgb(var(--mutedFg))"></div>
+        <button onclick="toggleDark()" class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgb(var(--muted));border:none;cursor:pointer;" id="dk-btn">
+          <iconify-icon icon="lucide:moon" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>
+        </button>
+        <a href="samdtu-medstudent.html" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary));text-decoration:none;">
+          <iconify-icon icon="lucide:external-link" width="13"></iconify-icon>App
+        </a>
+        <button onclick="doAdminLogout()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:log-out" width="13"></iconify-icon>Chiqish
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed lg:sticky top-16 left-0 h-[calc(100vh-64px)] w-60 border-r overflow-y-auto z-40 -translate-x-full lg:translate-x-0 transition-transform" style="background:rgb(var(--card));border-color:rgb(var(--border));">
+      <nav class="p-3 space-y-1">
+        <button onclick="showPanel('p-overview')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left active" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:layout-dashboard" width="17"></iconify-icon>Dashboard
+        </button>
+        <button onclick="showPanel('p-students')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:users" width="17"></iconify-icon>Talabalar bazasi
+          <span id="nav-student-cnt" class="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-md" style="background:rgb(var(--primary));color:#fff">0</span>
+        </button>
+        <button onclick="showPanel('p-schedule')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:calendar-range" width="17"></iconify-icon>Dars jadvali
+        </button>
+        <button onclick="showPanel('p-nb')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:alert-triangle" width="17"></iconify-icon>NB talabalar
+          <span id="nav-nb-cnt" class="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-md" style="background:rgba(244,63,94,1);color:#fff">0</span>
+        </button>
+        <button onclick="showPanel('p-messages')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:send" width="17"></iconify-icon>Xabar yuborish
+        </button>
+        <button onclick="showPanel('p-jadval-edit')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:edit" width="17"></iconify-icon>Jadval tahrirlash
+        </button>
+        <div class="my-2" style="border-top:1px solid rgb(var(--border));"></div>
+        <button onclick="showPanel('p-settings')" class="nav-item w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-left" style="border:none;cursor:pointer;">
+          <iconify-icon icon="lucide:settings" width="17"></iconify-icon>Sozlamalar
+        </button>
+      </nav>
+    </aside>
+    <!-- Sidebar overlay for mobile -->
+    <div id="sb-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 p-4 lg:p-6" style="overflow-x:hidden;">
+
+      <!-- ── OVERVIEW ── -->
+      <div class="panel active" id="p-overview">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold fade-up">Dashboard</h2>
+          <p id="ov-date" class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))"></p>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6" id="stat-cards">
+          <!-- filled by JS -->
+        </div>
+        <!-- Recent activity + NB quick list -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="stat-card">
+            <h3 class="font-bold mb-4 flex items-center gap-2"><iconify-icon icon="lucide:activity" width="16" style="color:rgb(var(--primary))"></iconify-icon>So'nggi faoliyat</h3>
+            <div id="recent-activity" class="space-y-3"></div>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold flex items-center gap-2"><iconify-icon icon="lucide:alert-triangle" width="16" style="color:rgb(var(--accent))"></iconify-icon>NB talabalar</h3>
+              <button onclick="showPanel('p-nb')" class="text-xs font-bold px-3 py-1.5 rounded-xl" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:none;cursor:pointer;">Barchasini ko'r →</button>
+            </div>
+            <div id="nb-quick-list" class="space-y-2"></div>
+          </div>
+        </div>
+        <!-- Kurs bo'yicha statistika -->
+        <div class="stat-card mt-4">
+          <h3 class="font-bold mb-4 flex items-center gap-2"><iconify-icon icon="lucide:bar-chart-2" width="16" style="color:rgb(var(--primary))"></iconify-icon>Kurs bo'yicha statistika</h3>
+          <div id="kurs-stats" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <!-- ── STUDENTS ── -->
+      <div class="panel hidden" id="p-students">
+        <div class="flex items-center justify-between mb-5">
+          <div><h2 class="text-xl font-bold">Talabalar bazasi</h2><p class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))">Barcha ro'yxatdan o'tgan talabalar</p></div>
+          <button onclick="openM('m-add-student')" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">
+            <iconify-icon icon="lucide:user-plus" width="15"></iconify-icon>Qo'shish
+          </button>
+        </div>
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <div class="flex-1 min-w-48 flex items-center gap-2 px-3 py-2 rounded-xl border" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));">
+            <iconify-icon icon="lucide:search" width="14" style="color:rgb(var(--mutedFg));flex-shrink:0;"></iconify-icon>
+            <input id="stud-q" type="text" placeholder="Ism, username, guruh..." oninput="renderAdminStudents()" class="flex-1 text-sm outline-none" style="background:transparent;border:none;"/>
+          </div>
+          <select id="stud-kurs-f" onchange="renderAdminStudents()" class="px-3 py-2 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+            <option value="">Barcha kurs</option>
+            <option value="1">1-kurs</option><option value="2">2-kurs</option><option value="3">3-kurs</option>
+            <option value="4">4-kurs</option><option value="5">5-kurs</option><option value="6">6-kurs</option>
+          </select>
+          <select id="stud-status-f" onchange="renderAdminStudents()" class="px-3 py-2 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+            <option value="">Barcha holat</option>
+            <option value="faol">Faol</option>
+            <option value="nb">NB</option>
+            <option value="yangi">Yangi ro'yxat</option>
+          </select>
+          <select id="stud-sort-f" onchange="renderAdminStudents()" class="px-3 py-2 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+            <option value="name">Ism bo'yicha</option>
+            <option value="ball">Ball (yuqori)</option>
+            <option value="amaliyot">Amaliyot (ko'p)</option>
+            <option value="davomat">Davomat (yuqori)</option>
+            <option value="lastSeen">Oxirgi kirgan</option>
+          </select>
+        </div>
+        <!-- Table -->
+        <div class="rounded-2xl border overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5);">
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead><tr>
+                <th style="text-align:left;">Talaba</th>
+                <th style="text-align:left;">Kurs / Guruh</th>
+                <th>Amaliyot</th>
+                <th>Ball</th>
+                <th>Davomat</th>
+                <th>Oxirgi kirgan</th>
+                <th>Holat</th>
+                <th>Amal</th>
+              </tr></thead>
+              <tbody id="stud-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="stud-count" class="text-xs mt-2" style="color:rgb(var(--mutedFg))"></div>
+      </div>
+
+      <!-- ── SCHEDULE ── -->
+      <div class="panel hidden" id="p-schedule">
+        <div class="flex items-center justify-between mb-5">
+          <div><h2 class="text-xl font-bold">Dars jadvali</h2><p class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))">Kurs va guruh bo'yicha</p></div>
+        </div>
+        <div class="flex gap-2 flex-wrap mb-4">
+          <button onclick="showSchedGroup('1-101')" class="pill active" id="sg-1-101">1-kurs 101</button>
+          <button onclick="showSchedGroup('3-301')" class="pill" id="sg-3-301">3-kurs 301</button>
+          <button onclick="showSchedGroup('3-302')" class="pill" id="sg-3-302">3-kurs 302</button>
+          <button onclick="showSchedGroup('5-501')" class="pill" id="sg-5-501">5-kurs 501</button>
+        </div>
+        <div id="sched-content" class="space-y-3"></div>
+      </div>
+
+      <!-- ── NB TALABALAR ── -->
+      <div class="panel hidden" id="p-nb">
+        <div class="flex items-center justify-between mb-5">
+          <div><h2 class="text-xl font-bold">NB Talabalar</h2><p class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))">Kam faol va ogohlantirilgan talabalar</p></div>
+          <button onclick="sendNBAll()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:1px solid rgba(244,63,94,.2);cursor:pointer;">
+            <iconify-icon icon="lucide:bell-ring" width="14"></iconify-icon>Barchasiga xabar
+          </button>
+        </div>
+        <div id="nb-table" class="rounded-2xl border overflow-hidden" style="background:rgb(var(--card));border-color:rgba(244,63,94,.2);">
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead><tr style="background:rgba(244,63,94,.06);">
+                <th style="text-align:left;">Talaba</th>
+                <th>Amaliyot</th>
+                <th>Ball</th>
+                <th>Davomat</th>
+                <th>Holat</th>
+                <th>Amal</th>
+              </tr></thead>
+              <tbody id="nb-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── XABAR ── -->
+      <div class="panel hidden" id="p-messages">
+        <div class="mb-5"><h2 class="text-xl font-bold">Xabar yuborish</h2><p class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))">Talabalarga xabar va bildirishnomalar</p></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">📢 Ommaviy xabar</h3>
+            <div class="space-y-3">
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-wider mb-1.5 block" style="color:rgb(var(--mutedFg))">Sarlavha</label>
+                <input id="msg-title" type="text" placeholder="Xabar sarlavhasi..." class="w-full px-4 py-3 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/>
+              </div>
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-wider mb-1.5 block" style="color:rgb(var(--mutedFg))">Matn</label>
+                <textarea id="msg-body" rows="4" placeholder="Xabar matni..." class="w-full px-4 py-3 rounded-xl border text-sm outline-none resize-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"></textarea>
+              </div>
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-wider mb-1.5 block" style="color:rgb(var(--mutedFg))">Kimga</label>
+                <select id="msg-target" class="w-full px-4 py-3 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+                  <option value="all">Barcha talabalar</option>
+                  <option value="nb">Faqat NB talabalar</option>
+                  <option value="kurs1">1-kurs talabalari</option>
+                  <option value="kurs3">3-kurs talabalari</option>
+                  <option value="kurs5">5-kurs talabalari</option>
+                </select>
+              </div>
+              <button onclick="sendAdminMsg()" class="w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">
+                <iconify-icon icon="lucide:send" width="16"></iconify-icon>Yuborish
+              </button>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">📋 Yuborilgan xabarlar tarixi</h3>
+            <div id="msg-history" class="space-y-3">
+              <div class="p-3 rounded-xl border" style="background:rgb(var(--muted)/.3);border-color:rgb(var(--border)/.5)">
+                <p class="text-sm font-bold">Xush kelibsiz!</p>
+                <p class="text-xs mt-0.5" style="color:rgb(var(--mutedFg))">Barcha talabalar · Bugun</p>
+              </div>
+              <div class="p-3 rounded-xl border" style="background:rgba(244,63,94,.05);border-color:rgba(244,63,94,.2)">
+                <p class="text-sm font-bold">⚠️ NB Ogohlantirish</p>
+                <p class="text-xs mt-0.5" style="color:rgb(var(--accent))">NB talabalar · Bugun</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── JADVAL TAHRIRLASH ── -->
+      <div class="panel hidden" id="p-jadval-edit">
+        <div class="mb-5"><h2 class="text-xl font-bold">Jadval tahrirlash</h2><p class="text-sm mt-0.5" style="color:rgb(var(--mutedFg))">Guruh va kurs jadvalini boshqarish</p></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">➕ Yangi dars qo'shish</h3>
+            <div class="space-y-3">
+              <div class="grid grid-cols-2 gap-2">
+                <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Kurs</label>
+                <select id="je-kurs" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+                  <option value="1">1-kurs</option><option value="3" selected>3-kurs</option><option value="5">5-kurs</option>
+                </select></div>
+                <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Guruh</label>
+                <input id="je-guruh" type="text" placeholder="301" value="301" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+              </div>
+              <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Fan nomi</label>
+              <input id="je-subj" type="text" placeholder="Masalan: Kardiologiya" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+              <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Professor</label>
+              <input id="je-prof" type="text" placeholder="Prof. Ismi F.O." class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+              <div class="grid grid-cols-2 gap-2">
+                <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Kun</label>
+                <select id="je-day" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+                  <option value="1">Dushanba</option><option value="2">Seshanba</option><option value="3">Chorshanba</option>
+                  <option value="4">Payshanba</option><option value="5">Juma</option><option value="6">Shanba</option>
+                </select></div>
+                <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Vaqt</label>
+                <input id="je-time" type="time" value="08:00" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+              </div>
+              <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Bino / Xona</label>
+              <input id="je-room" type="text" placeholder="A Bino, 201-xona" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+              <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Tur</label>
+              <select id="je-type" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));">
+                <option>Lektsiya</option><option>Amaliy</option><option>Seminar</option><option>Klinik amaliyot</option>
+              </select></div>
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="je-online" class="w-4 h-4 rounded">
+                <label for="je-online" class="text-sm font-medium">Online dars</label>
+              </div>
+              <button onclick="addJadvalEntry()" class="w-full py-3 rounded-xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">Qo'shish</button>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">📋 Qo'shilgan darslar</h3>
+            <div id="added-classes" class="space-y-2">
+              <p class="text-sm text-center py-8" style="color:rgb(var(--mutedFg))">Hali qo'shilmagan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div class="panel hidden" id="p-settings">
+        <div class="mb-5"><h2 class="text-xl font-bold">Sozlamalar</h2></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">🔐 Admin parolini o'zgartirish</h3>
+            <div class="space-y-3">
+              <input id="new-pwd" type="password" placeholder="Yangi parol" class="w-full px-4 py-3 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/>
+              <input id="new-pwd2" type="password" placeholder="Tasdiqlash" class="w-full px-4 py-3 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/>
+              <button onclick="changePwd()" class="w-full py-3 rounded-xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">Saqlash</button>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3 class="font-bold mb-4">📊 Ma'lumotlar</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center p-3 rounded-xl" style="background:rgb(var(--muted)/.4)">
+                <span class="text-sm font-medium">Jami ro'yxatdan o'tganlar</span>
+                <span class="font-bold" id="set-reg-cnt" style="color:rgb(var(--primary))">0</span>
+              </div>
+              <div class="flex justify-between items-center p-3 rounded-xl" style="background:rgb(var(--muted)/.4)">
+                <span class="text-sm font-medium">Demo talabalar</span>
+                <span class="font-bold" style="color:rgb(var(--mutedFg))">12</span>
+              </div>
+              <button onclick="if(confirm('Barcha localStorage ma\'lumotlarini tozalash?')){localStorage.clear();location.reload();}" class="w-full py-2.5 rounded-xl text-sm font-bold mt-2" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:1px solid rgba(244,63,94,.2);cursor:pointer;">🗑️ Barcha datani tozalash</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ADD STUDENT MODAL -->
+<div class="modal-bg" id="m-add-student" onclick="if(event.target===this)closeM('m-add-student')">
+  <div class="modal-card">
+    <div class="flex justify-between mb-4"><h3 class="text-base font-bold">Yangi talaba qo'shish</h3><button onclick="closeM('m-add-student')" style="background:none;border:none;color:rgb(var(--mutedFg));font-size:20px;cursor:pointer;">×</button></div>
+    <div class="space-y-3">
+      <div class="grid grid-cols-2 gap-2">
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">To'liq ism</label><input id="ns-name" type="text" placeholder="Ism Familiya" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Username</label><input id="ns-user" type="text" placeholder="username_123" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Kurs</label><select id="ns-kurs" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));color:rgb(var(--fg));"><option value="1">1-kurs</option><option value="2">2-kurs</option><option value="3" selected>3-kurs</option><option value="4">4-kurs</option><option value="5">5-kurs</option><option value="6">6-kurs</option></select></div>
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Guruh</label><input id="ns-guruh" type="text" placeholder="301" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Amaliyot</label><input id="ns-am" type="number" value="0" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Ball</label><input id="ns-ball" type="number" value="0" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+        <div><label class="text-[10px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Davomat%</label><input id="ns-dav" type="number" value="0" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+      </div>
+      <div class="flex items-center gap-3 mt-1">
+        <input type="checkbox" id="ns-nb" class="w-4 h-4">
+        <label for="ns-nb" class="text-sm font-medium" style="color:rgb(var(--accent))">NB ro'yxatiga qo'shish</label>
+      </div>
+      <button onclick="addAdminStudent()" class="w-full py-3 rounded-xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">Qo'shish</button>
+    </div>
+  </div>
+</div>
+
+<!-- STUDENT EDIT MODAL -->
+<div class="modal-bg" id="m-edit-student" onclick="if(event.target===this)closeM('m-edit-student')">
+  <div class="modal-card">
+    <div class="flex justify-between mb-4"><h3 class="text-base font-bold">Talabani tahrirlash</h3><button onclick="closeM('m-edit-student')" style="background:none;border:none;color:rgb(var(--mutedFg));font-size:20px;cursor:pointer;">×</button></div>
+    <div id="edit-body" class="space-y-3"></div>
+  </div>
+</div>
+
+<script>
+// ════════════════ DEMO DATA ════════════════
+const DEMO_STUDENTS=[
+  {id:"s001",fullname:"Anusher Qurbonov",username:"qurbonov_a",avatar:"👨‍⚕️",kurs:"3",guruh:"301",amaliyot:42,ball:87,davomat:91,nb:false,lastSeen:"2025-02-21 14:35",status:"faol"},
+  {id:"s002",fullname:"Dilnoza Yusupova",username:"yusupova_d",avatar:"👩‍⚕️",kurs:"3",guruh:"301",amaliyot:38,ball:91,davomat:95,nb:false,lastSeen:"2025-02-21 10:20",status:"faol"},
+  {id:"s003",fullname:"Bobur Karimov",username:"karimov_b",avatar:"👨‍🔬",kurs:"3",guruh:"301",amaliyot:29,ball:72,davomat:78,nb:false,lastSeen:"2025-02-20 16:10",status:"faol"},
+  {id:"s004",fullname:"Jasur Toshmatov",username:"toshmatov_j",avatar:"👨‍⚕️",kurs:"3",guruh:"301",amaliyot:3,ball:34,davomat:42,nb:true,lastSeen:"2025-02-15 09:00",status:"nb"},
+  {id:"s005",fullname:"Malika Ro'ziyeva",username:"roziyeva_m",avatar:"👩‍🔬",kurs:"3",guruh:"301",amaliyot:5,ball:41,davomat:55,nb:true,lastSeen:"2025-02-18 11:30",status:"nb"},
+  {id:"s006",fullname:"Sardor Normatov",username:"normatov_s",avatar:"🩺",kurs:"3",guruh:"301",amaliyot:1,ball:18,davomat:30,nb:true,lastSeen:"2025-02-10 08:00",status:"nb"},
+  {id:"s007",fullname:"Zulfiya Hasanova",username:"hasanova_z",avatar:"👩‍⚕️",kurs:"3",guruh:"302",amaliyot:35,ball:88,davomat:90,nb:false,lastSeen:"2025-02-21 13:00",status:"faol"},
+  {id:"s008",fullname:"Akbar Xoliqov",username:"xoliqov_a",avatar:"👨‍⚕️",kurs:"5",guruh:"501",amaliyot:120,ball:94,davomat:97,nb:false,lastSeen:"2025-02-21 15:50",status:"faol"},
+  {id:"s009",fullname:"Shahlo Tursunova",username:"tursunova_sh",avatar:"👩‍⚕️",kurs:"1",guruh:"101",amaliyot:5,ball:62,davomat:85,nb:false,lastSeen:"2025-02-20 10:00",status:"faol"},
+  {id:"s010",fullname:"Ibrohim Nazarov",username:"nazarov_i",avatar:"👨‍🔬",kurs:"1",guruh:"101",amaliyot:4,ball:58,davomat:80,nb:false,lastSeen:"2025-02-19 09:30",status:"faol"},
+  {id:"s011",fullname:"Feruza Eshmatova",username:"eshmatova_f",avatar:"👩‍⚕️",kurs:"3",guruh:"302",amaliyot:31,ball:80,davomat:88,nb:false,lastSeen:"2025-02-21 09:00",status:"faol"},
+  {id:"s012",fullname:"Nodir Rahimov",username:"rahimov_n",avatar:"👨‍🔬",kurs:"5",guruh:"501",amaliyot:98,ball:89,davomat:93,nb:false,lastSeen:"2025-02-21 12:00",status:"faol"},
+];
+
+const SCHEDULE_DB={
+  "1-101":{guruh:"101-guruh",kurs:1,week:[{day:1,time:"08:00",dur:90,subj:"Anatomiya",prof:"Prof. Ergashev B.T.",type:"Lektsiya",online:false,building:"A Bino",room:"201"},{day:1,time:"10:00",dur:90,subj:"Biologiya kimyo",prof:"Dos. Nazarova M.K.",type:"Amaliy",online:false,building:"B Bino",room:"104"},{day:2,time:"08:00",dur:90,subj:"Lotin tili",prof:"O'q. Yusupova S.A.",type:"Seminar",online:false,building:"A Bino",room:"312"},{day:3,time:"08:00",dur:90,subj:"Anatomiya (amaliy)",prof:"Prof. Ergashev B.T.",type:"Amaliy",online:false,building:"Morfologiya",room:"Sekciya zal"},{day:4,time:"08:00",dur:90,subj:"Kimyo",prof:"Dos. Qodirov N.A.",type:"Lektsiya",online:false,building:"V Bino",room:"Kimyo lab"},{day:5,time:"08:00",dur:90,subj:"Tibbiy informatika",prof:"O'q. Rashidov F.M.",type:"Amaliy",online:true,building:"Online",room:null}]},
+  "3-301":{guruh:"301-guruh",kurs:3,week:[{day:1,time:"08:00",dur:90,subj:"Gematologiya",prof:"Prof. Salimov T.R.",type:"Lektsiya",online:false,building:"Asosiy Bino",room:"2-Zal"},{day:1,time:"14:00",dur:120,subj:"Xirurgiya Amaliyoti",prof:"Prof. Alimov K.B.",type:"Klinik amaliyot",online:false,building:"1-Shahar Shifoxonasi",room:"Kardiologiya 304"},{day:2,time:"08:00",dur:90,subj:"Patologik anatomiya",prof:"Dos. Mirzayev A.S.",type:"Lektsiya",online:false,building:"Morfologiya",room:"Sekciya zal"},{day:2,time:"10:00",dur:90,subj:"Farmakologiya",prof:"Dos. Xoliqova D.N.",type:"Seminar",online:false,building:"B Bino",room:"402"},{day:3,time:"08:00",dur:120,subj:"Terapiya",prof:"Prof. Karimov U.T.",type:"Klinik amaliyot",online:false,building:"2-Shahar Shifoxonasi",room:"Terapiya 205"},{day:4,time:"08:00",dur:90,subj:"Mikrobiologiya",prof:"Dos. Nazarova L.M.",type:"Lektsiya",online:false,building:"A Bino",room:"210"},{day:5,time:"08:00",dur:90,subj:"Immunologiya",prof:"Prof. Tursunov R.A.",type:"Lektsiya",online:true,building:"Online",room:null}]},
+  "3-302":{guruh:"302-guruh",kurs:3,week:[{day:1,time:"10:00",dur:90,subj:"Gematologiya",prof:"Prof. Salimov T.R.",type:"Lektsiya",online:false,building:"Asosiy Bino",room:"2-Zal"},{day:2,time:"14:00",dur:120,subj:"Xirurgiya Amaliyoti",prof:"Prof. Alimov K.B.",type:"Klinik amaliyot",online:false,building:"1-Shahar Shifoxonasi",room:"304"},{day:3,time:"08:00",dur:90,subj:"Farmakologiya",prof:"Dos. Xoliqova D.N.",type:"Seminar",online:false,building:"B Bino",room:"402"},{day:5,time:"10:00",dur:90,subj:"Mikrobiologiya",prof:"Dos. Nazarova L.M.",type:"Lektsiya",online:false,building:"A Bino",room:"210"}]},
+  "5-501":{guruh:"501-guruh",kurs:5,week:[{day:1,time:"08:00",dur:120,subj:"Ichki kasalliklar",prof:"Prof. Abdullayev N.K.",type:"Klinik amaliyot",online:false,building:"Viloyat Shifoxonasi",room:"Kardiologiya"},{day:2,time:"08:00",dur:90,subj:"Neyroxirurgiya",prof:"Prof. Yusupov M.I.",type:"Lektsiya",online:false,building:"Asosiy Bino",room:"Aktovy Zal"},{day:3,time:"08:00",dur:120,subj:"Akusherlik",prof:"Prof. Hasanova Z.R.",type:"Klinik amaliyot",online:false,building:"Tug'ruqxona №1",room:"Klinik qabul"},{day:4,time:"08:00",dur:90,subj:"Pediatriya",prof:"Prof. Qodirov A.B.",type:"Lektsiya",online:false,building:"A Bino",room:"205"}]}
+};
+
+// ════════════════ STATE ════════════════
+let darkMode=false, adminLoggedIn=false;
+let extraStudents=JSON.parse(localStorage.getItem('admin_students')||'[]');
+let scheduleEdits=JSON.parse(localStorage.getItem('admin_schedule')||'[]');
+const ADMIN_CREDS={login:'admin',pwd:'samdtu2025'};
+
+// ════════════════ INIT ════════════════
+window.addEventListener('load',()=>{
+  const saved=localStorage.getItem('admin_session');
+  if(saved==='true') showDashboard();
+  setInterval(updateAdminClock,1000);updateAdminClock();
+  document.querySelectorAll('.nav-item').forEach(b=>{b.style.cssText='background:none;color:rgb(var(--mutedFg));transition:all .2s;';});
+  document.querySelector('.nav-item.active').style.cssText='background:rgb(var(--primary)/.1);color:rgb(var(--primary));';
+  updateNavCounts();
+});
+
+function updateAdminClock(){
+  const now=new Date();const UZM=['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktyabr','Noyabr','Dekabr'];const UZDN=['Yakshanba','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'];
+  const ds=`${now.getDate()} ${UZM[now.getMonth()]} ${now.getFullYear()}, ${UZDN[now.getDay()]}`;
+  const ts=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
+  const el=document.getElementById('admin-date');if(el)el.textContent=ds+' · '+ts;
+  const ov=document.getElementById('ov-date');if(ov)ov.textContent=ds;
+}
+
+// ════════════════ AUTH ════════════════
+async function doAdminLogin(){
+  const u=document.getElementById('a-user').value.trim(),p=document.getElementById('a-pwd').value;
+  const err=document.getElementById('login-err');err.classList.add('hidden');
+  if(!u||!p){err.textContent='❌ Login va parolni kiriting';err.classList.remove('hidden');return;}
+  document.getElementById('a-btn').disabled=true;document.getElementById('a-sp').style.display='inline-block';
+  await new Promise(r=>setTimeout(r,800));
+  // Check custom admin pwd
+  const savedPwd=localStorage.getItem('admin_pwd')||ADMIN_CREDS.pwd;
+  if(u===ADMIN_CREDS.login&&p===savedPwd){
+    localStorage.setItem('admin_session','true');
+    showDashboard();
+  } else {
+    err.textContent='❌ Login yoki parol noto\'g\'ri';err.classList.remove('hidden');
+    document.getElementById('a-btn').disabled=false;document.getElementById('a-sp').style.display='none';
+  }
+}
+function doAdminLogout(){localStorage.removeItem('admin_session');location.reload();}
+function showDashboard(){
+  document.getElementById('login-screen').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  renderOverview();renderAdminStudents();renderNBTable();renderSchedPanel();
+  setTimeout(()=>updateNavCounts(),100);
+}
+
+// ════════════════ NAV ════════════════
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(b=>{b.classList.remove('active');b.style.cssText='background:none;color:rgb(var(--mutedFg));transition:all .2s;';});
+  const active=document.querySelector(`[onclick="showPanel('${id}')"]`);
+  if(active){active.classList.add('active');active.style.cssText='background:rgb(var(--primary)/.1);color:rgb(var(--primary));border:none;cursor:pointer;';}
+  if(id==='p-students') renderAdminStudents();
+  if(id==='p-nb') renderNBTable();
+  if(id==='p-schedule') renderSchedPanel();
+  if(id==='p-settings'){
+    const reg=Object.keys(JSON.parse(localStorage.getItem('ms_users')||'{}')).length;
+    const el=document.getElementById('set-reg-cnt');if(el)el.textContent=reg;
+  }
+  closeSidebar();
+}
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar'),ov=document.getElementById('sb-overlay');
+  sb.classList.toggle('-translate-x-full');ov.classList.toggle('hidden');
+}
+function closeSidebar(){
+  const sb=document.getElementById('sidebar'),ov=document.getElementById('sb-overlay');
+  if(window.innerWidth<1024){sb.classList.add('-translate-x-full');ov.classList.add('hidden');}
+}
+function updateNavCounts(){
+  const all=getAllStudents();
+  document.getElementById('nav-student-cnt').textContent=all.length;
+  document.getElementById('nav-nb-cnt').textContent=all.filter(s=>s.nb).length;
+}
+
+// ════════════════ DATA ════════════════
+function getAllStudents(){
+  const users=JSON.parse(localStorage.getItem('ms_users')||'{}');
+  const registered=Object.values(users).map(u=>({
+    id:'u_'+u.id,fullname:u.fullname,username:u.username,avatar:u.avatar||'👤',
+    kurs:u.kurs||'3',guruh:u.guruh||'—',
+    amaliyot:0,ball:0,davomat:0,nb:false,
+    lastSeen:u.created?new Date(u.created).toLocaleString('uz-UZ'):'—',status:'yangi',registered:true
+  }));
+  const regUN=new Set(registered.map(u=>u.username));
+  const demo=DEMO_STUDENTS.filter(s=>!regUN.has(s.username));
+  const extra=extraStudents.filter(s=>!regUN.has(s.username));
+  return [...registered,...demo,...extra];
+}
+
+// ════════════════ OVERVIEW ════════════════
+function renderOverview(){
+  const all=getAllStudents();
+  const statData=[
+    {label:'Jami talabalar',val:all.length,icon:'lucide:users',c:'rgb(var(--primary))'},
+    {label:'Faol talabalar',val:all.filter(s=>!s.nb).length,icon:'lucide:user-check',c:'#065f46'},
+    {label:'NB talabalar',val:all.filter(s=>s.nb).length,icon:'lucide:alert-triangle',c:'rgb(var(--accent))'},
+    {label:"Ro'yxatdan o'tgan",val:all.filter(s=>s.registered).length,icon:'lucide:user-plus',c:'#7c3aed'},
+  ];
+  document.getElementById('stat-cards').innerHTML=statData.map(s=>`
+    <div class="stat-card fade-up">
+      <div class="flex items-start justify-between mb-3">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:${s.c}15"><iconify-icon icon="${s.icon}" width="20" style="color:${s.c}"></iconify-icon></div>
+      </div>
+      <p class="text-3xl font-bold" style="color:${s.c}">${s.val}</p>
+      <p class="text-xs mt-1 font-semibold" style="color:rgb(var(--mutedFg))">${s.label}</p>
+    </div>`).join('');
+
+  // Recent activity
+  const recentStudents=all.sort((a,b)=>b.lastSeen.localeCompare(a.lastSeen)).slice(0,5);
+  document.getElementById('recent-activity').innerHTML=recentStudents.map(s=>`
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center text-base flex-shrink-0" style="background:rgb(var(--muted)/.5)">${s.avatar}</div>
+      <div class="flex-1 min-w-0"><p class="text-sm font-bold truncate">${s.fullname}</p><p class="text-[10px]" style="color:rgb(var(--mutedFg))">${s.kurs}-kurs · ${s.guruh} · ${s.lastSeen}</p></div>
+      ${s.registered?'<span class="badge-yangi">Yangi</span>':s.nb?'<span class="badge-nb">NB</span>':'<span class="badge-faol">Faol</span>'}
+    </div>`).join('');
+
+  // NB quick list
+  const nb=all.filter(s=>s.nb).slice(0,4);
+  document.getElementById('nb-quick-list').innerHTML=nb.length?nb.map(s=>`
+    <div class="flex items-center gap-3 p-2.5 rounded-xl" style="background:rgba(244,63,94,.05);border:1px solid rgba(244,63,94,.15)">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center text-base flex-shrink-0" style="background:rgba(244,63,94,.1)">${s.avatar}</div>
+      <div class="flex-1 min-w-0"><p class="text-sm font-bold truncate">${s.fullname}</p><p class="text-[10px]" style="color:rgb(var(--accent))">${s.amaliyot} amaliyot · ${s.ball} ball · ${s.davomat}%</p></div>
+    </div>`).join(''):'<p class="text-sm" style="color:rgb(var(--mutedFg))">NB talabalar yo\'q</p>';
+
+  // Kurs stats
+  const kursData={};
+  all.forEach(s=>{const k=s.kurs||'?';if(!kursData[k])kursData[k]={total:0,nb:0,avgBall:0,balls:[]};kursData[k].total++;if(s.nb)kursData[k].nb++;kursData[k].balls.push(s.ball||0);});
+  Object.values(kursData).forEach(k=>{k.avgBall=k.balls.length?Math.round(k.balls.reduce((a,b)=>a+b,0)/k.balls.length):0;});
+  document.getElementById('kurs-stats').innerHTML=Object.entries(kursData).sort().map(([k,d])=>`
+    <div class="flex items-center gap-4">
+      <span class="text-sm font-bold w-16 flex-shrink-0">${k}-kurs</span>
+      <div class="flex-1"><div class="flex justify-between text-[10px] mb-1"><span style="color:rgb(var(--mutedFg))">${d.total} talaba · ${d.avgBall} ort. ball</span><span style="color:${d.nb>0?'rgb(var(--accent))':'#065f46'}">${d.nb} NB</span></div><div class="h-2 rounded-full overflow-hidden" style="background:rgb(var(--muted))"><div class="h-full rounded-full" style="background:rgb(var(--primary));width:${Math.min(d.avgBall,100)}%"></div></div></div>
+    </div>`).join('');
+}
+
+// ════════════════ STUDENTS TABLE ════════════════
+function renderAdminStudents(){
+  let students=getAllStudents();
+  const q=(document.getElementById('stud-q')?.value||'').toLowerCase();
+  const kf=document.getElementById('stud-kurs-f')?.value||'';
+  const sf=document.getElementById('stud-status-f')?.value||'';
+  const srt=document.getElementById('stud-sort-f')?.value||'name';
+  if(q) students=students.filter(s=>s.fullname.toLowerCase().includes(q)||s.username.toLowerCase().includes(q)||String(s.guruh).includes(q));
+  if(kf) students=students.filter(s=>String(s.kurs)===kf);
+  if(sf==='faol') students=students.filter(s=>!s.nb&&s.status!=='yangi');
+  if(sf==='nb') students=students.filter(s=>s.nb);
+  if(sf==='yangi') students=students.filter(s=>s.registered);
+  if(srt==='ball') students.sort((a,b)=>b.ball-a.ball);
+  else if(srt==='amaliyot') students.sort((a,b)=>b.amaliyot-a.amaliyot);
+  else if(srt==='davomat') students.sort((a,b)=>b.davomat-a.davomat);
+  else if(srt==='lastSeen') students.sort((a,b)=>b.lastSeen.localeCompare(a.lastSeen));
+  else students.sort((a,b)=>a.fullname.localeCompare(b.fullname));
+
+  const tbody=document.getElementById('stud-tbody');
+  tbody.innerHTML=students.map((s,i)=>`<tr>
+    <td><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm flex-shrink-0" style="background:rgb(var(--muted)/.5)">${s.avatar}</div><div><p class="font-bold text-sm">${s.fullname}</p><p class="text-[10px]" style="color:rgb(var(--mutedFg))">@${s.username}</p></div></div></td>
+    <td><span class="text-sm font-semibold">${s.kurs}-kurs</span><br><span class="text-[10px]" style="color:rgb(var(--mutedFg))">${s.guruh}-guruh</span></td>
+    <td class="text-center font-bold" style="color:rgb(var(--primary))">${s.amaliyot}</td>
+    <td class="text-center font-bold" style="color:rgb(var(--primary))">${s.ball}</td>
+    <td class="text-center"><span class="font-bold" style="color:${s.davomat>=80?'#065f46':'rgb(var(--accent))'}}">${s.davomat}%</span></td>
+    <td class="text-[11px]" style="color:rgb(var(--mutedFg))">${s.lastSeen}</td>
+    <td>${s.nb?'<span class="badge-nb">NB</span>':s.registered?'<span class="badge-yangi">Yangi</span>':'<span class="badge-faol">Faol</span>'}</td>
+    <td>
+      <div class="flex items-center gap-1">
+        <button onclick="editStudent('${s.id}')" class="p-1.5 rounded-lg" style="background:rgb(var(--primary)/.1);border:none;cursor:pointer;" title="Tahrirlash"><iconify-icon icon="lucide:edit-3" width="13" style="color:rgb(var(--primary))"></iconify-icon></button>
+        <button onclick="toggleStudNB('${s.id}')" class="p-1.5 rounded-lg" style="background:${s.nb?'rgba(16,185,129,.1)':'rgba(244,63,94,.1)'};border:none;cursor:pointer;" title="${s.nb?'NB olib tashlash':'NB qo\'shish'}"><iconify-icon icon="${s.nb?'lucide:user-check':'lucide:alert-triangle'}" width="13" style="color:${s.nb?'#065f46':'rgb(var(--accent))'}"></iconify-icon></button>
+        <button onclick="deleteStudent('${s.id}')" class="p-1.5 rounded-lg" style="background:rgba(244,63,94,.1);border:none;cursor:pointer;" title="O'chirish"><iconify-icon icon="lucide:trash-2" width="13" style="color:rgb(var(--accent))"></iconify-icon></button>
+      </div>
+    </td>
+  </tr>`).join('');
+  document.getElementById('stud-count').textContent=`${students.length} ta talaba ko'rsatilmoqda`;
+}
+
+// ════════════════ NB TABLE ════════════════
+function renderNBTable(){
+  const nb=getAllStudents().filter(s=>s.nb);
+  const tbody=document.getElementById('nb-tbody');
+  if(!nb.length){tbody.innerHTML='<tr><td colspan="6" class="text-center py-8" style="color:rgb(var(--mutedFg))">NB talabalar yo\'q! 🎉</td></tr>';return;}
+  tbody.innerHTML=nb.map(s=>`<tr style="background:rgba(244,63,94,.03)">
+    <td><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm" style="background:rgba(244,63,94,.1)">${s.avatar}</div><div><p class="font-bold text-sm">${s.fullname}</p><p class="text-[10px]" style="color:rgb(var(--mutedFg))">${s.kurs}-kurs · ${s.guruh}</p></div></div></td>
+    <td class="text-center font-bold" style="color:rgb(var(--accent))">${s.amaliyot}</td>
+    <td class="text-center font-bold" style="color:rgb(var(--accent))">${s.ball}</td>
+    <td class="text-center font-bold" style="color:rgb(var(--accent))">${s.davomat}%</td>
+    <td><span class="badge-nb">⚠️ NB</span></td>
+    <td>
+      <div class="flex gap-1">
+        <button onclick="sendNBmsg('${s.fullname}')" class="px-2 py-1 rounded-lg text-[10px] font-bold" style="background:rgba(244,63,94,.1);color:rgb(var(--accent));border:none;cursor:pointer;">Xabar</button>
+        <button onclick="toggleStudNB('${s.id}')" class="px-2 py-1 rounded-lg text-[10px] font-bold" style="background:rgba(16,185,129,.1);color:#065f46;border:none;cursor:pointer;">✓ Olib tashl.</button>
+      </div>
+    </td>
+  </tr>`).join('');
+}
+
+// ════════════════ SCHEDULE PANEL ════════════════
+let currentSchedGroup='1-101';
+function renderSchedPanel(){showSchedGroup(currentSchedGroup);}
+function showSchedGroup(key){
+  currentSchedGroup=key;
+  document.querySelectorAll('[id^="sg-"]').forEach(b=>{b.classList.remove('active');});
+  const btn=document.getElementById('sg-'+key);if(btn)btn.classList.add('active');
+  const sched=SCHEDULE_DB[key];
+  if(!sched){document.getElementById('sched-content').innerHTML='<p style="color:rgb(var(--mutedFg))">Jadval topilmadi</p>';return;}
+  const dayNames=['','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba','Yakshanba'];
+  const typeC={'Lektsiya':'#3b82f6','Amaliy':'#0d9488','Seminar':'#7c3aed','Klinik amaliyot':'#dc2626'};
+  let html='';
+  for(let d=1;d<=6;d++){
+    const classes=sched.week.filter(c=>c.day===d).sort((a,b)=>a.time.localeCompare(b.time));
+    if(!classes.length)continue;
+    html+=`<div class="rounded-2xl border overflow-hidden" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)">
+      <div class="px-4 py-3 flex items-center justify-between border-b" style="background:rgb(var(--muted)/.5);border-color:rgb(var(--border))">
+        <span class="font-bold text-sm">${dayNames[d]}</span>
+        <span class="text-[10px] px-2 py-0.5 rounded-full font-bold" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">${classes.length} dars</span>
+      </div>
+      <div class="divide-y" style="border-color:rgb(var(--border)/.4)">`;
+    classes.forEach(c=>{
+      const tc=typeC[c.type]||'gray';
+      html+=`<div class="flex items-start gap-4 p-4">
+        <div class="w-16 flex-shrink-0 text-center pt-0.5"><p class="font-bold text-sm">${c.time}</p><p class="text-[9px]" style="color:rgb(var(--mutedFg))">${c.dur}min</p></div>
+        <div class="w-1 self-stretch rounded-full flex-shrink-0" style="background:${tc};min-height:40px;"></div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <p class="font-bold text-sm">${c.subj}</p>
+            ${c.online?'<span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:rgba(16,185,129,.1);color:#065f46">Online</span>':''}
+          </div>
+          <p class="text-[11px]" style="color:rgb(var(--primary))">👨‍🏫 ${c.prof}</p>
+          ${!c.online?`<p class="text-[10px] mt-0.5" style="color:rgb(var(--mutedFg))">📍 ${c.building}${c.room?(' · '+c.room):''}</p>`:''}
+        </div>
+        <span class="text-[9px] font-bold px-2 py-1 rounded-lg flex-shrink-0" style="background:${tc}15;color:${tc}">${c.type}</span>
+      </div>`;
+    });
+    html+='</div></div>';
+  }
+  document.getElementById('sched-content').innerHTML=html;
+}
+
+// ════════════════ STUDENT ACTIONS ════════════════
+function addAdminStudent(){
+  const name=document.getElementById('ns-name').value.trim();
+  const user=document.getElementById('ns-user').value.trim();
+  if(!name||!user){showToast('❌','Ism va username kiriting');return;}
+  const s={id:'a_'+Date.now(),fullname:name,username:user,avatar:'👤',kurs:document.getElementById('ns-kurs').value,guruh:document.getElementById('ns-guruh').value||'—',amaliyot:+document.getElementById('ns-am').value||0,ball:+document.getElementById('ns-ball').value||0,davomat:+document.getElementById('ns-dav').value||0,nb:document.getElementById('ns-nb').checked,lastSeen:'—',status:document.getElementById('ns-nb').checked?'nb':'faol'};
+  extraStudents.push(s);localStorage.setItem('admin_students',JSON.stringify(extraStudents));
+  closeM('m-add-student');renderAdminStudents();renderNBTable();renderOverview();updateNavCounts();
+  showToast('✅ Qo\'shildi',name+' bazaga qo\'shildi');
+  ['ns-name','ns-user','ns-guruh'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function editStudent(id){
+  const all=getAllStudents();const s=all.find(x=>x.id===id);if(!s)return;
+  document.getElementById('edit-body').innerHTML=`
+    <div class="flex items-center gap-3 mb-4 p-3 rounded-xl" style="background:rgb(var(--muted)/.4)">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:rgb(var(--muted)/.5)">${s.avatar}</div>
+      <div><p class="font-bold">${s.fullname}</p><p class="text-sm" style="color:rgb(var(--mutedFg))">@${s.username}</p></div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 mb-3">
+      <div><label class="text-[9px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Amaliyot</label><input id="e-am" type="number" value="${s.amaliyot}" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+      <div><label class="text-[9px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Ball</label><input id="e-ball" type="number" value="${s.ball}" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+      <div><label class="text-[9px] font-bold uppercase mb-1 block" style="color:rgb(var(--mutedFg))">Davomat%</label><input id="e-dav" type="number" value="${s.davomat}" class="w-full px-3 py-2.5 rounded-xl border text-sm outline-none" style="background:rgb(var(--muted)/.4);border-color:rgb(var(--border));"/></div>
+    </div>
+    <div class="flex items-center gap-3 mb-4"><input type="checkbox" id="e-nb" ${s.nb?'checked':''} class="w-4 h-4"><label for="e-nb" class="text-sm font-medium" style="color:rgb(var(--accent))">NB ro'yxatida</label></div>
+    <button onclick="saveEditStudent('${id}')" class="w-full py-3 rounded-xl font-bold text-sm" style="background:rgb(var(--primary));color:#fff;border:none;cursor:pointer;">Saqlash</button>`;
+  openM('m-edit-student');
+}
+
+function saveEditStudent(id){
+  const extras=extraStudents;const idx=extras.findIndex(s=>s.id===id);
+  const newData={amaliyot:+document.getElementById('e-am').value,ball:+document.getElementById('e-ball').value,davomat:+document.getElementById('e-dav').value,nb:document.getElementById('e-nb').checked};
+  if(idx>=0){Object.assign(extras[idx],newData);localStorage.setItem('admin_students',JSON.stringify(extras));}
+  else{
+    const users=JSON.parse(localStorage.getItem('ms_users')||'{}');
+    const ukey=Object.keys(users).find(k=>'u_'+users[k].id===id);
+    if(ukey){/* users can't be edited for safety */}
+  }
+  closeM('m-edit-student');renderAdminStudents();renderNBTable();renderOverview();updateNavCounts();
+  showToast('✅ Saqlandi','Talaba ma\'lumotlari yangilandi');
+}
+
+function deleteStudent(id){
+  if(!confirm('Bu talabani o\'chirishni tasdiqlaysizmi?'))return;
+  const idx=extraStudents.findIndex(s=>s.id===id);
+  if(idx>=0){extraStudents.splice(idx,1);localStorage.setItem('admin_students',JSON.stringify(extraStudents));}
+  renderAdminStudents();renderNBTable();renderOverview();updateNavCounts();
+  showToast('🗑️ O\'chirildi','Talaba bazadan o\'chirildi');
+}
+
+function toggleStudNB(id){
+  const idx=extraStudents.findIndex(s=>s.id===id);
+  if(idx>=0){extraStudents[idx].nb=!extraStudents[idx].nb;extraStudents[idx].status=extraStudents[idx].nb?'nb':'faol';localStorage.setItem('admin_students',JSON.stringify(extraStudents));}
+  renderAdminStudents();renderNBTable();renderOverview();updateNavCounts();
+  showToast('✅','NB holati yangilandi');
+}
+
+function sendNBmsg(name){showToast('📬 Yuborildi',name+' ga NB xabari yuborildi');}
+function sendNBAll(){const nb=getAllStudents().filter(s=>s.nb);showToast('📢 Yuborildi',nb.length+' ta NB talabaga xabar yuborildi');}
+function sendAdminMsg(){
+  const t=document.getElementById('msg-title').value.trim(),b=document.getElementById('msg-body').value.trim();
+  if(!t||!b){showToast('❌','Sarlavha va matn kiriting');return;}
+  const target=document.getElementById('msg-target').value;
+  const hist=document.getElementById('msg-history');
+  hist.insertAdjacentHTML('afterbegin',`<div class="p-3 rounded-xl border" style="background:rgb(var(--muted)/.3);border-color:rgb(var(--border)/.5)"><p class="text-sm font-bold">${t}</p><p class="text-xs mt-1" style="color:rgb(var(--mutedFg))">${target==='all'?'Barcha':target==='nb'?'NB talabalar':target} · Hozir</p></div>`);
+  document.getElementById('msg-title').value='';document.getElementById('msg-body').value='';
+  showToast('📤 Yuborildi',`"${t}" xabari muvaffaqiyatli yuborildi`);
+}
+
+// ════════════════ JADVAL EDIT ════════════════
+const addedClasses=[];
+function addJadvalEntry(){
+  const kurs=document.getElementById('je-kurs').value,guruh=document.getElementById('je-guruh').value,subj=document.getElementById('je-subj').value.trim();
+  if(!subj){showToast('❌','Fan nomini kiriting');return;}
+  const entry={kurs,guruh,subj,prof:document.getElementById('je-prof').value,day:+document.getElementById('je-day').value,time:document.getElementById('je-time').value,room:document.getElementById('je-room').value,type:document.getElementById('je-type').value,online:document.getElementById('je-online').checked};
+  addedClasses.push(entry);
+  const dayNames=['','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'];
+  const el=document.getElementById('added-classes');
+  if(addedClasses.length===1)el.innerHTML='';
+  el.insertAdjacentHTML('afterbegin',`<div class="p-3 rounded-xl border" style="background:rgb(var(--card));border-color:rgb(var(--border)/.5)"><div class="flex justify-between"><p class="font-bold text-sm">${subj}</p><span class="text-[9px] font-bold px-2 py-0.5 rounded-full" style="background:rgb(var(--primary)/.1);color:rgb(var(--primary))">${kurs}-${guruh}</span></div><p class="text-[11px] mt-0.5" style="color:rgb(var(--mutedFg))">${dayNames[entry.day]} · ${entry.time} · ${entry.room||'Online'}</p></div>`);
+  showToast('✅ Qo\'shildi',subj+' jadvali yangilandi');
+  ['je-subj','je-prof','je-room'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ════════════════ SETTINGS ════════════════
+function changePwd(){
+  const p1=document.getElementById('new-pwd').value,p2=document.getElementById('new-pwd2').value;
+  if(!p1||p1.length<4){showToast('❌','Kamida 4 ta belgi');return;}
+  if(p1!==p2){showToast('❌','Parollar mos kelmadi');return;}
+  localStorage.setItem('admin_pwd',p1);
+  document.getElementById('new-pwd').value='';document.getElementById('new-pwd2').value='';
+  showToast('✅ Saqlandi','Admin paroli yangilandi');
+}
+
+// ════════════════ DARK MODE ════════════════
+function toggleDark(){
+  darkMode=!darkMode;
+  document.getElementById('html-root').classList.toggle('dark',darkMode);
+  const b=document.getElementById('dk-btn');
+  if(b)b.innerHTML=darkMode?'<iconify-icon icon="lucide:sun" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>':'<iconify-icon icon="lucide:moon" width="16" style="color:rgb(var(--mutedFg))"></iconify-icon>';
+}
+
+// ════════════════ TOAST ════════════════
+function showToast(icon,title,body=''){
+  document.getElementById('t-icon').textContent=icon;document.getElementById('t-title').textContent=title;document.getElementById('t-body').textContent=body;
+  const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ════════════════ MODALS ════════════════
+function openM(id){document.getElementById(id).classList.add('open');}
+function closeM(id){document.getElementById(id).classList.remove('open');}
+</script>
 </body>
 </html>
